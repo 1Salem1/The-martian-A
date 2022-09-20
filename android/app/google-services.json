@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "119553467876",
+    "firebase_url": "https://the-martian-1080d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "the-martian-1080d",
+    "storage_bucket": "the-martian-1080d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119553467876:android:0fd8c5e8eeabd1c93a13f1",
+        "android_client_info": {
+          "package_name": "com.themartian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119553467876-hvrrqih2pqgj0ap2jv717021s2qr1iih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.themartian",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "119553467876-n6mhtlaul08o2e7r2ej9gk8220fc1bf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs04YjcOfT6-KHWoweF5XRsrsa0c_SuYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119553467876-n6mhtlaul08o2e7r2ej9gk8220fc1bf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "119553467876-mlue8qg9c04m0indep7bco0hssmdoq6b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.themartian"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
