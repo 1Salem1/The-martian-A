@@ -1,16 +1,15 @@
 import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
 import app from './config';
 
-
-export async function getUserData(uid) {
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
-      if (snapshot.exists()) {
-          return (snapshot.val())
+export  function getUserData(uid) {
   
-      } 
-    })
-    
+  
+  const db = getDatabase(app);
+    const reference = ref(db, 'users/' + uid);
+    onValue(reference, (snapshot) => {
+      const data = snapshot.val();
+        return data
+    });
   }
 
 
@@ -58,7 +57,17 @@ export async function upDateUserImg(photo ,data ) {
 
 
 
-
+export async function UpdateProfile( fname , lname , id ) {
+  const db = getDatabase();
+    const reference = ref(db, 'users/' + id);
+    update(reference, {
+      first_name : fname,
+      last_name : lname ,
+    }).then((e)=>{
+      console.log(e)
+    });
+  
+}
 
 
 

@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import Loader from './components/global/Loader';
 import NavigationLogged from './navigation/NavigationLogged';
 import Navigation from './navigation/Navigation';
-
+import SplashScreen from 'react-native-splash-screen';
 function App() {
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
@@ -17,8 +17,10 @@ function App() {
   }
 
   useEffect(() => {
+  SplashScreen.hide()
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
+    
   }, []);
 
   if (initializing) return <Loader/>;

@@ -2,19 +2,17 @@ import * as React from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap  , TabBar} from 'react-native-tab-view';
 import Account from '../profile/Account';
-import Policy from '../profile/Policy';
-import Notification from '../profile/Notification';
-
+import ActivitiesList from './ActivitiesList';
+import ButtonTracker from './ButtonTracker';
 
 const SecondRoute = () => (
   <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
 );
 
 const renderScene = SceneMap({
-  account: Account,
-  activities: SecondRoute,
-  notification: Notification,
-  policy: Policy,
+  ActivitiesList: ActivitiesList,
+  ButtonTracker: ButtonTracker,
+
 });
 
 export default function TabViewExample() {
@@ -22,10 +20,9 @@ export default function TabViewExample() {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'account', title: 'Account' },
-    { key: 'activities', title: 'Activities' },
-    { key: 'notification', title: 'Notification' },
-    { key: 'policy', title: 'Policy' },
+    { key: 'ActivitiesList', title: 'Ski On Mars' },
+    { key: 'ButtonTracker', title: 'Recent Ski Activities' },
+ 
   ]);
 
   return (
