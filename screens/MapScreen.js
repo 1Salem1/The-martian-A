@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import style from '../styles/MapStyle';
 import Button from '../components/profile/Button';
 import * as Location from 'expo-location';
-
+import { GetLocation } from '../utils/Weather';
 
 
 
@@ -13,13 +13,22 @@ const MapScreen = ({route , navigation}) => {
   const [lat , setLat] = React.useState()
 
 
+  async function GetCurrentLocation(){
+    const dataT = await GetLocation()
+    setData(dataT)
+    setLong(dataT.coords.longitude)
+  setLat(dataT.coords.latitude)
+  
+    }
+  
+  
+
+  
 
  
 React.useEffect(()=>{
-  const {data}  = route?.params ;
-
-  setLong(data.coords.longitude)
-  setLat(data.coords.latitude)
+GetCurrentLocation()
+ 
 },[])
 
     var  MapStyle = style

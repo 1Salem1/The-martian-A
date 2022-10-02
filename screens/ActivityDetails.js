@@ -133,9 +133,14 @@ export default function ActivityDetails({navigation}) {
 </View>
 
 
+  
 </View>
 
+<TouchableOpacity style={styles.share}>
+<Icon2 name='share-alt' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
+<Text style={styles.shareT}>Share</Text>
 
+</TouchableOpacity>
 
     </View>
   )
@@ -265,5 +270,28 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#ffffff',
     marginTop : 20,   
+  },
+  share: {
+    flexDirection :'row',
+    justifyContent :'center',
+    alignItems :'center',
+    marginTop : '10%',
+    alignSelf : 'center',
+    width: 100,
+    height: 40,
+    borderRadius: 5,
+    borderColor: '#cccccc',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    backgroundColor: '#ffffff',
+  },
+  shareT: {
+    color: '#666666',
+    fontFamily: 'MuseoSans_700',
+    fontSize: 14,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    textAlign: 'center',
+   
   },
 })

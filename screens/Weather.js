@@ -17,13 +17,14 @@ import { useIsFocused } from "@react-navigation/native";
   
     const lon = route.params?.longitude;
   
-    if(lat){
+  
       const NewLocation = {
         latitude : lat ,
         longitude : lon
        }
        
-    }
+       
+    
  
 
     const[city , setCity] = useState()
@@ -59,6 +60,7 @@ async function GetCurrentLocation(){
 
 async function RgetWeather(){
   if(lat && lon){
+    setData(NewLocation)
     const weather = await getWeather(NewLocation)
     setTemp(weather.data.main.temp)
     setCity(weather.data.name)
@@ -141,7 +143,7 @@ async function RgetWeather(){
 </View>
  </View>
 
-       <TouchableOpacity style={styles.bg} onPress={()=> navigation.navigate('map',{data: data} )}>
+       <TouchableOpacity style={styles.bg} onPress={()=> navigation.navigate('map')}>
 <Icon3 name='my-location' style={{marginRight:10,  color: '#666666' , fontSize: 20 }} />
 <Text style={styles.selectAnother}>Select another place</Text>
 </TouchableOpacity>
