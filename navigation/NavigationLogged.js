@@ -8,6 +8,7 @@ import Weather from '../screens/Weather';
 import MapScreen from '../screens/MapScreen';
 import Pdf from '../screens/pdf';
 import ActivityDetails from '../screens/ActivityDetails';
+import StartRecording from '../screens/StartRecording';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,7 @@ const NavigationLogged = () => {
       <Stack.Screen  name="map" component={MapScreen} />
       <Stack.Screen  name="pdf" component={Pdf} />
       <Stack.Screen  name="activityD" component={ActivityDetails} />
+      <Stack.Screen  name="record" component={StartRecording} />
 
     </Stack.Navigator>
   </NavigationContainer>

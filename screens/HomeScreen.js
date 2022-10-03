@@ -53,6 +53,7 @@ useEffect(()=>{
       <Button title='profile' onPress={()=>navigation.navigate('profile')} />
       <Button title='Weather' onPress={()=>navigation.navigate('weather')} />
       <Button title='pdf' onPress={()=>navigation.navigate('pdf')} />
+      <Button title='Recording' onPress={()=>navigation.navigate('record')} />
     </View>
   )
 }

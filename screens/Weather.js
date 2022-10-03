@@ -8,29 +8,22 @@ import TabViewExample from '../components/skiOnMars/Tab';
 import Loader from '../components/global/Loader';
 import { AuthContext } from '../utils/auth-context';
 import { GetLocation, getWeather } from '../utils/Weather';
-import { useIsFocused } from "@react-navigation/native";
+import { useFocusEffect } from '@react-navigation/native';
 
   const Weather = ({route ,navigation}) => {
-    const isFocused = useIsFocused();
+  
 
     const  lat = route.params?.latitude;
   
     const lon = route.params?.longitude;
   
-  
-      const NewLocation = {
-        latitude : lat ,
-        longitude : lon
-       }
-       
-       
-    
+
  
 
-    const[city , setCity] = useState()
+    const[city , setCity] = useState('This Location is unknown')
     const[Country , setCountry] = useState()
     const[snow , setSnow] = useState("0.00")
-    const[temp , setTemp] = useState(null)
+    const[temp , setTemp] = useState('0.00')
     const [data , setData] = useState(null)
 
 useEffect(()=>{
@@ -38,15 +31,17 @@ useEffect(()=>{
 },[])
 
 
-useEffect(()=>{
- if(lat){
-  RgetWeather()
- }
-},[lat ,isFocused])
+ useFocusEffect(
+    React.useCallback(() => {
+      RgetWeather()
+
+     
+    }, [lat])
+  );
 
 async function GetCurrentLocation(){
   const dataT = await GetLocation()
-  setData(dataT)
+  setData(dataT.coords)
   const weather = await getWeather(dataT.coords)
  // console.log(weather.data)
   setTemp(weather.data.main.temp)
@@ -60,8 +55,14 @@ async function GetCurrentLocation(){
 
 async function RgetWeather(){
   if(lat && lon){
-    setData(NewLocation)
+    const NewLocation = {
+      longitude : lon ,
+      latitude : lat ,
+    }
+
+    
     const weather = await getWeather(NewLocation)
+    setData(NewLocation)
     setTemp(weather.data.main.temp)
     setCity(weather.data.name)
     setCountry(weather.data.sys['country'])
@@ -143,7 +144,7 @@ async function RgetWeather(){
 </View>
  </View>
 
-       <TouchableOpacity style={styles.bg} onPress={()=> navigation.navigate('map')}>
+       <TouchableOpacity style={styles.bg} onPress={()=> navigation.navigate('map',{data: data} )}>
 <Icon3 name='my-location' style={{marginRight:10,  color: '#666666' , fontSize: 20 }} />
 <Text style={styles.selectAnother}>Select another place</Text>
 </TouchableOpacity>

@@ -4,24 +4,26 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import style from '../styles/MapStyle';
 import Button from '../components/profile/Button';
 import * as Location from 'expo-location';
+import { GetLocation, getWeather } from '../utils/Weather';
 
 
 
-
-const MapScreen = ({route , navigation}) => {
+const StartRecording = ({navigation}) => {
   const[long , setLong] = React.useState()
   const [lat , setLat] = React.useState()
-  const {data}  = route?.params ;
 
 
 
-  async function Init (){
-    setLong(data.longitude)
-    setLat(data.latitude)
-  }
- 
+
+  
+  
+
+
+
+
+
 React.useEffect(()=>{
-Init()
+
 
 
 },[])
@@ -32,8 +34,8 @@ Init()
     <View style={styles.container}>
     <MapView
 initialRegion={{
-  latitude: lat,
-  longitude: long,
+  latitude:  -13.09088,
+  longitude: -147.54382,
   latitudeDelta: 0.0243,
   longitudeDelta: 0.0234
 }}
@@ -43,7 +45,7 @@ initialRegion={{
 
       
 					<Marker
-						coordinate={{ latitude: lat, longitude: long }}
+						coordinate={{ latitude: -13.09088, longitude: -147.54382 }}
 						pinColor="black"
             draggable={true}
             onDragEnd={(e) => {
@@ -71,7 +73,7 @@ initialRegion={{
   )
 }
 
-export default MapScreen
+export default StartRecording
 
 
 const styles = StyleSheet.create({
