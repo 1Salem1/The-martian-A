@@ -23,7 +23,7 @@ const NavigationLogged = () => {
 
     <NavigationContainer>
     <Stack.Navigator
-    initialRouteName='activityD'
+    initialRouteName='record'
     screenOptions={{headerShown :false}}
     mode="modal"
     >
