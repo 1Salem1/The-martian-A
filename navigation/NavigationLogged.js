@@ -23,7 +23,7 @@ const NavigationLogged = () => {
 
     <NavigationContainer>
     <Stack.Navigator
-    initialRouteName='record'
+    initialRouteName='Home'
     screenOptions={{headerShown :false}}
     mode="modal"
     >
@@ -34,6 +34,7 @@ const NavigationLogged = () => {
       <Stack.Screen  name="pdf" component={Pdf} />
       <Stack.Screen  name="activityD" component={ActivityDetails} />
       <Stack.Screen  name="record" component={StartRecording} />
+
 
     </Stack.Navigator>
   </NavigationContainer>

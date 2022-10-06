@@ -48,3 +48,17 @@ export async function SignIN(email , password){
     console.error(error);
   });
 }
+
+
+export async function ResetPassword(email){
+  auth()
+   .sendPasswordResetEmail(email)
+  .then((sucess) => {
+    return sucess
+  })
+  .catch(error => {
+
+    return null
+
+  });
+}

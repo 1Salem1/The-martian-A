@@ -30,13 +30,16 @@ export default function TabViewExample() {
 
   return (
     <TabView
-    
+       
       navigationState={{ index, routes }}
       renderScene={renderScene}
+      activeColor={"#e8599e"}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
-      renderTabBar={props => <TabBar {...props}  style={{backgroundColor: '#e8500e' }}
-      labelStyle={{width : '100%',color: 'white', fontSize: 11, fontFamily:'MuseoSa'}}
+      renderTabBar={props => <TabBar {...props} 
+      indicatorStyle={{ backgroundColor: '#eb5c26', height: 4  }}
+      style={{backgroundColor: 'white' }}
+      labelStyle={{ width : '100%',color: '#666666' , fontSize: 14, textTransform :'capitalize' }}
       />} 
       />
     

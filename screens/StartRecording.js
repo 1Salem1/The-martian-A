@@ -14,7 +14,7 @@ import { List } from 'react-native-paper';
 
 
 const StartRecording = ({navigation}) => {
-  const[long , setLong] = React.useState(0)
+  const[long , setLong] = React.useState(null)
   const [lat , setLat] = React.useState(null)
   const [data , setData] = React.useState()
   const [ListVisible , setListVisible] = React.useState(false)
@@ -50,7 +50,7 @@ const StartRecording = ({navigation}) => {
 
     var  MapStyle = style
 
-    if(!lat){
+    if(!lat && !long){
       return (
         <Loader visible={true}/>
       )
@@ -71,8 +71,8 @@ const StartRecording = ({navigation}) => {
     initialRegion={{
       latitude:  lat,
       longitude: long,
-      latitudeDelta: 0.0243,
-      longitudeDelta: 0.0234
+      latitudeDelta: 0.001,
+      longitudeDelta: 0.001
     }}
       
         customMapStyle={MapStyle}
@@ -116,7 +116,7 @@ const StartRecording = ({navigation}) => {
 <View  style={styles.rectangle483}>
 <View style={{flexDirection:'row' , justifyContent:'space-between' }}>
 
-
+<Icon2 name='fire' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
 <Text style={styles.calories}>CALORIES</Text>
 </View>
 <Text  style={styles.kcal} >--kcal</Text>
@@ -252,6 +252,7 @@ const styles = StyleSheet.create({
       elevation: 3,
       backgroundColor: 'white',
       alignItems :'center',
+      marginBottom : "5%"
     
    
 

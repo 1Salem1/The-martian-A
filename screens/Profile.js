@@ -30,7 +30,7 @@ const ProfileScreen = ({navigation}) => {
 
     
         <View style={{flexDirection: 'row', marginTop: 20 , justifyContent:'center'}}>
-  <View style={{backgroundColor :'red'}}>
+  <View>
           <Avatar.Image 
             source={{
               uri: Auth.getData().image,
@@ -49,9 +49,7 @@ const ProfileScreen = ({navigation}) => {
     
       </View>
 
-      <View style={styles.userInfoSection}>
-
-      </View>
+    
 <Tab/>
     
     </SafeAreaView>
@@ -63,6 +61,7 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor :'white'
   },
   userInfoSection: {
   marginBottom:25,
