@@ -9,15 +9,20 @@ import Loader from '../components/global/Loader';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons'
-import { List } from 'react-native-paper';
-
-
+import { useState , useEffect } from 'react';
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import { getAltitude } from '../utils/altitude';
 
 const StartRecording = ({navigation}) => {
   const[long , setLong] = React.useState(null)
   const [lat , setLat] = React.useState(null)
-  const [data , setData] = React.useState()
   const [ListVisible , setListVisible] = React.useState(false)
+  const [isStopwatchStart, setIsStopwatchStart] = useState(false);
+  const [resetStopwatch, setResetStopwatch] = useState(false);
+
+
+
+
 
 
 
@@ -31,6 +36,7 @@ const StartRecording = ({navigation}) => {
  
      setLat(dataT.coords.latitude)
       setLong(dataT.coords.longitude)
+      getAltitude(lat , long)
     }
   
   
@@ -103,7 +109,17 @@ const StartRecording = ({navigation}) => {
         <View style={{flexDirection :'row' , paddingTop : 40}}>
                 <Text style={styles.recording}>Tap to record</Text>
               </View>
-              <Text style={styles.layer00}>00:00:00</Text>
+              <Text style={styles.layer00}><Stopwatch
+            laps
+            msecs
+            start={isStopwatchStart}
+            //To start
+            reset={resetStopwatch}
+            //To reset
+            options={options}
+            //options for the styling
+        
+          /></Text>
          
 
 
@@ -166,7 +182,7 @@ const StartRecording = ({navigation}) => {
 </View>
 }
 
-<TouchableOpacity onPress={() => setListVisible(!ListVisible)}>
+{ !ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(true) , setListVisible(!ListVisible) }}>
   <View style={{ width: 90,height: 90, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: '#e8500e',  justifyContent:'center' ,alignItems:'center'}}>
      <View style={{
         width: 30,
@@ -178,6 +194,17 @@ const StartRecording = ({navigation}) => {
      </View>
   </View>
 </TouchableOpacity>
+    }
+
+
+{ ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(false) , setListVisible(!ListVisible) }}>
+  <View style={{ width: 90,height: 90, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
+  <Icon2 name='pause' style={{ color : '#e8500e' , fontSize: 25   }} />
+  </View>
+</TouchableOpacity>
+    }
+
+
 
 {ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}}>
   <View style={{ elevation : 30, width: 70,height: 70, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
@@ -323,3 +350,15 @@ kcal: {
 
 
   });
+
+
+  const options = {
+    
+    text: {
+        color: '#666666',
+        fontSize: 28,
+        fontWeight: '400',
+        fontStyle: 'normal',
+        textAlign:'center',
+    },
+  };

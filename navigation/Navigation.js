@@ -18,7 +18,9 @@ const Navigation = () => {
     <NavigationContainer>
     <Stack.Navigator
     initialRouteName='EnjoyYourExpedition'
-    screenOptions={{headerShown :false}}
+    screenOptions={{headerShown :false,
+      animation: "slide_from_right",
+    }}
     mode="modal"
     >
    

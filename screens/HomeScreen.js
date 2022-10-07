@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text , StyleSheet  , TouchableOpacity , ImageBackground , ActivityIndicator} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import Button from '../components/global/Button'
 import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
@@ -7,8 +7,17 @@ import {SignOUT} from '../utils/auth'
 import { AuthContext } from '../utils/auth-context';
 import {getUserData} from '../utils/crud'
 import app from '../utils/config';
-
+import { Avatar} from 'react-native-paper';
+import SearchBar from '../components/global/SearchBar';
+import Icon3 from 'react-native-vector-icons/FontAwesome'
+import List from '../components/global/List';
 const HomeScreen = ({navigation}) => {
+
+  const [image , setImage] = React.useState()
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [fakeData, setFakeData] = useState();
+
 
   const AuthCtx = useContext(AuthContext)
 
@@ -23,16 +32,20 @@ const HomeScreen = ({navigation}) => {
          AuthCtx.setFname(data.first_name)
          AuthCtx.setLname(data.last_name)
          AuthCtx.setImage(data.image)
+         setImage(data.image)
       });
     } 
 
 
-  function getData(){
+  const  getData = async  () => {
   const d =  auth().currentUser.uid
  getUserData(d)
+ const apiResponse = await fetch(
+  "https://ogso-mountain-essentials.com/app/json/questions.json"
+);
+const data = await apiResponse.json();
+setFakeData(data);
   
-
-
 
 
  }
@@ -47,15 +60,120 @@ useEffect(()=>{
 
 
   return (
-    <View>
-      <Text style={{color : 'black'}}>{AuthCtx.getData().email}</Text>
+    <View style={style.container}>
+    {/*   <Text style={{color : 'black'}}>{AuthCtx.getData().email}</Text>
       <Button title='Sign out' onPress={SignOUT} />
       <Button title='profile' onPress={()=>navigation.navigate('profile')} />
       <Button title='Weather' onPress={()=>navigation.navigate('weather')} />
       <Button title='pdf' onPress={()=>navigation.navigate('pdf')} />
-      <Button title='Recording' onPress={()=>navigation.navigate('record')} />
+      <Button title='Recording' onPress={()=>navigation.navigate('record')} /> */}
+
+<View >
+<View style={{flexDirection :'row' , justifyContent : 'space-between'}}>
+<View >
+<Text style={style.hiFoulen}><Text style={{ color : 'black' , fontWeight : '600'}}>Hi</Text> Foulen Ben Foulen</Text>
+<Text style={style.letS}>Let’s go for a new Adventure</Text>
+</View>
+<TouchableOpacity onPress={()=>navigation.navigate('profile')}  >
+<Avatar.Image 
+            style={{bottom : 10}}
+            source={{
+              uri: image,
+            }}
+            size={50}
+          />
+</TouchableOpacity>
+
+
+</View>
+<View style={{alignSelf : 'center'}}>
+
+
+<SearchBar
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+          {searchPhrase == '' ? (
+        <></>
+          ) : (
+           
+
+<List
+              searchPhrase={searchPhrase}
+              data={fakeData}
+              setClicked={setClicked}
+            />
+
+               
+           
+             
+          )}
+
+
+</View>
+
+
+<TouchableOpacity style={style.bgCopy} onPress={()=>navigation.navigate('weather')}>
+<ImageBackground source={require('../assets/background/bg_home_1.png')} resizeMode="cover" style={styles.image}>
+
+</ImageBackground>
+
+</TouchableOpacity>
+<TouchableOpacity style={style.bgCopy}>
+<ImageBackground source={require('../assets/background/bg_home_2.png')} resizeMode="cover" style={styles.image}>
+
+</ImageBackground>
+
+</TouchableOpacity>
+<TouchableOpacity style={style.bgCopy}>
+<ImageBackground source={require('../assets/background/bg_home_3.png')} resizeMode="cover" style={styles.image}>
+
+</ImageBackground>
+
+</TouchableOpacity>
+
+</View>
+
+
+
+
+
+
     </View>
   )
 }
 
 export default HomeScreen
+
+const style = StyleSheet.create({
+  container : {
+    flex : 1,
+    paddingHorizontal : 30 ,
+    paddingVertical : 30,
+    alignItems :'center',
+    backgroundColor :'white'
+  },
+  letS: {
+    color: '#666666',
+    fontFamily: 'MuseoSans_300',
+    fontSize: 13,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    textAlign: 'left',
+    lineHeight: 26,
+  },
+  hiFoulen: {
+    color: '#eb5c26',
+    fontFamily: 'MuseoSans_700',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  bgCopy: {
+    width: 354,
+    height: 160,
+    marginVertical : 20,
+  },
+
+})

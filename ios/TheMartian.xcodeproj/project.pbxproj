@@ -24,7 +24,7 @@
 /* Begin PBXContainerItemProxy section */
 		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			containerPortal = 83CBB9F71A601CBA00E9B192;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = TheMartian;
@@ -49,11 +49,11 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TheMartian/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TheMartian-TheMartianTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMartian-TheMartianTests.release.xcconfig"; path = "Target Support Files/Pods-TheMartian-TheMartianTests/Pods-TheMartian-TheMartianTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		5C31F4A3C9544744B32B443E /* Esoris.otf */ = {isa = PBXFileReference; name = "Esoris.otf"; path = "../assets/fonts/Esoris.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D1A23AEBDE84460C9E1034F4 /* MuseoSans_100.otf */ = {isa = PBXFileReference; name = "MuseoSans_100.otf"; path = "../assets/fonts/MuseoSans_100.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EA1F48A9237E4418B67472E1 /* MuseoSans_300.otf */ = {isa = PBXFileReference; name = "MuseoSans_300.otf"; path = "../assets/fonts/MuseoSans_300.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5F5A081F2AE04D509BD59525 /* MuseoSans_500.otf */ = {isa = PBXFileReference; name = "MuseoSans_500.otf"; path = "../assets/fonts/MuseoSans_500.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		21DE9B82FFBE491BA4D0DEBB /* MuseoSans_700.otf */ = {isa = PBXFileReference; name = "MuseoSans_700.otf"; path = "../assets/fonts/MuseoSans_700.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5C31F4A3C9544744B32B443E /* Esoris.otf */ = {isa = PBXFileReference; name = Esoris.otf; path = ../assets/fonts/Esoris.otf; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D1A23AEBDE84460C9E1034F4 /* MuseoSans_100.otf */ = {isa = PBXFileReference; name = MuseoSans_100.otf; path = ../assets/fonts/MuseoSans_100.otf; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EA1F48A9237E4418B67472E1 /* MuseoSans_300.otf */ = {isa = PBXFileReference; name = MuseoSans_300.otf; path = ../assets/fonts/MuseoSans_300.otf; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5F5A081F2AE04D509BD59525 /* MuseoSans_500.otf */ = {isa = PBXFileReference; name = MuseoSans_500.otf; path = ../assets/fonts/MuseoSans_500.otf; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		21DE9B82FFBE491BA4D0DEBB /* MuseoSans_700.otf */ = {isa = PBXFileReference; name = MuseoSans_700.otf; path = ../assets/fonts/MuseoSans_700.otf; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
-		83CBB9F61A601CBA00E9B192 = {
+		83CBB9F61A601CBA00E9B192 /* PBXGroup */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAE1A68108700A75B9A /* TheMartian */,
@@ -160,7 +160,7 @@
 			sourceTree = "<group>";
 		};
 		C27C2AA3D1AB49F891487EC4 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				5C31F4A3C9544744B32B443E /* Esoris.otf */,
 				D1A23AEBDE84460C9E1034F4 /* MuseoSans_100.otf */,
@@ -221,14 +221,14 @@
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+		83CBB9F71A601CBA00E9B192 = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
+						TestTargetID = 13B07F861A680F5B00A75B9A /* TheMartian */;
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
@@ -243,7 +243,7 @@
 				en,
 				Base,
 			);
-			mainGroup = 83CBB9F61A601CBA00E9B192;
+			mainGroup = 83CBB9F61A601CBA00E9B192 /* PBXGroup */;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -725,5 +725,5 @@
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+	rootObject = 83CBB9F71A601CBA00E9B192;
 }

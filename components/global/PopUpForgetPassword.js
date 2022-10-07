@@ -30,7 +30,7 @@ const PopUpForgetPassword = ({visible = false}) => {
             to reset password{"\n"}
             </Text>
             <TouchableOpacity style={style.rectangle174}>
-                <Text style={style.ok} onPress={()=> navigation.navigate('signIN')}>OK</Text>
+                <Text style={style.ok} onPress={()=> navigation.navigate()}>OK</Text>
             </TouchableOpacity>
          </View>
         </View>

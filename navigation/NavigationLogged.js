@@ -24,7 +24,10 @@ const NavigationLogged = () => {
     <NavigationContainer>
     <Stack.Navigator
     initialRouteName='Home'
-    screenOptions={{headerShown :false}}
+    screenOptions={{headerShown :false,
+      
+      animation: "slide_from_right",
+    }}
     mode="modal"
     >
       <Stack.Screen  name="Home" component={HomeScreen} />
