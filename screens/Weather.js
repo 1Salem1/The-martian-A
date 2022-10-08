@@ -26,6 +26,27 @@ import { useFocusEffect } from '@react-navigation/native';
     const[temp , setTemp] = useState('0.00')
     const [data , setData] = useState(null)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 useEffect(()=>{
   GetCurrentLocation()
 },[])

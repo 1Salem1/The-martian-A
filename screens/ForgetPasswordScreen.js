@@ -38,6 +38,14 @@ const ForgetPasswordScreen = ({navigation}) => {
     }
   };
 
+
+
+  const closePop = async () => {
+ 
+    setLoading(false)
+
+  }
+
   const login = async () => {
   
 
@@ -62,7 +70,7 @@ const ForgetPasswordScreen = ({navigation}) => {
       
       <ImageBackground source={image} resizeMode="cover" style={{flex : 1 , }}>
       <View style={{height : '20%'}}></View>
-     <PopUpForgetPassword visible={loading} />
+     <PopUpForgetPassword handleClick={closePop} visible={loading} />
       <View style={{ paddingHorizontal: 20}}>
         <Text style={{color: COLORS.black, fontSize: 30 , textAlign:'center' , fontFamily:'Esoris'  }}>
         Reset Password

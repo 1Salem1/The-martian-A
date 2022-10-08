@@ -117,19 +117,30 @@ useEffect(()=>{
 
 <TouchableOpacity style={style.bgCopy} onPress={()=>navigation.navigate('weather')}>
 <ImageBackground source={require('../assets/background/bg_home_1.png')} resizeMode="cover" style={styles.image}>
-
+<Text style={style.skiOn}>
+Ski{"\n"} 
+On Mars{"\n"}
+Tracker
+</Text>
 </ImageBackground>
 
 </TouchableOpacity>
 <TouchableOpacity style={style.bgCopy}>
 <ImageBackground source={require('../assets/background/bg_home_2.png')} resizeMode="cover" style={styles.image}>
-
+<Text style={style.skiOn}>
+Smart{"\n"} 
+Product{"\n"}
+Selector
+</Text>
 </ImageBackground>
 
 </TouchableOpacity>
 <TouchableOpacity style={style.bgCopy}>
 <ImageBackground source={require('../assets/background/bg_home_3.png')} resizeMode="cover" style={styles.image}>
-
+<Text style={style.skiOn}>
+Product{"\n"} 
+Catalog{"\n"}
+</Text>
 </ImageBackground>
 
 </TouchableOpacity>
@@ -173,7 +184,17 @@ const style = StyleSheet.create({
   bgCopy: {
     width: 354,
     height: 160,
-    marginVertical : 20,
+    marginVertical : 17,
+  },
+  skiOn: {
+    color: '#ffffff',
+    fontFamily: 'Esoris',
+    fontSize: 28,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    textAlign: 'left',
+    lineHeight: 28,
+    paddingLeft : 20,
   },
 
 })

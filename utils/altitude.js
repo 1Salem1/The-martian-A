@@ -12,7 +12,7 @@ export async function  getAltitude(latitude , longitude) {
         axios(config)
         .then(function (response) {
            
-            console.log(response.data)
+            return response.data.results[0].elevation
    
            
         

@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 import Icon3 from 'react-native-vector-icons/FontAwesome'
+import SearchIcon from "../../assets/MenuIcons/SearchIcon";
 
 
 const SearchBar = (props) => {
@@ -24,8 +25,7 @@ const SearchBar = (props) => {
           }}
         />
        
-       <Icon3 name='search' style={{marginRight:10,  color: '#666666' , fontSize: 20 }} />
-  
+       <SearchIcon/>
       </View>
       {props.clicked && (
         <View>

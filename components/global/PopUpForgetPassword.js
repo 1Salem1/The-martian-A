@@ -10,7 +10,7 @@ import { TouchableOpacity } from 'react-native';
 import Navigation from '../../navigation/Navigation';
 import { COLORS } from '../../styles/Style';
 import { useNavigation } from '@react-navigation/native';
-const PopUpForgetPassword = ({visible = false}) => {
+const PopUpForgetPassword = ({handleClick ,visible = false}) => {
   const {width, height} = useWindowDimensions();
   const [pop , setPop] = useState(visible)
 
@@ -29,8 +29,8 @@ const PopUpForgetPassword = ({visible = false}) => {
             Please follow the instructions in the email{"\n"}
             to reset password{"\n"}
             </Text>
-            <TouchableOpacity style={style.rectangle174}>
-                <Text style={style.ok} onPress={()=> navigation.navigate()}>OK</Text>
+            <TouchableOpacity onPress={handleClick}  style={style.rectangle174}>
+                <Text style={style.ok} >OK</Text>
             </TouchableOpacity>
          </View>
         </View>

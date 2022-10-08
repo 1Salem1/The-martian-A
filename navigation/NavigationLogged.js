@@ -9,6 +9,7 @@ import MapScreen from '../screens/MapScreen';
 import Pdf from '../screens/pdf';
 import ActivityDetails from '../screens/ActivityDetails';
 import StartRecording from '../screens/StartRecording';
+import HomeTab from '../components/global/HomeTab';
 
 
 const Stack = createNativeStackNavigator();
@@ -23,14 +24,14 @@ const NavigationLogged = () => {
 
     <NavigationContainer>
     <Stack.Navigator
-    initialRouteName='Home'
+    initialRouteName='HomeMain'
     screenOptions={{headerShown :false,
       
       animation: "slide_from_right",
     }}
     mode="modal"
     >
-      <Stack.Screen  name="Home" component={HomeScreen} />
+      <Stack.Screen  name="HomeMain" component={HomeTab} />
       <Stack.Screen  name="profile" component={Profile} />
       <Stack.Screen  name="weather" component={Weather} />
       <Stack.Screen  name="map" component={MapScreen} />

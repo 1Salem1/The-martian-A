@@ -19,12 +19,37 @@ const StartRecording = ({navigation}) => {
   const [ListVisible , setListVisible] = React.useState(false)
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
+  const [altitude , setAltitude] = useState("--")
+
+
+
+  const [count, setCount] = useState(0);
+  const [intervalId, setIntervalId] = useState(0);
+
+  const handleClick = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(0);
+      return;
+    }
+
+    const newIntervalId = setInterval(() => {
+       GetAltitude_info()
+    }, 1000);
+    setIntervalId(newIntervalId);
 
 
 
 
+  }
 
 
+async function GetAltitude_info(){
+ const data = await getAltitude(lat , long)
+ console.log(data)
+ setAltitude(data)
+
+}
 
 
   async function GetCurrentLocation(){
@@ -36,7 +61,7 @@ const StartRecording = ({navigation}) => {
  
      setLat(dataT.coords.latitude)
       setLong(dataT.coords.longitude)
-      getAltitude(lat , long)
+          
     }
   
   
@@ -153,7 +178,7 @@ const StartRecording = ({navigation}) => {
 <Icon2 name='mountain' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
 <Text style={styles.calories}>ALTITUDE</Text>
 </View>
-<Text  style={styles.kcal} >--m</Text>
+<Text  style={styles.kcal} >{altitude}m</Text>
 </View>
 <View  style={styles.rectangle483}>
 <View style={{flexDirection:'row' , justifyContent:'space-between' }}>
@@ -182,7 +207,7 @@ const StartRecording = ({navigation}) => {
 </View>
 }
 
-{ !ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(true) , setListVisible(!ListVisible) }}>
+{ !ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(true) , setListVisible(!ListVisible) , handleClick() }}>
   <View style={{ width: 90,height: 90, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: '#e8500e',  justifyContent:'center' ,alignItems:'center'}}>
      <View style={{
         width: 30,
@@ -197,7 +222,7 @@ const StartRecording = ({navigation}) => {
     }
 
 
-{ ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(false) , setListVisible(!ListVisible) }}>
+{ ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(false) , setListVisible(!ListVisible) ,  handleClick()  }}>
   <View style={{ width: 90,height: 90, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='pause' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>
