@@ -11,6 +11,7 @@ import style from '../../styles/Style';
 import auth from '@react-native-firebase/auth';
 import { UpdateProfile } from '../../utils/crud';
 import { getAuth, updateEmail } from "firebase/auth";
+import PopUpQuit from '../global/PopUpQuit';
 
 const SignInScreen = ({navigation}) => {
   const Auth = useContext(AuthContext)
@@ -65,8 +66,8 @@ const SignInScreen = ({navigation}) => {
   };
   return (
     <KeyboardAwareScrollView  style={{flex : 1}}>
-    <SafeAreaView style={{backgroundColor: COLORS.white, flex: 1}}>
-      <ImageBackground source={image} resizeMode="cover" style={{flex : 1, justifyContent:'center'}}>
+    <SafeAreaView style={{ flex: 1}}>
+    
      
       <View style={{ paddingHorizontal: 20}}>
    
@@ -108,7 +109,6 @@ const SignInScreen = ({navigation}) => {
      </TouchableOpacity>
         </View>
       </View>
-      </ImageBackground>
     </SafeAreaView>
     </KeyboardAwareScrollView>
   );

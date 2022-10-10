@@ -17,6 +17,8 @@ const HomeScreen = ({navigation}) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [fakeData, setFakeData] = useState();
+  const [FirstName, setFname] = useState();
+  const [LastName, setLname] = useState();
 
 
   const AuthCtx = useContext(AuthContext)
@@ -33,6 +35,8 @@ const HomeScreen = ({navigation}) => {
          AuthCtx.setLname(data.last_name)
          AuthCtx.setImage(data.image)
          setImage(data.image)
+         setFname(data.first_name)
+         setLname(data.last_name)
       });
     } 
 
@@ -71,7 +75,7 @@ useEffect(()=>{
 <View >
 <View style={{flexDirection :'row' , justifyContent : 'space-between'}}>
 <View >
-<Text style={style.hiFoulen}><Text style={{ color : 'black' , fontWeight : '600'}}>Hi</Text> Foulen Ben Foulen</Text>
+<Text style={style.hiFoulen}><Text style={{ color : 'black' , fontWeight : '600'}}>Hi</Text> {FirstName} {LastName}</Text>
 <Text style={style.letS}>Let’s go for a new Adventure</Text>
 </View>
 <TouchableOpacity onPress={()=>navigation.navigate('profile')}  >

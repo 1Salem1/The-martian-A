@@ -9,7 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native';
 import Navigation from '../../navigation/Navigation';
 import { COLORS } from '../../styles/Style';
-const PopUpForgetPassword = ({handleClick ,visible = false}) => {
+const PopUpQuit = ({handleClick ,visible = false}) => {
   const {width, height} = useWindowDimensions();
   const [pop , setPop] = useState(visible)
 
@@ -93,4 +93,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default PopUpForgetPassword
+export default PopUpQuit

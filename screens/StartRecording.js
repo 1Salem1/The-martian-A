@@ -2,40 +2,35 @@ import * as React from 'react';
 import MapView  ,{Callout, Marker}from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions , ImageBackground, TouchableOpacity } from 'react-native';
 import style from '../styles/MapStyle';
-import Button from '../components/profile/Button';
-import * as Location from 'expo-location';
 import { GetLocation, getWeather } from '../utils/Weather';
 import Loader from '../components/global/Loader';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import axios from 'axios';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useState , useEffect } from 'react';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
-import { getAltitude } from '../utils/altitude';
+import { config } from '../utils/altitude';
 
 const StartRecording = ({navigation}) => {
-  const[long , setLong] = React.useState(null)
-  const [lat , setLat] = React.useState(null)
+  const[long , setLong] = React.useState(0)
+  const [lat , setLat] = React.useState(0)
   const [ListVisible , setListVisible] = React.useState(false)
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   const [altitude , setAltitude] = useState("--")
-
-
-
-  const [count, setCount] = useState(0);
   const [intervalId, setIntervalId] = useState(0);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (intervalId) {
       clearInterval(intervalId);
       setIntervalId(0);
       return;
     }
 
-    const newIntervalId = setInterval(() => {
-       GetAltitude_info()
-    }, 1000);
+    const newIntervalId = setInterval(async () => {
+      console.log('go')
+      getAltitude(lat , long)
+    }, 5000);
     setIntervalId(newIntervalId);
 
 
@@ -44,12 +39,6 @@ const StartRecording = ({navigation}) => {
   }
 
 
-async function GetAltitude_info(){
- const data = await getAltitude(lat , long)
- console.log(data)
- setAltitude(data)
-
-}
 
 
   async function GetCurrentLocation(){
@@ -74,6 +63,42 @@ async function GetAltitude_info(){
   React.useEffect(()=>{
     GetCurrentLocation()
   },[])
+
+
+
+
+function  getAltitude(latitude , longitude) {
+     axios(config(latitude , longitude))
+     .then(function (response) {
+
+      
+      //console.log(response.data.results[0].elevation.toFixed(2))
+       setAltitude(response.data.results[0].elevation.toFixed(2))   
+     
+     })
+     .catch(function (error) {
+         console.log(error)
+     });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

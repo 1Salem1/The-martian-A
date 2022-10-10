@@ -8,6 +8,7 @@ import Tab from '../components/global/Tab';
 import { AuthContext } from '../utils/auth-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
+import PopUpQuit from '../components/global/PopUpQuit';
 
 
 
@@ -22,7 +23,7 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-
+     <PopUpQuit visible={true}/>
       <View style={styles.userInfoSection}>
       <TouchableOpacity onPress={ ()=> navigation.goBack() }  style={{top :20, width:'10%'}} >
 <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
