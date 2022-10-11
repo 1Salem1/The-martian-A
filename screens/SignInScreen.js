@@ -3,13 +3,12 @@ import {View, Text, SafeAreaView, Keyboard, Alert, ImageBackground, TouchableOpa
 import { COLORS } from '../styles/Style';
 import Button from '../components/global/Button';
 import Input from '../components/global/Input';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../components/global/Loader';
-import style from '../styles/Style';
-import { SignIN } from '../utils/auth';
 import { GoogleSocialButton } from "react-native-social-buttons";
 import { onGoogleButtonPress } from '../utils/GoogleLogin';
-import { saveUserData } from '../utils/crud';
+import auth from '@react-native-firebase/auth';
+import PopUpForgetPassword from '../components/global/PopUpForgetPassword';
+import PopUpLogin from '../components/global/PopUpLoginError';
 
 
 export const image = require('../assets/background/signin.png');
@@ -19,6 +18,8 @@ const SignInScreen = ({navigation}) => {
   const [inputs, setInputs] = React.useState({email: '', password: ''});
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+  const [resultat , setResultat] = React.useState(false)
+
 
   const validate = async () => {
     Keyboard.dismiss();
@@ -40,11 +41,33 @@ const SignInScreen = ({navigation}) => {
     setLoading(true);
     setTimeout(async () => {
       setLoading(false);
-      const resultat = await SignIN(inputs.email , inputs.password)
+      auth()
+      .signInWithEmailAndPassword(inputs.email,inputs.password)
+      .then((sucess) => {
+        setResultat(false)
+      })
+      .catch(error => {
+          
+           setResultat(true)
+  
+      });
+    
+   
    
       
     }, 3000);
   };
+
+
+  const handleClose = (text, input) => {
+    setResultat(false)
+  };
+
+
+
+
+
+
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
@@ -55,6 +78,7 @@ const SignInScreen = ({navigation}) => {
   };
   return (
     <SafeAreaView style={{backgroundColor: COLORS.white, flex: 1}}>
+     <PopUpLogin handleClose={handleClose} visible={resultat}/>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Loader visible={loading} />
       <View style={{paddingTop: 50, paddingHorizontal: 20}}>

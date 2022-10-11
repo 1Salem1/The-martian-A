@@ -9,7 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native';
 import Navigation from '../../navigation/Navigation';
 import { COLORS } from '../../styles/Style';
-const PopUpForgetPassword = ({handleClick ,visible = false}) => {
+const PopUpForgetPassword = ({handleClick  ,visible = false}) => {
   const {width, height} = useWindowDimensions();
   const [pop , setPop] = useState(visible)
 
@@ -19,18 +19,21 @@ const PopUpForgetPassword = ({handleClick ,visible = false}) => {
     (visible && 
       <View style={[style.container, {height, width}]}>
         <View style={style.loader}>
-           <View style={style.rectangle227}> 
-                 <Text style={style.passwordReset}>Password Reset Email Sent</Text>
-           </View>
+         
          <View style={{flex : 1 , justifyContent : 'center' , alignItems :'center'}}>
-            <Text style={{   color: '#666666',fontFamily: 'Roboto - Regular',fontSize: 14, fontWeight: '400', fontStyle: 'normal', textAlign: 'center',}}>
-            An email has been sent to you.{"\n"}
-            Please follow the instructions in the email{"\n"}
-            to reset password{"\n"}
+         <Text style={style.howOn}>Hooray !</Text>
+            <Text style={{  bottom : 10 , color: '#666666',fontFamily: 'Roboto - Regular',fontSize: 14, fontWeight: '400', fontStyle: 'normal', textAlign: 'center',}}>
+            An email has been sent to you.{'\n'}
+Please follow the instructions in the email{'\n'}
+to reset password.
             </Text>
-            <TouchableOpacity onPress={handleClick}  style={style.rectangle174}>
+     <View style={{flexDirection: 'row' , justifyContent : 'space-between'}}>
+     <TouchableOpacity onPress={handleClick}  style={style.rectangle174}>
                 <Text style={style.ok} >OK</Text>
             </TouchableOpacity>
+       
+
+     </View>
          </View>
         </View>
       </View>
@@ -46,6 +49,7 @@ const style = StyleSheet.create({
     backgroundColor: COLORS.white,
       alignSelf : 'center',
     borderRadius: 5,
+   
 
   
   },
@@ -54,6 +58,7 @@ const style = StyleSheet.create({
     zIndex: 10,
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
+    
   },
   rectangle227: {
     width: 335,
@@ -79,7 +84,8 @@ const style = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#eb5c26',
     justifyContent : 'center',
-    alignItems : 'center'
+    alignItems : 'center',
+    margin : 20
   },
   ok: {
   
@@ -90,6 +96,34 @@ const style = StyleSheet.create({
     fontStyle: 'normal',
     textAlign: 'left',
   
+  },
+  howOn: {
+    color: '#000000',
+    fontFamily: 'Esoris',
+    fontSize: 25,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    textAlign: 'center',
+    padding : 20,
+    bottom : 5,
+    marginVertical : 10
+  },
+
+  sure: {
+    color: '#666666',
+    fontFamily: 'MuseoSans_700',
+    fontSize: 14,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    textAlign: 'left',
+  },
+  rectangle175: {
+    width: 100,
+    height: 41,
+    borderRadius: 5,
+    justifyContent : 'center',
+    alignItems : 'center',
+    margin : 10
   },
 });
 

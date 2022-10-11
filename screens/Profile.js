@@ -9,10 +9,12 @@ import { AuthContext } from '../utils/auth-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
 import PopUpQuit from '../components/global/PopUpQuit';
-
+import { SignOUT } from '../utils/auth';
 
 
 const ProfileScreen = ({navigation}) => {
+
+  const [visible , setVisible] = React.useState(false)
  
   const Auth = useContext(AuthContext)
 
@@ -21,9 +23,22 @@ const ProfileScreen = ({navigation}) => {
   }
 
 
+  const handleSignOut = () =>{
+    SignOUT()
+  }
+
+  const handleClose = () =>{
+    setVisible(false)
+  }
+  const ShowP = () =>{
+    setVisible(true)
+  }
+
+
+
   return (
     <SafeAreaView style={styles.container}>
-     <PopUpQuit visible={true}/>
+     <PopUpQuit handleClose={handleClose} handleSignOut={handleSignOut}  visible={visible}/>
       <View style={styles.userInfoSection}>
       <TouchableOpacity onPress={ ()=> navigation.goBack() }  style={{top :20, width:'10%'}} >
 <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
@@ -51,7 +66,7 @@ const ProfileScreen = ({navigation}) => {
       </View>
 
     
-<Tab/>
+<Tab visible={visible} ShowP={ShowP} handleClose={handleClose} handleSignOut={handleSignOut} />
     
     </SafeAreaView>
   );

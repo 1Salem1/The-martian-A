@@ -234,7 +234,7 @@ async function RgetWeather(){
      
         color: '#707070',
         fontFamily: 'MuseoSans_300',
-        fontSize: 16,
+        fontSize: 11,
         fontWeight: '700',
         fontStyle: 'normal',
         textAlign: 'left',

@@ -14,7 +14,7 @@ const Policy = () => {
   return (
     <ScrollView style={{flex : 1  , backgroundColor :'white'}}> 
   <List.Section style={{color : 'blue'}} title="Privacy Policy"  titleStyle={{ color: '#000000', fontFamily: 'MuseoSans_700', fontSize: 18, fontWeight: '400', fontStyle: 'normal', textAlign: 'left', lineHeight: 36,}}>
-      <List.Accordion  theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion  theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Personal Data"
         left={props => <List.Icon {...props}  icon="circle"  />}>
       <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
@@ -22,35 +22,35 @@ const Policy = () => {
       </Text>
       </List.Accordion>
 
-      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Derivative Data"
         left={props => <List.Icon {...props} icon="circle" />}>
        <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
         Information our servers automatically collect when you access the Application, such as your native actions that are integral to the Application, including liking, re-blogging, or replying to a post, as well as other interactions with the Application and other users via server log files.  
       </Text>
       </List.Accordion>
-      <List.Accordion  theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion  theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Facebook Permissions"
         left={props => <List.Icon {...props} icon="circle" />}>
         <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
          The Application may by default access your Facebook basic account information, including your name, email, gender, birthday, current city, and profile picture URL, as well as other information that you choose to make public. We may also request access to other permissions related to your account, such as friends, checkins, and likes, and you may choose to grant or deny us access to each individual permission. For more information regarding Facebook permissions, refer to the Facebook Permissions Reference page.
       </Text>
       </List.Accordion>
-      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Data from Social Networks"
         left={props => <List.Icon {...props} icon="circle" />}>
     <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
     User information from social networking sites, such as [Apple’s Game Center, Facebook, Google+ Instagram, Pinterest, Twitter], including your name, your social network username, location, gender, birth date, email address, profile picture, and public data for contacts, if you connect your account to such social networks. This information may also include the contact information of anyone you invite to use and/or join the Application.
       </Text>
       </List.Accordion>
-      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Geo-Location Information"
         left={props => <List.Icon {...props} icon="circle" />}>
       <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
       We may request access or permission to and track location-based information from your mobile device, either continuously or while you are using the Application, to provide location-based services. If you wish to change our access or permissions, you may do so in your device’s settings.
       </Text>
       </List.Accordion>
-      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Mobile Device Access "
         left={props => <List.Icon {...props} icon="circle" />}>
     <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
@@ -58,7 +58,7 @@ const Policy = () => {
       </Text>
       </List.Accordion>
 
-      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Push Notifications "
         left={props => <List.Icon {...props} icon="circle" />}>
    <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
@@ -66,7 +66,7 @@ const Policy = () => {
     We may request to send you push notifications regarding your account or the Application. If you wish to opt-out from receiving these types of communications, you may turn them off in your device’s settings.      </Text>
       </List.Accordion>
 
-      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white'}}
+      <List.Accordion theme={{ colors: { primary: '#e8500e' } }}   titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Data From Contests, Giveaways, and Surveys "
         left={props => <List.Icon {...props} icon="circle" />}>
    <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>

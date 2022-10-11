@@ -9,8 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native';
 import Navigation from '../../navigation/Navigation';
 import { COLORS } from '../../styles/Style';
-import { SignOUT } from '../../utils/auth';
-const PopUpQuit = ({handleClose , handleSignOut ,visible = false}) => {
+const PopUpLogin = ({closePop  ,visible = false}) => {
   const {width, height} = useWindowDimensions();
   const [pop , setPop] = useState(visible)
 
@@ -22,17 +21,16 @@ const PopUpQuit = ({handleClose , handleSignOut ,visible = false}) => {
         <View style={style.loader}>
          
          <View style={{flex : 1 , justifyContent : 'center' , alignItems :'center'}}>
-         <Text style={style.howOn}>How On Earth..</Text>
+         <Text style={style.howOn}>login failed...</Text>
             <Text style={{  bottom : 10 , color: '#666666',fontFamily: 'Roboto - Regular',fontSize: 14, fontWeight: '400', fontStyle: 'normal', textAlign: 'center',}}>
-          Are you sure you want to sign out ?
+            Your username and/or password{'\n'}
+do not match.
             </Text>
      <View style={{flexDirection: 'row' , justifyContent : 'space-between'}}>
-     <TouchableOpacity onPress={handleClose}  style={style.rectangle174}>
-                <Text style={style.ok} >Cancel</Text>
+     <TouchableOpacity onPress={closePop}  style={style.rectangle174}>
+                <Text style={style.ok} >Retry</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={SignOUT}  style={style.rectangle175}>
-                <Text style={style.sure} >Sure</Text>
-            </TouchableOpacity>
+       
 
      </View>
          </View>
@@ -123,8 +121,8 @@ const style = StyleSheet.create({
     borderRadius: 5,
     justifyContent : 'center',
     alignItems : 'center',
-    margin : 20
+    margin : 10
   },
 });
 
-export default PopUpQuit
+export default PopUpLogin

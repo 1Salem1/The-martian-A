@@ -11,7 +11,7 @@ import { GoogleSocialButton } from "react-native-social-buttons";
 import { onGoogleButtonPress } from '../utils/GoogleLogin';
 import { saveUserData } from '../utils/crud';
 import PopUpForgetPassword from '../components/global/PopUpForgetPassword';
-import { createRef } from 'react';
+
 export const image = require('../assets/background/signin.png');
 
 
@@ -21,7 +21,6 @@ const ForgetPasswordScreen = ({navigation}) => {
   const [loading, setLoading] = React.useState(false);
 
 
-  let popup = createRef()
 
   const validate = async () => {
     var pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

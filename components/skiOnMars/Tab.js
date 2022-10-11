@@ -9,14 +9,23 @@ const SecondRoute = () => (
   <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
 );
 
+
+
+export default function TabViewExample() {
+  const layout = useWindowDimensions();
+
+
+
+
 const renderScene = SceneMap({
   ActivitiesList: ActivitiesList,
   ButtonTracker: ButtonTracker,
 
 });
 
-export default function TabViewExample() {
-  const layout = useWindowDimensions();
+
+
+
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -31,9 +40,10 @@ export default function TabViewExample() {
       navigationState={{ index, routes }}
       renderScene={renderScene}
       onIndexChange={setIndex}
-      initialLayout={{ width: layout.width }}
-      renderTabBar={props => <TabBar {...props}  style={{backgroundColor: '#e8500e' }}
-      labelStyle={{width : '100%',color: 'white', fontSize: 11, fontFamily:'MuseoSa'}}
+      renderTabBar={props => <TabBar {...props} 
+      indicatorStyle={{ backgroundColor: '#eb5c26', height: 4  }}
+      style={{backgroundColor: 'white' }}
+      labelStyle={{ width : '100%',color: '#666666' , fontSize: 14, textTransform :'capitalize' }}
       />} 
       />
     

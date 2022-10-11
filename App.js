@@ -6,8 +6,18 @@ import NavigationLogged from './navigation/NavigationLogged';
 import Navigation from './navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen';
 import * as Sentry from "@sentry/react-native";
+import messaging from '@react-native-firebase/messaging';
+import { NotificationListner , requestUserPermission , getFCMToken} from './utils/push_notification_helper';
 
 function App() {
+       
+  const [loading, setLoading] = useState(true);
+
+
+
+
+
+
 
 
   Sentry.init({
@@ -40,8 +50,11 @@ function App() {
   useEffect(() => {
   SplashScreen.hide()
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    NotificationListner()
+    requestUserPermission()
+    getFCMToken()
     return subscriber; // unsubscribe on unmount
-    
+
   }, []);
 
   if (initializing) return <Loader/>;

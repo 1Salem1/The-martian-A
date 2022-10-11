@@ -4,20 +4,30 @@ import { TabView, SceneMap  , TabBar} from 'react-native-tab-view';
 import Account from '../profile/Account';
 import Policy from '../profile/Policy';
 import Notification from '../profile/Notification';
+import ActivitiesList from '../skiOnMars/ActivitiesList';
 
 
-const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
-);
 
-const renderScene = SceneMap({
-  account: Account,
-  activities: SecondRoute,
-  notification: Notification,
-  policy: Policy,
-});
 
-export default function TabViewExample() {
+
+export default function TabViewExample({ShowP, visible , handleClose , handleSignOut}) {
+
+console.log(visible)
+
+  const renderScene = SceneMap({
+    account: () => <Account ShowP={ShowP
+    } handleClose={handleClose} handleSignOut={handleSignOut} visible={visible} />,
+    activities: ActivitiesList,
+    notification: Notification,
+    policy: Policy,
+  });
+
+
+
+
+
+
+
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);

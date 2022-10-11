@@ -29,7 +29,7 @@ const HomeScreen = ({navigation}) => {
       const reference = ref(db, 'users/' + uid);
       onValue(reference, (snapshot) => {
         const data = snapshot.val();
-        
+       // console.log(data)
          AuthCtx.setEmail(data.email)
          AuthCtx.setFname(data.first_name)
          AuthCtx.setLname(data.last_name)
@@ -44,11 +44,11 @@ const HomeScreen = ({navigation}) => {
   const  getData = async  () => {
   const d =  auth().currentUser.uid
  getUserData(d)
- const apiResponse = await fetch(
+/*  const apiResponse = await fetch(
   "https://ogso-mountain-essentials.com/app/json/questions.json"
 );
 const data = await apiResponse.json();
-setFakeData(data);
+setFakeData(data); */
   
 
 
@@ -60,6 +60,7 @@ setFakeData(data);
 
 useEffect(()=>{
  getData()
+
 },[])
 
 
@@ -119,6 +120,8 @@ useEffect(()=>{
 </View>
 
 
+<View style={{alignSelf : 'center'}}>
+
 <TouchableOpacity style={style.bgCopy} onPress={()=>navigation.navigate('weather')}>
 <ImageBackground source={require('../assets/background/bg_home_1.png')} resizeMode="cover" style={styles.image}>
 <Text style={style.skiOn}>
@@ -151,6 +154,8 @@ Catalog{"\n"}
 
 </View>
 
+</View>
+
 
 
 
@@ -165,7 +170,7 @@ export default HomeScreen
 const style = StyleSheet.create({
   container : {
     flex : 1,
-    paddingHorizontal : 30 ,
+    paddingHorizontal : 20 ,
     paddingVertical : 30,
     alignItems :'center',
     backgroundColor :'white'
@@ -178,6 +183,7 @@ const style = StyleSheet.create({
     fontStyle: 'normal',
     textAlign: 'left',
     lineHeight: 26,
+    bottom : 5,
   },
   hiFoulen: {
     color: '#eb5c26',

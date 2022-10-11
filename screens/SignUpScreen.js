@@ -45,7 +45,26 @@ const SignUpScreen = ({navigation}) => {
     setLoading(true);
     setTimeout(async () => {
       setLoading(false);
-      const resultat = await SignUP(inputs.email , inputs.password ,inputs.fname ,inputs.lname )
+      auth()
+      .createUserWithEmailAndPassword(inputs.email,inputs.password  )
+      .then((sucess) => {
+        
+        console.log('User account created & signed in!');
+        saveUserData(inputs.fname , inputs.lname , inputs.email ,IMAGE_URL_DEFAULT_PROFILE , sucess.user.uid )
+        return 1 ; 
+        
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+           return error.code
+        }
+    
+        if (error.code === 'auth/invalid-email') {
+          return error.code
+        }
+    
+        console.error(error);
+      });
       
       
     
