@@ -1,4 +1,4 @@
-import { View, Text , StyleSheet  , TouchableOpacity , ImageBackground , ActivityIndicator} from 'react-native'
+import { View, Text , StyleSheet  , TouchableOpacity , ImageBackground , ActivityIndicator, ScrollView} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import Button from '../components/global/Button'
 import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
@@ -44,11 +44,11 @@ const HomeScreen = ({navigation}) => {
   const  getData = async  () => {
   const d =  auth().currentUser.uid
  getUserData(d)
-/*  const apiResponse = await fetch(
+  const apiResponse = await fetch(
   "https://ogso-mountain-essentials.com/app/json/questions.json"
 );
 const data = await apiResponse.json();
-setFakeData(data); */
+setFakeData(data); 
   
 
 
@@ -91,8 +91,6 @@ useEffect(()=>{
 
 
 </View>
-<View style={{alignSelf : 'center'}}>
-
 
 <SearchBar
             searchPhrase={searchPhrase}
@@ -101,23 +99,22 @@ useEffect(()=>{
             setClicked={setClicked}
           />
           {searchPhrase == '' ? (
-        <></>
+               <></>
           ) : (
            
 
-<List
+<List          
               searchPhrase={searchPhrase}
               data={fakeData}
               setClicked={setClicked}
             />
+
 
                
            
              
           )}
 
-
-</View>
 
 
 <View style={{alignSelf : 'center'}}>
@@ -160,7 +157,7 @@ Catalog{"\n"}
 
 
 
-
+<View style={{height : 60}}></View>
     </View>
   )
 }

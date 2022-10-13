@@ -50,9 +50,7 @@ function App() {
   useEffect(() => {
   SplashScreen.hide()
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    NotificationListner()
-    requestUserPermission()
-    getFCMToken()
+
     return subscriber; // unsubscribe on unmount
 
   }, []);
