@@ -5,6 +5,7 @@ import EnjoyYourExpedition from '../screens/EnjoyYourExpedition';
 import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen'
 import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
+import Simple from '../screens/onBordingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
     <Stack.Navigator
-    initialRouteName='EnjoyYourExpedition'
+    initialRouteName='sm'
     screenOptions={{headerShown :false,
       animation: "slide_from_right",
     }}
@@ -26,6 +27,7 @@ const Navigation = () => {
       <Stack.Screen  name="signUP" component={SignUpScreen} />
       <Stack.Screen  name="EnjoyYourExpedition" component={EnjoyYourExpedition} />
       <Stack.Screen  name="forget" component={ForgetPasswordScreen} />
+      <Stack.Screen  name="sm" component={Simple} />
     </Stack.Navigator>
   </NavigationContainer>
   )
