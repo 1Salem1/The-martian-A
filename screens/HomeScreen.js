@@ -129,7 +129,7 @@ Tracker
 </ImageBackground>
 
 </TouchableOpacity>
-<TouchableOpacity style={style.bgCopy}>
+<TouchableOpacity      onPress={()=>navigation.navigate('selector')}  style={style.bgCopy}>
 <ImageBackground source={require('../assets/background/bg_home_2.png')} resizeMode="cover" style={styles.image}>
 <Text style={style.skiOn}>
 Smart{"\n"} 
@@ -139,7 +139,7 @@ Selector
 </ImageBackground>
 
 </TouchableOpacity>
-<TouchableOpacity style={style.bgCopy}>
+<TouchableOpacity style={style.bgCopy}   onPress={()=>navigation.navigate('pdf')}  >
 <ImageBackground source={require('../assets/background/bg_home_3.png')} resizeMode="cover" style={styles.image}>
 <Text style={style.skiOn}>
 Product{"\n"} 

@@ -43,29 +43,33 @@ async function getFCMToken(){
  const NotificationListner = () =>{
 
     messaging().onNotificationOpenedApp(remoteMessage => {
-        console.log(
-          'Notification caused app to open from background state:',
-          remoteMessage.notification,
-        );
-        navigation.navigate(remoteMessage.data.type);
+       // console.log('Notification caused app to open from background state:', remoteMessage.notification,);
+        return remoteMessage
+      
         })
 
         messaging()
         .getInitialNotification()
         .then(remoteMessage => {
           if (remoteMessage) {
-            console.log(
-              'Notification caused app to open from quit state:',
-              remoteMessage.notification,
-            );
-            setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
+            //console.log('Notification caused app to open from quit state:',  remoteMessage.notification,);
+        return remoteMessage
           }})
 
 
 
           messaging().onMessage(async remoteMessage => {
-              console.log("notification on froground state........", remoteMessage)
+            //  console.log("notification on froground state........", remoteMessage)
+              return remoteMessage
           })
+
+          messaging().setBackgroundMessageHandler(async remoteMessage => {
+          //  console.log('Message handled in the background!', remoteMessage);
+            return remoteMessage
+          });
+
 }
+
+
 
 export {NotificationListner , requestUserPermission , getFCMToken}

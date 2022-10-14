@@ -7,13 +7,35 @@ import Navigation from './navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen';
 import * as Sentry from "@sentry/react-native";
 import messaging from '@react-native-firebase/messaging';
+import OneSignal from 'react-native-onesignal';
 import { NotificationListner , requestUserPermission , getFCMToken} from './utils/push_notification_helper';
+
+
+
+OneSignal.setAppId("a8c25a20-ca30-41b2-92d3-bd7472d3f18c");
+
 
 function App() {
        
   const [loading, setLoading] = useState(true);
 
+  OneSignal.promptForPushNotificationsWithUserResponse();
 
+  //Method for handling notifications received while app in foreground
+  OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
+    console.log("OneSignal: notification will show in foreground:", notificationReceivedEvent);
+    let notification = notificationReceivedEvent.getNotification();
+    console.log("notification: ", notification);
+    const data = notification.additionalData
+    console.log("additionalData: ", data);
+    // Complete with null means don't show a notification.
+    notificationReceivedEvent.complete(notification);
+  });
+  
+  //Method for handling notifications opened
+  OneSignal.setNotificationOpenedHandler(notification => {
+    console.log("OneSignal: notification opened:", notification);
+  });
 
 
 
@@ -50,7 +72,8 @@ function App() {
   useEffect(() => {
   SplashScreen.hide()
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-
+    //getFCMToken()
+    NotificationListner()
     return subscriber; // unsubscribe on unmount
 
   }, []);

@@ -9,6 +9,7 @@ import Pdf from '../screens/pdf';
 import ActivityDetails from '../screens/ActivityDetails';
 import StartRecording from '../screens/StartRecording';
 import HomeTab from '../components/global/HomeTab';
+import { SmartOgsoSelector } from '../screens/SmartOgsoSelector';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,7 @@ const NavigationLogged = () => {
       <Stack.Screen  name="pdf" component={Pdf} />
       <Stack.Screen  name="activityD" component={ActivityDetails} />
       <Stack.Screen  name="record" component={StartRecording} />
+      <Stack.Screen  name="selector" component={SmartOgsoSelector} />
 
 
     </Stack.Navigator>

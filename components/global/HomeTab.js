@@ -7,6 +7,7 @@ import ContactIcon from '../../assets/MenuIcons/ContactIcon';
 import NotificationIcon from '../../assets/MenuIcons/NotificationIcon'
 import HomeIcon from '../../assets/MenuIcons/HomeIcon';
 import FaqIcon from '../../assets/MenuIcons/FaqIcon'
+import { SmartOgsoSelector } from '../../screens/SmartOgsoSelector';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,6 +70,8 @@ function HomeTab() {
           }} 
       
       name="Faq" component={FaqScreen} />
+
+
     </Tab.Navigator>
   );
 }

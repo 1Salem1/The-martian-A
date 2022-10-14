@@ -6,7 +6,7 @@ import WebView from 'react-native-webview'
 const Pdf = () => {
   return (
     <View style={styles.container}  >
-     <WebView source={{ uri: 'https://heyzine.com/flip-book/be0eea5ca4.html' }} />
+     <WebView source={{ uri: 'https://ogso-mountain-essentials.com/b2c-catalog-22-23/#1' }} />
 <View style={{bottom : 20,height :70, width: 1100 , backgroundColor:'white', position: 'absolute'}}></View> 
 </View>
   )

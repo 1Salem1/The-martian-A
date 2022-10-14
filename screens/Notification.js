@@ -3,19 +3,38 @@ import React, { useContext, useEffect, useState } from 'react'
 import {Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../utils/auth-context';
-import { NotificationListner , requestUserPermission , getFCMToken} from './utils/push_notification_helper';
+import messaging from '@react-native-firebase/messaging';
 import SingleNotification from '../components/profile/SingleNotification';
-
 
 const Weather = ({navigation}) => {
   const [data , setData] = useState(null)
-
+ const [message , setMessage] = useState()
+ const [fakeData , setFakeData] = useState()
 
   const Auth = useContext(AuthContext)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 useEffect(()=>{
+
+
+
+
+
 
 },[])
 

@@ -75,5 +75,21 @@ export async function UpdateProfile( fname , lname , id ) {
 
 
 
+export function saveUserNotification(uid , title , body) {
 
+  const dbRef = ref(getDatabase(app));
+      const db = getDatabase();
+    const reference = ref(db, 'notification/' + uid / Date.now());
+    set(reference, {
+      title : title ,
+      body : body 
+
+    });
+
+  
+
+
+   
+
+}
 
