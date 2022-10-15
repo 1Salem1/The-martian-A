@@ -52,16 +52,22 @@ useEffect(()=>{
 },[])
 
 
- useFocusEffect(
+if(lat){
+  useFocusEffect(
     React.useCallback(() => {
       RgetWeather()
 
      
     }, [lat])
   );
+}
 
 async function GetCurrentLocation(){
   const dataT = await GetLocation()
+  if(dataT == 'no'){
+    console.log('got fucked')
+    return 0
+  }
   setData(dataT.coords)
   const weather = await getWeather(dataT.coords)
  // console.log(weather.data)

@@ -6,11 +6,10 @@ import NavigationLogged from './navigation/NavigationLogged';
 import Navigation from './navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen';
 import * as Sentry from "@sentry/react-native";
-import messaging from '@react-native-firebase/messaging';
 import OneSignal from 'react-native-onesignal';
 import { NotificationListner , requestUserPermission , getFCMToken} from './utils/push_notification_helper';
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import FirstTimeNavigation from './navigation/FirstTimeNavigation'
 
 OneSignal.setAppId("a8c25a20-ca30-41b2-92d3-bd7472d3f18c");
 
@@ -18,6 +17,7 @@ OneSignal.setAppId("a8c25a20-ca30-41b2-92d3-bd7472d3f18c");
 function App() {
        
   const [loading, setLoading] = useState(true);
+  const [firstLaunch, setFirstLaunch] = useState(true);
 
   OneSignal.promptForPushNotificationsWithUserResponse();
 
@@ -78,14 +78,42 @@ function App() {
 
   }, []);
 
+
+
+
+useEffect(()=>{
+
+  AsyncStorage.getItem("alreadyLaunched").then(value => {
+    if(value == null){
+         AsyncStorage.setItem('alreadyLaunched', 'true'); 
+        setFirstLaunch(true)
+    }
+    else{
+        setFirstLaunch(false)
+    }})
+
+
+},[])
+
+
+
+
+
+
+
   if (initializing) return <Loader/>;
+
+
+  if(firstLaunch){
+    <FirstTimeNavigation/>
+  }
+
 
   if (!user) {
     return (
     <Navigation/>
     );
   }
-
   return (
    <NavigationLogged/>
   );

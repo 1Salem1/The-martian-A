@@ -12,7 +12,6 @@ import { COLORS } from '../../styles/Style';
 import { SignOUT } from '../../utils/auth';
 const PopUpQuit = ({handleClose , handleSignOut ,visible = false}) => {
   const {width, height} = useWindowDimensions();
-  const [pop , setPop] = useState(visible)
 
 
 

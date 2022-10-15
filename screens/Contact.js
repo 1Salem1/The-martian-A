@@ -3,9 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import {Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../utils/auth-context';
-import { NotificationListner , requestUserPermission , getFCMToken} from '../utils/push_notification_helper';
-import SingleActivity from '../components/skiOnMars/SingleActivity';
-import Notification from '../components/profile/Notification';
 
 
 const Weather = ({navigation}) => {
@@ -17,9 +14,6 @@ const Weather = ({navigation}) => {
 
 
 useEffect(()=>{
-NotificationListner()
-requestUserPermission()
-getFCMToken()
 },[])
 
 

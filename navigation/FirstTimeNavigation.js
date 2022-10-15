@@ -16,7 +16,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
     <Stack.Navigator
-    initialRouteName='EnjoyYourExpedition'
+    initialRouteName='sm'
     screenOptions={{headerShown :false,
       animation: "slide_from_right",
     }}
@@ -27,7 +27,7 @@ const Navigation = () => {
       <Stack.Screen  name="signUP" component={SignUpScreen} />
       <Stack.Screen  name="EnjoyYourExpedition" component={EnjoyYourExpedition} />
       <Stack.Screen  name="forget" component={ForgetPasswordScreen} />
-  
+      <Stack.Screen  name="sm" component={Simple} />
     </Stack.Navigator>
   </NavigationContainer>
   )

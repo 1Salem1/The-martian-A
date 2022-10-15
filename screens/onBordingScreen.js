@@ -1,150 +1,103 @@
-import React from 'react';
-import {
-  View,
-  SafeAreaView,
-  Text,
-  Image,
-  StyleSheet,
-  StatusBar,
-  TouchableOpacity,
-  ImageBackground
-} from 'react-native';
-import AppIntroSlider from 'react-native-app-intro-slider';
+import React, { Component } from 'react'
+import { AppRegistry, StyleSheet, Text, View , ImageBackground , TouchableOpacity} from 'react-native'
+import ButtonSwiper from '../components/global/ButtonSwiper'
+import { useNavigation } from '@react-navigation/native';
+import { useRef } from 'react';
 
-const data = [
-  {
-    title: 'Title 1',
-    text: 'Description.\nSay something cool',
-    image: require('../assets/background/screen-1.jpg'),
-  },
-  {
-    title: 'Title 2',
-    text: 'Other cool stuff',
-    image: require('../assets/background/screen-2.jpg'),
-  },
-  {
-    title: 'Rocket guy',
-    text: "I'm already out of descriptions\n\nLorem ipsum bla bla bla",
-    image: require('../assets/background/screen-3.jpg'),
-  },
-];
+export const image = require('../assets/background/screen-1.jpg');
+export const image1 = require('../assets/background/screen-2.jpg');
+export const image2 = require('../assets/background/screen-3.jpg');
 
 
+
+import Swiper from 'react-native-swiper'
+
+ 
 const styles = StyleSheet.create({
-  slide: {
+  wrapper: {},
+  slide1: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: '#9DD6EB',
+    padding : 20
   },
-  image: {
-    width: 320,
-    height: 320,
-    marginVertical: 32,
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5'
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9'
   },
   text: {
-    color: 'rgba(255, 255, 255, 0.8)',
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: 22,
-    color: 'white',
-    textAlign: 'center',
-  },
-  paginationContainer: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    right: 16,
-  },
-  paginationDots: {
-    height: 16,
-    margin: 16,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    marginHorizontal: 4,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 24,
-  },
-  button: {
-    flex: 1,
-    paddingVertical: 20,
-    marginHorizontal: 8,
-    borderRadius: 24,
-    backgroundColor: '#1cb278',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-});
-
-export default class App extends React.Component {
-
-  _renderItem = ({item}) => {
-    return (
-      <ImageBackground style={styles.slide} source={item.image}>
-        <Text style={styles.text}>{item.text}</Text>
-      </ImageBackground>
-    );
-  };
-
-  _keyExtractor = (item) => item.title;
-
-  _renderPagination = (activeIndex) => {
-    return (
-      <View style={styles.paginationContainer}>
-        <SafeAreaView>
-          <View style={styles.paginationDots}>
-            {data.length > 1 &&
-              data.map((_, i) => (
-                <TouchableOpacity
-                  key={i}
-                  style={[
-                    styles.dot,
-                    i === activeIndex
-                      ? {backgroundColor: 'white'}
-                      : {backgroundColor: 'rgba(0, 0, 0, .2)'},
-                  ]}
-                  onPress={() => this.slider?.goToSlide(i, true)}
-                />
-              ))}
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={[styles.button, {backgroundColor: '#023e3f'}]}>
-              <Text style={styles.buttonText}>Log in</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Sign up</Text>
-            </TouchableOpacity>
-          </View>
-        </SafeAreaView>
-      </View>
-    );
-  };
-
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <StatusBar translucent backgroundColor="transparent" />
-        <AppIntroSlider
-          keyExtractor={this._keyExtractor}
-          renderItem={this._renderItem}
-          renderPagination={this._renderPagination}
-          data={data}
-          ref={(ref) => (this.slider)}
-        />
-      </View>
-    );
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold'
   }
+  ,
+  title: {
+    color: '#000000',
+    fontFamily: 'Esoris',
+    fontSize: 35,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    color  : "white",
+    lineHeight: 36,
+    top : '16%',
+    textAlign : 'center'
+  },
+  titlecolored : {
+    color : '#FFA183'
+  }
+})
+ 
+export default function SwiperComponent() {
+
+  const navigation = useNavigation()
+  const swiper = useRef(null)
+
+   
+    return (
+      <Swiper 
+      
+      ref={swiper}
+      style={styles.wrapper} 
+      showsPagination={false}
+      >
+        <ImageBackground source={image} resizeMode="cover" style={styles.slide1}>
+        <Text style={styles.title}><Text style={styles.titlecolored}>LET'S START{'\n'}YOUR</Text>{'\n'}EXPEDITION</Text>
+        <View style={{height : 400}}></View>
+<TouchableOpacity onPress={() => swiper.current.scrollBy(1)} style={{top  : 40 }}>
+<ButtonSwiper/>
+</TouchableOpacity>
+     
+          </ImageBackground>
+   
+            <ImageBackground source={image1} resizeMode="cover" style={styles.slide1}>
+            <Text style={styles.title}><Text style={styles.titlecolored}>EXPLORE{'\n'}</Text>MARS <Text style={styles.titlecolored}>WITH US</Text></Text>
+            <View style={{height : 400}}></View>
+<TouchableOpacity onPress={() => swiper.current.scrollBy(1)} style={{top  : 40 }}>
+<ButtonSwiper/>
+</TouchableOpacity>
+          </ImageBackground>
+
+          <ImageBackground source={image2} resizeMode="cover" style={styles.slide1}>
+          <Text style={styles.title}><Text style={styles.titlecolored}>AND</Text> SKI{'\n'}Differently</Text>
+          <View style={{height : 400}}></View>
+<TouchableOpacity onPress={() => navigation.navigate('EnjoyYourExpedition')} style={{top  : 40 }}>
+<ButtonSwiper/>
+</TouchableOpacity>
+          </ImageBackground>
+      </Swiper>
+    )
+  
 }
+ 
+
+
+
+
