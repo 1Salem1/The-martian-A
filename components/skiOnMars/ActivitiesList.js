@@ -1,13 +1,18 @@
 import { View, Text , TouchableOpacity  , StyleSheet , ImageBackground} from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-const ActivitiesList = () => {
+const ActivitiesList = ({lat , lon}) => {
 
   const navigation = useNavigation()
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' , alignItems:'center' , justifyContent : 'center'}}  >
-       <TouchableOpacity style={style.bgCopy} onPress={()=> navigation.navigate('record')}>
+       <TouchableOpacity style={style.bgCopy} onPress={()=> navigation.navigate('record',
+       {
+        latitude : lat ,
+        longitude : lon
+       }
+       )}>
 <ImageBackground source={require('../../assets/background/bg_button_ski.png')} resizeMode="cover" style={styles.image}>
 <Text style={style.skiOn}>
 Start{"\n"} 

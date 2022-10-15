@@ -9,7 +9,7 @@ import Loader from '../components/global/Loader';
 import { AuthContext } from '../utils/auth-context';
 import { GetLocation, getWeather } from '../utils/Weather';
 import { useFocusEffect } from '@react-navigation/native';
-
+import PopUpLogin from '../components/global/PopUpError';
   const Weather = ({route ,navigation}) => {
   
 
@@ -25,6 +25,7 @@ import { useFocusEffect } from '@react-navigation/native';
     const[snow , setSnow] = useState("0.00")
     const[temp , setTemp] = useState('0.00')
     const [data , setData] = useState(null)
+    const[visible , setVisible] = useState(false)
 
 
 
@@ -52,20 +53,23 @@ useEffect(()=>{
 },[])
 
 
-if(lat){
-  useFocusEffect(
-    React.useCallback(() => {
-      RgetWeather()
 
+  useFocusEffect(
+
+    React.useCallback(() => {
+   
+      if(lat){
+        RgetWeather()
+      }
      
     }, [lat])
   );
-}
+
 
 async function GetCurrentLocation(){
   const dataT = await GetLocation()
   if(dataT == 'no'){
-    console.log('got fucked')
+    setVisible(true)
     return 0
   }
   setData(dataT.coords)
@@ -105,7 +109,13 @@ async function RgetWeather(){
 
     const Auth = useContext(AuthContext)
 
+const HandleVisibleError = ()=>{
 
+  setVisible(false)
+  GetCurrentLocation()
+
+
+}
 
 
 
@@ -114,7 +124,7 @@ async function RgetWeather(){
 
     return (
   <View style={{flex : 1}}>
-    <Loader visible={!temp}/>
+    <PopUpLogin visible={visible} HandleVisibleError={HandleVisibleError}/>
     <View style={styles.container}>
        <View style={{flexDirection :'row' , justifyContent:'center' }}>
         <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
@@ -180,7 +190,7 @@ async function RgetWeather(){
     
       </View>
   
-    <TabViewExample/>
+    <TabViewExample lat={lat} lon={lon}/>
   
   </View>
     )

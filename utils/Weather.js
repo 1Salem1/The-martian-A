@@ -1,18 +1,24 @@
 import * as Location from 'expo-location';
 import { API_OPEN_WEATHER } from './CONSTANTS';
 import axios from 'axios';
+
 export const GetLocation = async  () => {
 
-    let { status } = await Location.requestForegroundPermissionsAsync();
+    let { status } = await Location.requestForegroundPermissionsAsync()
     if (status !== 'granted') {
     
       return 'no';
     }
     else {
 
-    
-    let location = await Location.getCurrentPositionAsync({});
-    return location
+    try{
+      let location = await Location.getCurrentPositionAsync({});
+      return location
+    }
+    catch(e){
+      return 'no'
+    }
+
     }
 
 }

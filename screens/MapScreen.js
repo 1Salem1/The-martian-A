@@ -31,6 +31,10 @@ Init()
   return (
     <View style={styles.container}>
     <MapView
+                onPress={(e) => {
+                  setLat(e.nativeEvent.coordinate.latitude)
+                  setLong(e.nativeEvent.coordinate.longitude)
+                }}
 initialRegion={{
   latitude: lat,
   longitude: long,
@@ -45,11 +49,6 @@ initialRegion={{
 					<Marker
 						coordinate={{ latitude: lat, longitude: long }}
 						pinColor="black"
-            draggable={true}
-            onDragEnd={(e) => {
-							setLat(e.nativeEvent.coordinate.latitude)
-							setLong(e.nativeEvent.coordinate.longitude)
-						}}
 					>
 				
 					</Marker>

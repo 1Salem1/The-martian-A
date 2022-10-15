@@ -11,15 +11,15 @@ const SecondRoute = () => (
 
 
 
-export default function TabViewExample() {
+export default function TabViewExample({lat , lon}) {
   const layout = useWindowDimensions();
 
 
 
 
 const renderScene = SceneMap({
-  ActivitiesList: ActivitiesList,
-  ButtonTracker: ButtonTracker,
+  ActivitiesList: () => <ActivitiesList lat={lat}  lon={lon}/>,
+  ButtonTracker:  ButtonTracker
 
 });
 
