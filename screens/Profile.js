@@ -47,12 +47,15 @@ const ProfileScreen = ({navigation}) => {
     
         <View style={{flexDirection: 'row', marginTop: 20 , justifyContent:'center'}}>
   <View>
-          <Avatar.Image 
+    <TouchableOpacity>
+    <Avatar.Image 
             source={{
               uri: Auth.getData().image,
             }}
             size={150}
           />
+    </TouchableOpacity>
+          
         
         <View></View>
           </View>

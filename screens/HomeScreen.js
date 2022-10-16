@@ -11,14 +11,15 @@ import { Avatar} from 'react-native-paper';
 import SearchBar from '../components/global/SearchBar';
 import Icon3 from 'react-native-vector-icons/FontAwesome'
 import List from '../components/global/List';
+import { capitalizeFirstLetter } from '../utils/forStrings';
 const HomeScreen = ({navigation}) => {
 
   const [image , setImage] = React.useState()
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [fakeData, setFakeData] = useState();
-  const [FirstName, setFname] = useState();
-  const [LastName, setLname] = useState();
+  const [FirstName, setFname] = useState("");
+  const [LastName, setLname] = useState("");
 
 
   const AuthCtx = useContext(AuthContext)
@@ -76,7 +77,7 @@ useEffect(()=>{
 <View >
 <View style={{flexDirection :'row' , justifyContent : 'space-between'}}>
 <View >
-<Text style={style.hiFoulen}><Text style={{ color : 'black' , fontWeight : '600'}}>Hi</Text> {FirstName} {LastName}</Text>
+<Text style={style.hiFoulen}><Text style={{ color : 'black' , fontWeight : '600'}}>Hi</Text> {capitalizeFirstLetter(FirstName)} {capitalizeFirstLetter(LastName)}</Text>
 <Text style={style.letS}>Let’s go for a new Adventure</Text>
 </View>
 <TouchableOpacity onPress={()=>navigation.navigate('profile')}  >

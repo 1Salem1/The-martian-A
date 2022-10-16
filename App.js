@@ -104,19 +104,21 @@ useEffect(()=>{
   if (initializing) return <Loader/>;
 
 
-  if(firstLaunch){
-    <FirstTimeNavigation/>
-  }
+
 
 
   if (!user) {
     return (
     <Navigation/>
-    );
+    )
   }
+  else {
+
+  
   return (
    <NavigationLogged/>
   );
+  }
 }
 
 export default Sentry.wrap(App);
