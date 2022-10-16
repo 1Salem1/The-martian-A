@@ -70,7 +70,6 @@ function App() {
   }
 
   useEffect(() => {
-  SplashScreen.hide()
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     //getFCMToken()
     NotificationListner()

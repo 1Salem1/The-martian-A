@@ -33,14 +33,17 @@ const List = (props) => {
   };
 
   return (
-    <SafeAreaView style={styles.list__container}>
+    <SafeAreaView 
+    forceInset={{ bottom: 'never' }} 
+    style={styles.list__container}>
       <View
         onStartShouldSetResponder={() => {
           props.setClicked(false);
         }}
       >
         <FlatList
-          
+           ListFooterComponent={<View />}
+           ListFooterComponentStyle={{height:200}}
           data={props.data}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
@@ -55,8 +58,11 @@ export default List;
 
 const styles = StyleSheet.create({
   list__container: {
-    height : "100%",
+    height : "90%",
     width: "100%",
+    
+
+
   },
   title: {
     marginTop:25,
@@ -68,5 +74,15 @@ const styles = StyleSheet.create({
   },
   details : {
     color : 'black'
-  }
+  },
+  item: {
+      shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 30, //IOS
+    elevation: 20, // Android
+    borderRadius: 5,
+    padding : 30,
+ 
+  },
 });
