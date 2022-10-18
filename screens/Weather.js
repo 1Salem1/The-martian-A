@@ -126,9 +126,9 @@ const HandleVisibleError = ()=>{
   <View style={{flex : 1}}>
     <PopUpLogin visible={visible} HandleVisibleError={HandleVisibleError}/>
     <View style={styles.container}>
-       <View style={{flexDirection :'row' , justifyContent:'center' }}>
+       <View style={{flexDirection :'row' , justifyContent:'center'  }}>
         <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
-      <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
+      <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50 }} />
         </TouchableOpacity>
            <View style={{width:270}}></View>
         <TouchableOpacity onPress={()=>navigation.navigate('profile')}>
@@ -142,7 +142,7 @@ const HandleVisibleError = ()=>{
 
        </View>
 
-       <View style={{padding : 20}}>
+       <View style={{padding : 20 }}>
        <Text style={styles.title}>SKI ON MARS TRACKER</Text>
      
        </View>
@@ -190,7 +190,9 @@ const HandleVisibleError = ()=>{
     
       </View>
   
-    <TabViewExample lat={lat} lon={lon}/>
+    <View style={{flex : 1  , backgroundColor : 'white'}}>
+    <TabViewExample/>
+    </View>
   
   </View>
     )

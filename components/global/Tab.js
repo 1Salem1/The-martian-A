@@ -48,8 +48,10 @@ console.log(visible)
       initialLayout={{ width: layout.width }}
       renderTabBar={props => <TabBar {...props} 
       indicatorStyle={{ backgroundColor: '#eb5c26', height: 4  }}
-      style={{backgroundColor: 'white' }}
-      labelStyle={{ width : '100%',color: '#666666' , fontSize: 14, textTransform :'capitalize' }}
+      style={{backgroundColor: 'white' , padding : 0 , margin : 0  }}
+      labelStyle={{    width : '100%' ,color: '#666666' , fontSize: 13, textTransform :'capitalize'  , fontFamily : 'MuseoSans_700'}}
+      
+    
       />} 
       />
     

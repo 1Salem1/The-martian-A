@@ -3,13 +3,18 @@ import MapView  ,{Callout, Marker}from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions , ImageBackground, TouchableOpacity } from 'react-native';
 import style from '../styles/MapStyle';
 import { GetLocation, getWeather } from '../utils/Weather';
-import Loader from '../components/global/Loader';
 import axios from 'axios';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useState , useEffect } from 'react';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { config } from '../utils/altitude';
+import { GoogleFitCheck } from '../utils/GoogleFitApi';
+import { opt } from '../utils/GoogleFitApi';
+import GoogleFit, {Scopes} from 'react-native-google-fit';
+
+
+
 
 const StartRecording = ({navigation}) => {
   const[long , setLong] = React.useState(0)
@@ -19,6 +24,7 @@ const StartRecording = ({navigation}) => {
   const [resetStopwatch, setResetStopwatch] = useState(false);
   const [altitude , setAltitude] = useState("--")
   const [intervalId, setIntervalId] = useState(0);
+  const [calories, setCalories] = useState(0);
 
   const handleClick = async () => {
     if (intervalId) {
@@ -46,14 +52,26 @@ const StartRecording = ({navigation}) => {
     console.log(dataT.coords.latitude)
     console.log(dataT.coords.longitude)
    
-
- 
      setLat(dataT.coords.latitude)
       setLong(dataT.coords.longitude)
           
     }
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
 
@@ -62,6 +80,7 @@ const StartRecording = ({navigation}) => {
 
   React.useEffect(()=>{
     GetCurrentLocation()
+    GoogleFitCheck()
   },[])
 
 
@@ -106,22 +125,23 @@ function  getAltitude(latitude , longitude) {
 
     var  MapStyle = style
 
-    if(!lat && !long){
-      return (
-        <Loader visible={true}/>
-      )
-     
-      
-    }
-    else {
+
+
       return (
         <View style={styles.container}>
      
         <MapView
+          showsUserLocation={true}
+          showsMyLocationButton={true}
+          followsUserLocation={true}
+          showsCompass={true}
+          scrollEnabled={true}
+          zoomEnabled={true}
+          pitchEnabled={true}
+          rotateEnabled={true}
         mapPadding={{
           top: 0,
           right: 0,
-          bottom: 400,
           left: 0
          }}
     initialRegion={{
@@ -135,14 +155,7 @@ function  getAltitude(latitude , longitude) {
         style={styles.map} >
     
           
-              <Marker
-                coordinate={{ latitude: lat, longitude: long }}
-                pinColor="black"
-         
-   
-             >
-            
-              </Marker>
+    
               
         </MapView>
         <Callout style={styles.buttonCallout}>
@@ -263,7 +276,7 @@ function  getAltitude(latitude , longitude) {
 </TouchableOpacity>
 }
 
-{!ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}}>
+{!ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}} onPress={() => navigation.navigate('listA')}>
   <View style={{ elevation : 30, width: 70,height: 70, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='list' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>
@@ -283,7 +296,7 @@ function  getAltitude(latitude , longitude) {
     }
 
   
-}
+
 
 export default StartRecording
 

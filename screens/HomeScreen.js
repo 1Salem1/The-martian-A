@@ -8,10 +8,12 @@ import { AuthContext } from '../utils/auth-context';
 import {getUserData} from '../utils/crud'
 import app from '../utils/config';
 import { Avatar} from 'react-native-paper';
+import ContentLoader from "react-native-easy-content-loader";
 import SearchBar from '../components/global/SearchBar';
 import Icon3 from 'react-native-vector-icons/FontAwesome'
 import List from '../components/global/List';
 import { capitalizeFirstLetter } from '../utils/forStrings';
+import Loader from '../components/global/Loader'
 const HomeScreen = ({navigation}) => {
 
   const [image , setImage] = React.useState()
@@ -20,7 +22,7 @@ const HomeScreen = ({navigation}) => {
   const [fakeData, setFakeData] = useState();
   const [FirstName, setFname] = useState("");
   const [LastName, setLname] = useState("");
-
+  const [loader , setLoader] = useState(true)
 
   const AuthCtx = useContext(AuthContext)
 
@@ -38,6 +40,7 @@ const HomeScreen = ({navigation}) => {
          setImage(data.image)
          setFname(data.first_name)
          setLname(data.last_name)
+         setLoader(false)
       });
     } 
 
@@ -67,6 +70,7 @@ useEffect(()=>{
 
   return (
     <View style={style.container}>
+      <Loader visible={loader}/>
     {/*   <Text style={{color : 'black'}}>{AuthCtx.getData().email}</Text>
       <Button title='Sign out' onPress={SignOUT} />
       <Button title='profile' onPress={()=>navigation.navigate('profile')} />
@@ -75,7 +79,10 @@ useEffect(()=>{
       <Button title='Recording' onPress={()=>navigation.navigate('record')} /> */}
 
 <View >
-<View style={{flexDirection :'row' , justifyContent : 'space-between'}}>
+
+{loader ?  <ContentLoader active={!loader} avatar pRows={1} reverse={true} containerStyles={{marginBottom : 10}}>
+
+</ContentLoader> : <View style={{flexDirection :'row' , justifyContent : 'space-between'}}>
 <View >
 <Text style={style.hiFoulen}><Text style={{ color : 'black' , fontWeight : '600'}}>Hi</Text> {capitalizeFirstLetter(FirstName)} {capitalizeFirstLetter(LastName)}</Text>
 <Text style={style.letS}>Let’s go for a new Adventure</Text>
@@ -90,8 +97,7 @@ useEffect(()=>{
           />
 </TouchableOpacity>
 
-
-</View>
+</View>}
 
 <SearchBar
             searchPhrase={searchPhrase}

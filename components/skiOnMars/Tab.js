@@ -43,7 +43,7 @@ const renderScene = SceneMap({
       renderTabBar={props => <TabBar {...props} 
       indicatorStyle={{ backgroundColor: '#eb5c26', height: 4  }}
       style={{backgroundColor: 'white' }}
-      labelStyle={{ width : '100%',color: '#666666' , fontSize: 14, textTransform :'capitalize' }}
+      labelStyle={{ width : '100%',color: '#666666' , fontSize: 14, textTransform :'capitalize' , fontFamily: 'MuseoSans_700'}}
       />} 
       />
     
