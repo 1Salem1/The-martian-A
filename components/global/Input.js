@@ -70,6 +70,7 @@ const style = StyleSheet.create({
   inputContainer: {
     height: 55,
     backgroundColor: COLORS.light,
+    borderRadius : 10 ,
     flexDirection: 'row',
     paddingHorizontal: 15,
     borderWidth: 0.5,

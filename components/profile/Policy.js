@@ -16,7 +16,7 @@ const Policy = () => {
   <List.Section style={{color : 'blue'}} title="Privacy Policy"  titleStyle={{ color: '#000000', fontFamily: 'MuseoSans_700', fontSize: 18, fontWeight: '400', fontStyle: 'normal', textAlign: 'left', lineHeight: 36,}}>
       <List.Accordion  theme={{ colors: { primary: '#e8500e' } }}  titleStyle={{fontSize:14}} style={{backgroundColor:'white' , height : 50}}
         title="Personal Data"
-        left={props => <List.Icon {...props}  icon="circle"  />}>
+        left={props => <List.Icon {...props}  icon="circle"  />}> 
       <Text style={{color : 'black' , textAlign:'justify' , lineHeight:20 , marginVertical:20 , right : 30 }}>
       Demographic and other personally identifiable information (such as your name and email address) that you voluntarily give to us when choosing to participate in various activities related to the Application, such as chat, posting messages in comment sections or in our forums, liking posts, sending feedback, and responding to surveys.  If you choose to share data about yourself via your profile, online chat, or other interactive areas of the Application, please be advised that all data you disclose in these areas is public and your data will be accessible to anyone who accesses the Application.
       </Text>

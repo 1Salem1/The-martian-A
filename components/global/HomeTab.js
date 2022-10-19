@@ -8,6 +8,7 @@ import NotificationIcon from '../../assets/MenuIcons/NotificationIcon'
 import HomeIcon from '../../assets/MenuIcons/HomeIcon';
 import FaqIcon from '../../assets/MenuIcons/FaqIcon'
 import { SmartOgsoSelector } from '../../screens/SmartOgsoSelector';
+import PDF from '../../screens/pdf';
 
 const Tab = createBottomTabNavigator();
 
@@ -70,6 +71,32 @@ function HomeTab() {
           }} 
       
       name="Faq" component={FaqScreen} />
+
+<Tab.Screen 
+         options={{
+            "tabBarShowLabel": false,
+            header: () => null,
+            animation: "slide_from_right",
+            header: () => null,
+            tabBarButton: () => null,
+            tabBarIcon: ({color ,focused}) =>  <FaqIcon color={focused ? '#e8500e' : 'black'} />
+          }} 
+          
+      
+      name="pdf" component={PDF} />
+
+<Tab.Screen 
+         options={{
+            "tabBarShowLabel": false,
+            header: () => null,
+            animation: "slide_from_right",
+            header: () => null,
+            tabBarButton: () => null,
+            tabBarIcon: ({color ,focused}) =>  <FaqIcon color={focused ? '#e8500e' : 'black'} />
+          }} 
+          
+      
+      name="selector" component={SmartOgsoSelector} />
 
 
     </Tab.Navigator>

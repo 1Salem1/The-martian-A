@@ -91,7 +91,7 @@ useEffect(()=>{
 <Avatar.Image 
             style={{bottom : 10}}
             source={{
-              uri: image,
+              uri: AuthCtx.getData().image,
             }}
             size={50}
           />

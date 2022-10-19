@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, TouchableOpacity  , StyleSheet} from 'react-native'
-
+import { View, Text, ScrollView, StyleSheet} from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import React from 'react'
 import Button from '../profile/Button'
 import { useNavigation } from '@react-navigation/native'
@@ -10,19 +10,19 @@ import SingleActivity from './SingleActivity'
 
 const ButtonTracker = () => {
 
-const navigation = useNavigation()
+  
 
   return (
 <View style={{flex: 1 }}>
-    <ScrollView contentContainerStyle={{ alignItems : 'center' , paddingVertical : 30}}>
+    <ScrollView
+    keyboardShouldPersistTaps='always'
+    contentContainerStyle={{ alignItems : 'center' , paddingVertical : 30}}>
        
-        <TouchableOpacity style={style.container} >
-        <SingleActivity/>
-        </TouchableOpacity>
+  
 
 
         <TouchableOpacity style={style.container} >
-        <SingleActivity/>
+        <SingleActivity record={2}/>
         </TouchableOpacity>
 
 
@@ -51,7 +51,7 @@ export default ButtonTracker
 
 const style = StyleSheet.create({
   container: {
-       marginVertical : 20
+       marginVertical : 20,
   },
 
 });

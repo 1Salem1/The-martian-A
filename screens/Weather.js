@@ -151,7 +151,7 @@ const HandleVisibleError = ()=>{
        <View style={{flexDirection:'row' ,marginTop:10}}>
        <Icon name='location-on' style={{ color : '#666666' , fontSize: 30 }} />
 
-       <Text style={styles.aiguillesDe}>{city}, {Country}</Text>
+       <Text style={styles.aiguillesDe}>{city}{city != 'This Location is unknown' ? ' , ' : ''}{Country}</Text>
        
        </View>
 

@@ -2,9 +2,16 @@ import { View, Text , StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
-const SingleActivity = () => {
+import { useNavigation } from '@react-navigation/native'
+
+
+const SingleActivity = ({record}) => {
+
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.rectangle483}>
+    <TouchableOpacity style={styles.rectangle483}   onPress={()=> navigation.navigate('activityD', {
+      record_data : record
+    })}>
         
       <View style={{flexDirection:'row'}}>
      <Icon name='location-on' style={{marginRight:10, top : '3%',color : '#e8500e' , fontSize: 20}} />

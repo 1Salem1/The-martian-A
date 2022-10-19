@@ -7,12 +7,7 @@ const ActivitiesList = ({lat , lon}) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' , alignItems:'center' , justifyContent : 'center'}}  >
-       <TouchableOpacity style={style.bgCopy} onPress={()=> navigation.navigate('record',
-       {
-        latitude : lat ,
-        longitude : lon
-       }
-       )}>
+       <TouchableOpacity style={style.bgCopy}>
 <ImageBackground source={require('../../assets/background/bg_button_ski.png')} resizeMode="cover" style={styles.image}>
 <Text style={style.skiOn}>
 Start{"\n"} 

@@ -5,6 +5,7 @@ import Account from '../profile/Account';
 import Policy from '../profile/Policy';
 import Notification from '../profile/Notification';
 import ActivitiesList from '../skiOnMars/ActivitiesList';
+import AtivitiesList from '../profile/activitiesList';
 
 
 
@@ -17,7 +18,7 @@ console.log(visible)
   const renderScene = SceneMap({
     account: () => <Account ShowP={ShowP
     } handleClose={handleClose} handleSignOut={handleSignOut} visible={visible} />,
-    activities: ActivitiesList,
+    activities: AtivitiesList,
     notification: Notification,
     policy: Policy,
   });

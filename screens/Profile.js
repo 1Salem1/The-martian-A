@@ -10,9 +10,11 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
 import PopUpQuit from '../components/global/PopUpQuit';
 import { SignOUT } from '../utils/auth';
-
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { getStorage, ref , uploadBytes } from "firebase/storage";
 
 const ProfileScreen = ({navigation}) => {
+
 
   const [visible , setVisible] = React.useState(false)
  
@@ -35,6 +37,36 @@ const ProfileScreen = ({navigation}) => {
   }
 
 
+const changeImage = async () =>{
+
+  // You can also use as a promise without 'callback':
+  const result = await launchImageLibrary();
+
+  if(result.didCancel == true){
+    return 0
+  }
+  else {
+    console.log(result)
+    Auth.setImage(result.assets[0].uri)
+    const number = Math.random(30)
+    const storage = getStorage(); //the storage itself
+    const url = `profile${number}.jpg`
+    const _ref = ref(storage,  url); //how the image will be addressed inside the storage
+
+    //convert image to array of bytes
+    const img = await fetch(result.assets[0].uri);
+    const bytes = await img.blob();
+
+    await uploadBytes(_ref, bytes)
+    
+    return `https://firebasestorage.googleapis.com/v0/b/the-martian-358100.appspot.com/o/${url}?alt=media&token=f4da46e2-15ad-4f6c-af26-95f85c8bc8f8`   
+}
+
+  
+ 
+
+}
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,14 +79,23 @@ const ProfileScreen = ({navigation}) => {
     
         <View style={{flexDirection: 'row', marginTop: 20 , justifyContent:'center'}}>
   <View>
-    <TouchableOpacity>
+
     <Avatar.Image 
             source={{
               uri: Auth.getData().image,
             }}
             size={150}
           />
-    </TouchableOpacity>
+   <TouchableOpacity onPress={changeImage}>
+   <View
+            size={40}
+          style={{right : 10 ,bottom : 0,position : 'absolute' , width : 40 , height : 40 , backgroundColor :'#cccccc' , justifyContent : 'center' , alignItems:'center' , borderRadius : 50}}>
+
+<Icon size={49} name='camera' style={{bottom : 0 , color : 'black' , fontSize: 20 , zIndex : 1000}} />
+          </View>
+   </TouchableOpacity>
+
+
           
         
         <View></View>
