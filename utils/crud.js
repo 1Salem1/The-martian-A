@@ -43,7 +43,7 @@ export function saveUserData(lname , fname, email, image, uid) {
 
 export async function upDateUserImg(photo ,data ) {
   const db = getDatabase();
-    const reference = ref(db, 'users/' + data.uuid);
+    const reference = ref(db, 'users/' + data);
     update(reference, {
             image: photo,
     }).then((e)=>{

@@ -12,14 +12,17 @@ import PopUpQuit from '../components/global/PopUpQuit';
 import { SignOUT } from '../utils/auth';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { getStorage, ref , uploadBytes } from "firebase/storage";
-
+import { generateUUID } from '../utils/RandomGenerator';
+import { firebase } from '@react-native-firebase/auth';
+import { upDateUserImg } from '../utils/crud';
 const ProfileScreen = ({navigation}) => {
-
-
-  const [visible , setVisible] = React.useState(false)
- 
+  
   const Auth = useContext(AuthContext)
-
+  const user_uid = firebase.auth().currentUser.uid;
+  const [visible , setVisible] = React.useState(false)
+  const [image , setimage] = React.useState(false)
+ 
+  
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
@@ -46,9 +49,8 @@ const changeImage = async () =>{
     return 0
   }
   else {
-    console.log(result)
-    Auth.setImage(result.assets[0].uri)
-    const number = Math.random(30)
+  //  console.log(result)
+    const number = generateUUID(40)
     const storage = getStorage(); //the storage itself
     const url = `profile${number}.jpg`
     const _ref = ref(storage,  url); //how the image will be addressed inside the storage
@@ -58,14 +60,29 @@ const changeImage = async () =>{
     const bytes = await img.blob();
 
     await uploadBytes(_ref, bytes)
+    Auth.setImage(`https://firebasestorage.googleapis.com/v0/b/the-martian-1080d.appspot.com/o/${url}?alt=media&token=a1837e8d-1ce3-4118-addb-3d4dd5b5e489`)  
     
-    return `https://firebasestorage.googleapis.com/v0/b/the-martian-358100.appspot.com/o/${url}?alt=media&token=f4da46e2-15ad-4f6c-af26-95f85c8bc8f8`   
+    return `https://firebasestorage.googleapis.com/v0/b/the-martian-1080d.appspot.com/o/${url}?alt=media&token=a1837e8d-1ce3-4118-addb-3d4dd5b5e489`
 }
 
   
  
 
 }
+
+const UpadateImage = async () =>{
+
+  const data = await  changeImage()
+  upDateUserImg(data , user_uid)
+}
+
+
+
+
+
+
+
+
 
 
   return (
@@ -86,7 +103,7 @@ const changeImage = async () =>{
             }}
             size={150}
           />
-   <TouchableOpacity onPress={changeImage}>
+   <TouchableOpacity onPress={() => UpadateImage()}>
    <View
             size={40}
           style={{right : 10 ,bottom : 0,position : 'absolute' , width : 40 , height : 40 , backgroundColor :'#cccccc' , justifyContent : 'center' , alignItems:'center' , borderRadius : 50}}>

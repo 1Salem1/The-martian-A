@@ -10,8 +10,6 @@ import { useState , useEffect } from 'react';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { config } from '../utils/altitude';
 import { GoogleFitCheck } from '../utils/GoogleFitApi';
-import { opt } from '../utils/GoogleFitApi';
-import GoogleFit, {Scopes} from 'react-native-google-fit';
 
 
 
@@ -56,28 +54,6 @@ const StartRecording = ({navigation}) => {
       setLong(dataT.coords.longitude)
           
     }
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
   React.useEffect(()=>{
     GetCurrentLocation()
     GoogleFitCheck()

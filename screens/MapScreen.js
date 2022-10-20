@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import style from '../styles/MapStyle';
 import Button from '../components/profile/Button';
 import * as Location from 'expo-location';
+import MarkerSvg from '../assets/IamHere';
 
 
 
@@ -49,8 +50,13 @@ initialRegion={{
 					<Marker
 						coordinate={{ latitude: lat, longitude: long }}
 						pinColor="black"
+            draggable={true}
+            onDragEnd={(e) => {
+							setLat(e.nativeEvent.coordinate.latitude)
+							setLong(e.nativeEvent.coordinate.longitude)
+						}}
 					>
-				
+			<MarkerSvg/>
 					</Marker>
     </MapView>
     <View style={{flexDirection:'row' , justifyContent:'space-around' ,alignContent:'center' , marginTop : 15 }}> 

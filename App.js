@@ -104,6 +104,12 @@ useEffect(()=>{
 
 
 
+  if(firstLaunch){
+    return (
+      <FirstTimeNavigation/>
+    )
+  }
+
 
 
   if (!user) {

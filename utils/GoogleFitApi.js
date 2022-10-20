@@ -18,7 +18,7 @@ export const options = {
 
 export async function GoogleFitCheck(){
 
-
+  console.log('test')
     GoogleFit.checkIsAuthorized().then(() => {
         var authorized = GoogleFit.isAuthorized;
         console.log(authorized);
