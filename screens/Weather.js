@@ -191,7 +191,8 @@ const HandleVisibleError = ()=>{
       </View>
   
     <View style={{flex : 1  , backgroundColor : 'white'}}>
-    <TabViewExample/>
+      
+      <TabViewExample/>
     </View>
   
   </View>

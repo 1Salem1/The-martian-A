@@ -112,14 +112,13 @@ useEffect(()=>{
 
 
 
-  if (!user) {
+ if (!user) {
     return (
     <Navigation/>
     )
   }
-  else {
+  else  if (user) {
 
-  
   return (
    <NavigationLogged/>
   );

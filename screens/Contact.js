@@ -38,7 +38,7 @@ useEffect(()=>{
   return (
 <View style={{flex : 1 }}>
   <View style={styles.container}>
-     <View style={{flexDirection :'row' , justifyContent:'center' }}>
+  <View style={{flexDirection :'row' , justifyContent:'center' }}>
       <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
     <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
       </TouchableOpacity>

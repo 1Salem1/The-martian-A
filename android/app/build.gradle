@@ -131,6 +131,13 @@ def reactNativeArchitectures() {
 
 android {
 
+      lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
    packagingOptions {
     pickFirst 'lib/x86/libc++_shared.so'
     pickFirst 'lib/x86_64/libc++_shared.so'
