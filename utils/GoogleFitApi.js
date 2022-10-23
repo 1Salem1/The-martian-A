@@ -16,34 +16,7 @@ export const options = {
   };
 
 
-export async function GoogleFitCheck(){
 
-  console.log('test')
-    GoogleFit.checkIsAuthorized().then(() => {
-        var authorized = GoogleFit.isAuthorized;
-        console.log(authorized);
-        if (authorized) {
-            return 1
-        } else {
-       
-          GoogleFit.authorize(options)
-            .then(authResult => {
-              if (authResult.success) {
-              return 1
-   
-                // if successfully authorized, fetch data
-              } else {
-               return 0
-              }
-            })
-            .catch(() => {
-               return 0
-            });
-        }
-  });
-
-
-}
 
 
 var today = new Date();

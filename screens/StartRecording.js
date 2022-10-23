@@ -9,7 +9,9 @@ import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useState , useEffect } from 'react';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { config } from '../utils/altitude';
-import { GoogleFitCheck } from '../utils/GoogleFitApi';
+import GoogleFit, {Scopes} from 'react-native-google-fit';
+import { call } from 'react-native-reanimated';
+import { fi } from 'faker/lib/locales';
 
 
 
@@ -23,6 +25,11 @@ const StartRecording = ({navigation}) => {
   const [altitude , setAltitude] = useState("--")
   const [intervalId, setIntervalId] = useState(0);
   const [calories, setCalories] = useState(0);
+  const [Fit, setGoogleFit] = useState(GoogleFit.isAuthorized);
+  const  [startedDate , setstartedDate] = useState()
+  const  [steps , setSteps] = useState('--')
+
+
 
   const handleClick = async () => {
     if (intervalId) {
@@ -33,6 +40,9 @@ const StartRecording = ({navigation}) => {
 
     const newIntervalId = setInterval(async () => {
       console.log('go')
+      if(Fit){
+        track()
+      }
       getAltitude(lat , long)
     }, 5000);
     setIntervalId(newIntervalId);
@@ -41,6 +51,49 @@ const StartRecording = ({navigation}) => {
 
 
   }
+
+async function track (){
+
+
+   
+
+}
+
+
+
+  async  function GoolgeTrackData(){
+  /*   GoogleFit.checkIsAuthorized().then(() => {
+      var authorized = GoogleFit.isAuthorized;
+      console.log(authorized);
+      if (authorized) {
+          return 1
+      } else {
+     
+        GoogleFit.authorize(options)
+          .then(authResult => {
+            if (authResult.success) {
+              setGoogleFit(true)
+          
+ 
+              // if successfully authorized, fetch data
+            } else {
+             return 0
+            }
+          })
+          .catch(() => {
+             return 0
+          });
+      }
+}); */
+
+
+
+  }
+
+
+
+
+
 
 
 
@@ -56,7 +109,9 @@ const StartRecording = ({navigation}) => {
     }
   React.useEffect(()=>{
     GetCurrentLocation()
-    GoogleFitCheck()
+     GoolgeTrackData()
+
+ 
   },[])
 
 
@@ -181,7 +236,7 @@ function  getAltitude(latitude , longitude) {
 <Icon3 name='map-marker-distance' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
 <Text style={styles.calories}>DISTANCE</Text>
 </View>
-<Text  style={styles.kcal} >--km</Text>
+<Text  style={styles.kcal} >{parseFloat(steps).toFixed(2)}km</Text>
 </View>
 
 </View>
