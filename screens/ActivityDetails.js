@@ -6,14 +6,42 @@ import {Avatar } from 'react-native-paper';
 import React, { useContext } from 'react'
 import TabViewExample from '../components/skiOnMars/TabActivity';
 import { AuthContext } from '../utils/auth-context';
-export default function ActivityDetails({navigation}) {
+import BottomSheetComponent from '../components/global/BottomSheet';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
+
+export default function ActivityDetails({navigation , route }) {
+          const [data , setData] = React.useState("")
+          const [visible , setVisible] = React.useState(false)
+
+
+
+
+
+    const data_ =  route.params?.record_data
+
+    console.log(data_)
+
+
+
+
+
+  const TakePhoto = async () =>{
+
+    const result = await launchCamera();
+     setData(result.assets[0].uri)
+     setVisible(true)
+  }
+
+
+
 
    const Auth = useContext(AuthContext)
 
   return (
     <View style={styles.container}>
        <View style={{flexDirection :'row' , justifyContent:'center' }}>
-      <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
+      <TouchableOpacity onPress={()=>navigation.goBack()}>
     <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
       </TouchableOpacity>
          <View style={{width:270}}></View>
@@ -30,18 +58,18 @@ export default function ActivityDetails({navigation}) {
 
    <View style={{flexDirection:'row' , marginTop : 10 , marginLeft:8}}>
    <Icon name='location-on' style={{ color : '#e8500e' , fontSize: 30 , }} />
-<Text style={styles.lesAiguilles}>Les aiguilles de midi, <Text style={{fontWeight :'500'}}>FR</Text></Text>
+<Text style={styles.lesAiguilles}>{data_.city}, <Text style={{fontWeight :'500'}}>{data_.country}</Text></Text>
    </View>
 
    <View style={{flexDirection :'row'  , justifyContent :'space-around'}}>
    <View style={{flexDirection:'row' , marginTop : 10}}>
    <Icon name='calendar-today' style={{ color : '#666666' , fontSize: 20 , marginRight : 4  }} />
-<Text style={styles.layer17}>17/05/2022</Text>
+<Text style={styles.layer17}>{data_.date}</Text>
    </View>
 
    <View style={{flexDirection:'row' , marginTop : 10}}>
    <Icon name='timer' style={{ color : '#666666' , fontSize: 20 , marginRight : 4  }} />
-<Text  style={styles.layer17}>11:05 - 13:12</Text>
+<Text  style={styles.layer17}>{data_.time_start} - {data_.time_end}</Text>
    </View>
 
 
@@ -49,11 +77,15 @@ export default function ActivityDetails({navigation}) {
    <View style={{height : 10}}></View>
       <TabViewExample/>
 
-      <TouchableOpacity style={styles.share}>
+      <TouchableOpacity style={styles.share} onPress={TakePhoto}>
 <Icon2 name='share-alt' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
 <Text style={styles.shareT}>Share</Text>
 
+
+
+
 </TouchableOpacity>
+<BottomSheetComponent visible={visible} image={data}/>
     </View>
   )
 }
@@ -65,7 +97,7 @@ const styles = StyleSheet.create({
    container : {
     flex : 1 ,
     backgroundColor :'white',
-    padding : 30,
+    padding : 20,
     
    },
    lesAiguilles: {

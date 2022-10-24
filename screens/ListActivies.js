@@ -1,28 +1,54 @@
-import { View, Text , StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text , StyleSheet, TouchableOpacity  , ScrollView} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import {Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../utils/auth-context';
+import app from '../utils/config';
+import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
+import { firebase } from '@react-native-firebase/auth';
+import SingleActivity from '../components/skiOnMars/SingleActivity';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const ListActivies = ({navigation}) => {
 
+
+  var dataT = [];
+
+  const  [data , setData] = React.useState([])
+
   const Auth = useContext(AuthContext)
+  const uid = firebase.auth().currentUser.uid
 
 
 
 
 
+ 
+useFocusEffect(
+
+  React.useCallback(() => {
+    setData([])
+    const db = getDatabase(app);
+    const reference = ref(db, 'activities/' + uid);
+    onValue(reference, (snapshot) => {
+      for (a in snapshot.val()){
+      //  console.log(a)
+      setData(data => [...data,snapshot.val()[a]] );
+   //  console.log(data)
+     
+      }
+     
+    });
+   
+  
+
+  
 
 
-useEffect(()=>{
-
-
-
-
-
-
-},[])
+   
+  }, [])
+);
 
 
 
@@ -31,7 +57,7 @@ useEffect(()=>{
 <View style={{flex : 1 }}>
   <View style={styles.container}>
      <View style={{flexDirection :'row' , justifyContent:'center' }}>
-      <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
+      <TouchableOpacity onPress={()=>navigation.navigate('HomeMain')}>
     <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
       </TouchableOpacity>
          <View style={{width:270}}></View>
@@ -48,6 +74,30 @@ useEffect(()=>{
      <View>
             <Text style={styles.notification}>Ski Activities </Text>
           </View>
+          <View style={{flex: 1 }}>
+    <ScrollView
+    keyboardShouldPersistTaps='always'
+    contentContainerStyle={{ alignItems : 'center' , paddingVertical : 10}}>
+       
+  
+
+ 
+ {data.map((element ,i) => {
+        return (
+          <TouchableOpacity key={i} style={styles.container} >
+    
+          <SingleActivity data={element}/>
+          </TouchableOpacity>
+        );
+      })} 
+
+
+
+
+         
+
+    </ScrollView>
+  </View>
 
     </View>
 
@@ -74,7 +124,7 @@ const styles = StyleSheet.create({
       fontStyle: 'normal',
       lineHeight: 36,
       paddingHorizontal : 20,
-      marginVertical : 20,
+      marginTop : 20,
     },
 })
 

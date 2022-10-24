@@ -10,13 +10,14 @@ import { useState , useEffect } from 'react';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { config } from '../utils/altitude';
 import GoogleFit, {Scopes} from 'react-native-google-fit';
-import { call } from 'react-native-reanimated';
-import { fi } from 'faker/lib/locales';
+import { saveUserActivities } from '../utils/AddActivity';
+import { firebase } from '@react-native-firebase/auth';
 
 
 
 
 const StartRecording = ({navigation}) => {
+  const uid = firebase.auth().currentUser.uid
   const[long , setLong] = React.useState(0)
   const [lat , setLat] = React.useState(0)
   const [ListVisible , setListVisible] = React.useState(false)
@@ -62,9 +63,9 @@ async function track (){
 
 
   async  function GoolgeTrackData(){
-  /*   GoogleFit.checkIsAuthorized().then(() => {
+    GoogleFit.checkIsAuthorized().then(() => {
       var authorized = GoogleFit.isAuthorized;
-      console.log(authorized);
+     // console.log(authorized);
       if (authorized) {
           return 1
       } else {
@@ -75,7 +76,7 @@ async function track (){
               setGoogleFit(true)
           
  
-              // if successfully authorized, fetch data
+            
             } else {
              return 0
             }
@@ -84,7 +85,7 @@ async function track (){
              return 0
           });
       }
-}); */
+})
 
 
 
@@ -236,7 +237,7 @@ function  getAltitude(latitude , longitude) {
 <Icon3 name='map-marker-distance' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
 <Text style={styles.calories}>DISTANCE</Text>
 </View>
-<Text  style={styles.kcal} >{parseFloat(steps).toFixed(2)}km</Text>
+<Text  style={styles.kcal} >{parseFloat(steps).toFixed(2) == 'NaN' ?  '--' : parseFloat(steps).toFixed(2)}km</Text>
 </View>
 
 </View>
@@ -263,7 +264,7 @@ function  getAltitude(latitude , longitude) {
 
 </ImageBackground>
 <View style={{bottom : '0%',  width : '100%' , height : 50  , alignItems :'stretch' , flexDirection:'row' , justifyContent : 'space-around'  }}>
-{  ListVisible &&<TouchableOpacity style={{top : '2%' , left : '50%'}}>
+{  ListVisible &&<TouchableOpacity style={{top : '2%' , left : '50%'}}  onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,setResetStopwatch(true) , setListVisible(!ListVisible) ,  handleClick()  }}>
   <View style={{ elevation : 30, width: 70,height: 70, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='times' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>
@@ -276,7 +277,7 @@ function  getAltitude(latitude , longitude) {
 </View>
 }
 
-{ !ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(true) , setListVisible(!ListVisible) , handleClick() }}>
+{ !ListVisible && <TouchableOpacity  onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,  setResetStopwatch(false), setListVisible(!ListVisible) ,  handleClick()  }}>
   <View style={{ width: 90,height: 90, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: '#e8500e',  justifyContent:'center' ,alignItems:'center'}}>
      <View style={{
         width: 30,
@@ -291,7 +292,7 @@ function  getAltitude(latitude , longitude) {
     }
 
 
-{ ListVisible && <TouchableOpacity onPress={() => { setIsStopwatchStart(false) , setListVisible(!ListVisible) ,  handleClick()  }}>
+{ ListVisible && <TouchableOpacity onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,  setResetStopwatch(false), setListVisible(!ListVisible) ,  handleClick()  }}>
   <View style={{ width: 90,height: 90, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='pause' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>
@@ -300,7 +301,7 @@ function  getAltitude(latitude , longitude) {
 
 
 
-{ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}}>
+{ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}} onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,setResetStopwatch(true) , setListVisible(!ListVisible) ,  handleClick()  , saveUserActivities(uid)}}>
   <View style={{ elevation : 30, width: 70,height: 70, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='check' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>

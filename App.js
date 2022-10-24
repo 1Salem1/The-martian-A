@@ -71,7 +71,7 @@ function App() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    //getFCMToken()
+   // getFCMToken()
     NotificationListner()
     return subscriber; // unsubscribe on unmount
 

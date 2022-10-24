@@ -25,7 +25,7 @@ const NavigationLogged = () => {
 
     <NavigationContainer>
     <Stack.Navigator
-    initialRouteName='HomeMain'
+    initialRouteName='listA'
     screenOptions={{headerShown :false,
       
       animation: "slide_from_right",
