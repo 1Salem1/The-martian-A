@@ -10,7 +10,8 @@ import OneSignal from 'react-native-onesignal';
 import { NotificationListner , requestUserPermission , getFCMToken} from './utils/push_notification_helper';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import FirstTimeNavigation from './navigation/FirstTimeNavigation'
-
+import messaging from '@react-native-firebase/messaging';
+import { saveUserPushNotification } from './utils/AddPushNotification'
 OneSignal.setAppId("a8c25a20-ca30-41b2-92d3-bd7472d3f18c");
 
 
@@ -71,9 +72,39 @@ function App() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-   // getFCMToken()
-    NotificationListner()
-    return subscriber; // unsubscribe on unmount
+  messaging().onNotificationOpenedApp(remoteMessage => {
+    console.log('Notification caused app to open from background state:', remoteMessage.notification,);
+    saveUserPushNotification(remoteMessage.notification.body  , remoteMessage.notification.title , remoteMessage.sentTime)
+     return remoteMessage
+   
+     })
+
+     messaging()
+     .getInitialNotification()
+     .then(remoteMessage => {
+       if (remoteMessage) {
+         console.log('Notification caused app to open from quit state:',  remoteMessage.notification,);
+         saveUserPushNotification(remoteMessage.notification.body  , remoteMessage.notification.title , remoteMessage.sentTime)
+     return remoteMessage
+       }})
+
+
+
+       messaging().onMessage(async remoteMessage => {
+           console.log("notification on froground state........", remoteMessage)
+        saveUserPushNotification(remoteMessage.notification.body  , remoteMessage.notification.title , remoteMessage.sentTime)
+           return remoteMessage
+       })
+
+    
+
+       messaging().setBackgroundMessageHandler(async remoteMessage => {
+        console.log('Message handled in the background!', remoteMessage);
+        saveUserPushNotification(remoteMessage.notification.body  , remoteMessage.notification.title , remoteMessage.sentTime)
+         return remoteMessage
+       });
+
+
 
   }, []);
 
@@ -81,7 +112,7 @@ function App() {
 
 
 useEffect(()=>{
-
+SplashScreen.hide()
   AsyncStorage.getItem("alreadyLaunched").then(value => {
     if(value == null){
          AsyncStorage.setItem('alreadyLaunched', 'true'); 

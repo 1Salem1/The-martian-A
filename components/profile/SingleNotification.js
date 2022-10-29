@@ -5,13 +5,14 @@ import { Avatar } from 'react-native-paper'
 const SingleNotification = (props) => {
   return (
    <TouchableOpacity style={styles.container}>
-     <Avatar.Image style={{alignSelf :'center'}}
+     <Avatar.Image style={{alignSelf :'center' , right : 30}}
          source={{uri : props.uri}}
          size={50}
          >
             
      </Avatar.Image>
-<View style={{flexDirection : 'column' , justifyContent :'center' ,right : 20}}>
+     <View style={{width : 10}}></View>
+<View style={{flexDirection : 'column' , justifyContent :'center' ,  }}>
 <Text style={styles.newProducts}>{props.p1}</Text>
       <Text style={styles.checkoutOur}>{props.p2}</Text>
 </View>
@@ -33,13 +34,13 @@ const styles = StyleSheet.create({
     
             width: 335,
             height: 71,
+            justifyContent : 'center',
             borderRadius: 10,
             borderColor: '#ffd6c7',
             borderStyle: 'solid',
             borderWidth: 1,
             backgroundColor: '#ffffff',
-            flexDirection :'row' , 
-            justifyContent : 'space-around',
+            flexDirection :'row' ,
     },
 
     newProducts: {
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontStyle: 'normal',
         textAlign: 'left',
-     
-        marginVertical :5
+        width : 150,
+       
       },
 
       checkoutOur: {
@@ -60,6 +61,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontStyle: 'normal',
         textAlign: 'left',
-        marginVertical :5
       },
 })

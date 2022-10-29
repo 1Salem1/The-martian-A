@@ -46,6 +46,7 @@ function HomeTab() {
           options={{
             "tabBarShowLabel": false,
             header: () => null,
+            tabBarBadge: 5 ,
             animation: "slide_from_right",
             tabBarIcon: ({color , focused}) =>  
             <NotificationIcon color={focused ? '#e8500e' : 'black'}/>
@@ -74,6 +75,7 @@ function HomeTab() {
 
 <Tab.Screen 
          options={{
+          
             "tabBarShowLabel": false,
             header: () => null,
             animation: "slide_from_right",

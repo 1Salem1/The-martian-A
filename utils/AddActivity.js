@@ -48,6 +48,8 @@ export function saveUserActivities(uid /* ,location_object , date, time_start, t
             time_end : "11.12",
             calories : "471" ,
             total_distance : "44",
+            total_distance_downhill : "44",
+            total_distance_reset : "44",
             avg_speed : "47",
             max_speed : "77", 
             lowest_speed : "7"  ,
@@ -55,7 +57,11 @@ export function saveUserActivities(uid /* ,location_object , date, time_start, t
             max_altitude : "414", 
             min_altitude  : "321",
             country  :"Tunisia",
-            city : "Marsa"
+            city : "Marsa",
+            time_spent_ski : "",
+            time_spent_ascent : "",
+            time_spent_reset : "",
+
   
       });
   

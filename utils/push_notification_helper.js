@@ -1,6 +1,7 @@
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import {saveUserNotification} from './AddPushNotification'
+import { SavePushNotification } from './AddAnArray';
+
 
 async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
@@ -63,12 +64,13 @@ async function getFCMToken(){
 
           messaging().onMessage(async remoteMessage => {
               console.log("notification on froground state........", remoteMessage)
-              console.log(remoteMessage.notification.title)
-              console.log(remoteMessage.notification.body)
-        
-              saveUserNotification( body,title )
+         //     console.log(remoteMessage.notification.title)
+           //   console.log(remoteMessage.notification.body)
+
               return remoteMessage
           })
+
+       
 
           messaging().setBackgroundMessageHandler(async remoteMessage => {
            console.log('Message handled in the background!', remoteMessage);

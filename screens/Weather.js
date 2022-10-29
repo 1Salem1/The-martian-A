@@ -26,6 +26,8 @@ import PopUpLogin from '../components/global/PopUpError';
     const[temp , setTemp] = useState('0.00')
     const [data , setData] = useState(null)
     const[visible , setVisible] = useState(false)
+    const [lat_v , setLat] = useState(0)
+    const [lon_v , setLon] = useState(0)
 
 
 
@@ -72,7 +74,13 @@ async function GetCurrentLocation(){
     setVisible(true)
     return 0
   }
-  setData(dataT.coords)
+
+  setLat(dataT.coords.latitude)
+  setLon(dataT.coords.longitude)
+  setData({
+    latitude : lat_v ,
+    longitude : lon_v
+  })
   const weather = await getWeather(dataT.coords)
  // console.log(weather.data)
   setTemp(weather.data.main.temp)

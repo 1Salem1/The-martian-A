@@ -14,21 +14,31 @@ export  function getUserActivities(uid) {
 
 
 
-export function saveUserPushNotification(body , title) {
-// console.log("started working")
+export function saveUserPushNotification(body , title, id) {
+
     const dbRef = ref(getDatabase(app));
-        const db = getDatabase();
-      const reference = ref(db, 'notifications/' , Date.now());
-      set(reference, {
-            title : body ,
-            body :  title
-      });
+    get(child(dbRef, `notifications/${id}`)).then((snapshot) => {
+        if (!snapshot.exists()) {
+
+
+            const dbRef = ref(getDatabase(app));
+            const db = getDatabase();
+          const reference = ref(db, 'notifications/' + id);
+          set(reference, {
+                title : body ,
+                body :  title
+          });
+
+
+    }
+ 
   
         
   
      
   
-  }
+  })
+}
 
 
 
@@ -85,4 +95,3 @@ export function saveUserNotification(uid , title , body) {
    
 
 }
-

@@ -12,7 +12,7 @@ import { config } from '../utils/altitude';
 import GoogleFit, {Scopes} from 'react-native-google-fit';
 import { saveUserActivities } from '../utils/AddActivity';
 import { firebase } from '@react-native-firebase/auth';
-
+import Lottie from 'lottie-react-native';
 
 
 
@@ -201,9 +201,12 @@ function  getAltitude(latitude , longitude) {
          
         
         <View style={styles.rectangle486}>
-        <View style={{flexDirection :'row' , paddingTop : 40}}>
-                <Text style={styles.recording}>Tap to record</Text>
+          
+        <View style={{flexDirection :'row' ,paddingTop : 40 , justifyContent : 'space-around' }}>
+       
+       <Text style={styles.recording}>Tap to record</Text>
               </View>
+              
               <Text style={styles.layer00}><Stopwatch
             laps
             msecs

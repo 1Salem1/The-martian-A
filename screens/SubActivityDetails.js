@@ -20,14 +20,14 @@ export default function ActivityDetails({navigation}) {
 <View style={{flexDirection:'row' , justifyContent:'space-around' , marginTop : 20}}>
 <View  style={styles.rectangle483}>
 <View style={{flexDirection:'row' , justifyContent:'space-between' }}>
-<Icon2 name='fire' style={{ color : 'white' , fontSize: 20 , marginRight : 14  }} />
+<Icon2 name='fire' style={{ color : 'white' , fontSize: 20 , marginRight : 8  }} />
 <Text style={styles.calories}>Calories</Text>
 </View>
 <Text  style={styles.kcal} >456kcal</Text>
 </View>
 <View  style={styles.rectangle484}>
 <View style={{flexDirection:'row' , justifyContent:'space-between' }}>
-<Icon3 name='mountains' style={{ color : 'white' , fontSize: 20 , marginRight : 14  }} />
+<Icon3 name='mountains' style={{ color : 'white' , fontSize: 20 , marginRight : 8  }} />
 <Text style={styles.calories}>SLOPE</Text>
 </View>
 <Text style={styles.kcal}>29°</Text>
@@ -39,7 +39,7 @@ export default function ActivityDetails({navigation}) {
 <View >
 <View style={styles.rectangle490}>
 <View style={{flexDirection:'row' , padding : 20}}>
-<Icon name='timer' style={{ color : '#e8500e' , fontSize: 25 , marginRight : 14  }} />
+<Icon name='timer' style={{ color : '#e8500e' , fontSize: 25 , marginRight : 8  }} />
 <View>
     <Text  style={styles.distance}>TIME</Text>
     <Text  style={styles.layer01}>01:45:43</Text>
@@ -66,7 +66,7 @@ export default function ActivityDetails({navigation}) {
 
 <View style={styles.rectangle590}>
 <View style={{flexDirection:'row' , padding : 15}}>
-<Icon name='timer' style={{ color : '#e8500e' , fontSize: 25 , marginRight : 14  }} />
+<Icon name='timer' style={{ color : '#e8500e' , fontSize: 25 , marginRight : 8  }} />
 <View>
     <Text  style={styles.distance}>DISTANCE</Text>
 </View>
@@ -91,9 +91,9 @@ export default function ActivityDetails({navigation}) {
 </View>
 <View style={styles.rectangle590}>
 <View style={{flexDirection:'row' , padding : 15}}>
-<Icon name='timer' style={{ color : '#e8500e' , fontSize: 25 , marginRight : 14  }} />
+<Icon2 name='mountain' style={{ color : '#e8500e' , fontSize: 18 , marginRight : 8  }} />
 <View>
-    <Text  style={styles.distance}>DISTANCE</Text>
+    <Text  style={styles.distance}>ALTITUDE</Text>
 </View>
 
 </View>
@@ -113,6 +113,40 @@ export default function ActivityDetails({navigation}) {
     <Text style={styles.layer00} >1,8km</Text>
 </View>
 </View>
+
+
+
+
+</View>
+
+<View style={styles.rectangle590}>
+<View style={{flexDirection:'row' , padding : 15}}>
+<Icon name='speed' style={{ color : '#e8500e' , fontSize: 25 , marginRight : 8  }} />
+<View>
+    <Text  style={styles.distance}>SPEED</Text>
+</View>
+
+</View>
+<View style={{flexDirection:'row' , justifyContent:'space-around' , bottom : 10}}>
+<View >
+    <Text style={styles.ski}>MIN</Text>
+    <Text style={styles.layer00} >22km/h</Text>
+</View>
+
+<View>
+    <Text style={styles.ski}>MAX</Text>
+    <Text style={styles.layer00} >468km/h</Text>
+</View>
+
+<View>
+    <Text style={styles.ski}>AVG</Text>
+    <Text style={styles.layer00} >12km/h</Text>
+</View>
+</View>
+
+
+
+
 </View>
 
 

@@ -5,38 +5,47 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../utils/auth-context';
 import messaging from '@react-native-firebase/messaging';
 import SingleNotification from '../components/profile/SingleNotification';
+import { useFocusEffect } from '@react-navigation/native';
+import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
+import { firebase } from '@react-native-firebase/auth';
+import app from '../utils/config';
+import { ScrollView } from 'react-native';
 
 const Weather = ({navigation}) => {
-  const [data , setData] = useState(null)
+
  const [message , setMessage] = useState()
  const [fakeData , setFakeData] = useState()
 
-  const Auth = useContext(AuthContext)
+ var dataT = [];
+
+ const  [data , setData] = React.useState([])
+
+ const Auth = useContext(AuthContext)
+ const uid = firebase.auth().currentUser.uid
 
 
 
 
 
 
+useFocusEffect(
 
+ React.useCallback(() => {
+  setData([])
+   const db = getDatabase(app);
+   const reference = ref(db, 'notifications/');
+   onValue(reference, (snapshot) => {
+    setData([])
+     for (a in snapshot.val()){
+     setData(data => [...data,snapshot.val()[a]] );
+    console.log(data)
+    
+     }
+    
+   });
+ }, [])
+);
 
-
-
-
-
-
-
-
-
-
-useEffect(()=>{
-
-
-
-
-
-
-},[])
 
 
 
@@ -62,11 +71,25 @@ useEffect(()=>{
      <View>
             <Text style={styles.notification}>Notification</Text>
           </View>
-       <View style={{alignSelf :'center'}}>
-       <SingleNotification uri="https://i.picsum.photos/id/1073/200/300.jpg?hmac=j6ROutB6dK_56A4aAvjzWqBP0Q7RGmXYnHlL4T-R2a8" 
-       p1="New products are coming" 
-       p2="New products are coming"/>
-       </View>
+
+          <View style={{flex : 1}}>
+          <ScrollView 
+            keyboardShouldPersistTaps='always'
+            contentContainerStyle={{ alignItems : 'center' , paddingVertical : 10}}>
+      
+ 
+ {data.map((element ,i) => {
+  return (
+    <SingleNotification key={i} uri="https://i.picsum.photos/id/1073/200/300.jpg?hmac=j6ROutB6dK_56A4aAvjzWqBP0Q7RGmXYnHlL4T-R2a8" 
+    p1={element.title} 
+    p2={element.body} />
+  
+  )
+})} 
+<View style={{height : 60}}></View>
+ </ScrollView>
+          </View>
+    
     </View>
 
 </View>
