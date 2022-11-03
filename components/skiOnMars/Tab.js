@@ -29,7 +29,7 @@ const renderScene = SceneMap({
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'ActivitiesList', title: 'Ski On Mars' },
+    { key: 'ActivitiesList', title: 'Ski on Mars Tracker' },
     { key: 'ButtonTracker', title: 'Recent Ski Activities' },
  
   ]);
@@ -40,10 +40,14 @@ const renderScene = SceneMap({
       navigationState={{ index, routes }}
       renderScene={renderScene}
       onIndexChange={setIndex}
+    
       renderTabBar={props => <TabBar {...props} 
-      indicatorStyle={{ backgroundColor: '#eb5c26', height: 4  }}
-      style={{backgroundColor: 'white' }}
-      labelStyle={{ width : '100%',color: '#666666' , fontSize: 14, textTransform :'capitalize' , fontFamily: 'MuseoSans_700'}}
+      indicatorStyle={{ backgroundColor: '#eb5c26', height: 3  , width : 50 , marginLeft : 30 }}
+      style={{backgroundColor: 'white'  }}
+      indicatorContainerStyle={{width : 300 , alignSelf : 'center'}}
+      labelStyle={{width : 170,color: '#666666' , fontSize: 14, textTransform :'capitalize' , fontFamily: 'MuseoSans_700' , textAlign : 'center'}}
+      tabStyle={{ textAlign : 'left'}}
+      
       />} 
       />
     

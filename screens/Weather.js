@@ -134,12 +134,12 @@ const HandleVisibleError = ()=>{
   <View style={{flex : 1}}>
     <PopUpLogin visible={visible} HandleVisibleError={HandleVisibleError}/>
     <View style={styles.container}>
-       <View style={{flexDirection :'row' , justifyContent:'center'  }}>
-        <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
+       <View style={{flexDirection :'row'  , justifyContent : 'space-between'   }}>
+        <TouchableOpacity   onPress={()=>navigation.navigate('Home')}>
       <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50 }} />
         </TouchableOpacity>
-           <View style={{width:270}}></View>
-        <TouchableOpacity onPress={()=>navigation.navigate('profile')}>
+          
+        <TouchableOpacity  onPress={()=>navigation.navigate('profile')}>
         <Avatar.Image 
             source={{
               uri: Auth.getData().image,
@@ -151,13 +151,13 @@ const HandleVisibleError = ()=>{
        </View>
 
        <View style={{padding : 20 }}>
-       <Text style={styles.title}>SKI ON MARS TRACKER</Text>
+       <Text style={styles.notification}>SKI ON MARS TRACKER</Text>
      
        </View>
        <View style={{paddingHorizontal : 20}}>
        <Text style={styles.title}>OVERALL SKI CONDITIONS</Text>
        <View style={{flexDirection:'row' ,marginTop:10}}>
-       <Icon name='location-on' style={{ color : '#666666' , fontSize: 30 }} />
+       <Icon name='location-on' style={{ color : '#666666' , fontSize: 18, width : 22 , marginTop : 5 }} />
 
        <Text style={styles.aiguillesDe}>{city}{city != 'This Location is unknown' ? ' , ' : ''}{Country}</Text>
        
@@ -287,5 +287,13 @@ const HandleVisibleError = ()=>{
         fontWeight: '400',
         fontStyle: 'normal',
         textAlign: 'left',
+      },
+      notification: {
+        color: '#000000',
+        fontFamily: 'Esoris',
+        fontSize: 28,
+        fontWeight: '400',
+        fontStyle: 'normal',
+        lineHeight: 36,
       },
   })

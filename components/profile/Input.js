@@ -54,7 +54,7 @@ const Input = ({
         )}
       </View>
       {error && (
-        <Text style={{marginTop: 7, color: COLORS.red, fontSize: 12}}>
+        <Text style={{marginTop: 7, color: COLORS.red, fontSize: 12 , fontWeight : 'bold'}}>
           {error}
         </Text>
       )}

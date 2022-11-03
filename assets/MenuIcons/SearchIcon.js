@@ -18,8 +18,8 @@ function SearchIcon(props) {
 }
 const style = StyleSheet.create({
     container : {
-      height : 25 , 
-      width : 25
+      height : 20 , 
+      width : 20
     }
   })
 export default SearchIcon

@@ -15,7 +15,6 @@ const Input = ({
   const [isFocused, setIsFocused] = React.useState(false);
   return (
     <View style={{marginBottom: 20}}>
-      <Text style={style.label}>{label}</Text>
       <View
         style={[
           style.inputContainer,
@@ -28,19 +27,18 @@ const Input = ({
             alignItems: 'center',
           },
         ]}>
-        <Icon
-          name={iconName}
-          style={{color: COLORS.darkBlue, fontSize: 22, marginRight: 10}}
-        />
+    
         <TextInput
           autoCorrect={false}
+          placeholderTextColor="#000" 
+  
           onFocus={() => {
             onFocus();
             setIsFocused(true);
           }}
           onBlur={() => setIsFocused(false)}
           secureTextEntry={hidePassword}
-          style={{color: COLORS.darkBlue, flex: 1}}
+          style={{color: "black", flex: 1 }}
           {...props}
         />
         {password && (
@@ -52,7 +50,7 @@ const Input = ({
         )}
       </View>
       {error && (
-        <Text style={{marginTop: 7, color: COLORS.red, fontSize: 12}}>
+        <Text style={{marginTop: 7, color: "#e8500e", fontSize: 12 , marginLeft : 20 , fontWeight : 'bold'}}>
           {error}
         </Text>
       )}
@@ -68,8 +66,9 @@ const style = StyleSheet.create({
     fontWeight :'bold'
   },
   inputContainer: {
+    color : 'black',
     height: 55,
-    backgroundColor: COLORS.light,
+    backgroundColor: "#cccccc",
     borderRadius : 10 ,
     flexDirection: 'row',
     paddingHorizontal: 15,

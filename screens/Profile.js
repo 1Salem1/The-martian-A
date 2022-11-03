@@ -10,7 +10,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
 import PopUpQuit from '../components/global/PopUpQuit';
 import { SignOUT } from '../utils/auth';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { getStorage, ref , uploadBytes } from "firebase/storage";
 import { generateUUID } from '../utils/RandomGenerator';
 import { firebase } from '@react-native-firebase/auth';
@@ -21,6 +21,8 @@ const ProfileScreen = ({navigation}) => {
   const user_uid = firebase.auth().currentUser.uid;
   const [visible , setVisible] = React.useState(false)
   const [image , setimage] = React.useState(false)
+
+  const [result , setResult] = React.useState()
  
   
   function capitalizeFirstLetter(str) {
@@ -42,39 +44,44 @@ const ProfileScreen = ({navigation}) => {
 
 const changeImage = async () =>{
 
-  // You can also use as a promise without 'callback':
-  const result = await launchImageLibrary();
+  const x = await launchImageLibrary();
+  
+  console.log(x)
 
-  if(result.didCancel == true){
-    return 0
-  }
-  else {
-  //  console.log(result)
+ if(!x.didCancel){
+
     const number = generateUUID(40)
     const storage = getStorage(); //the storage itself
     const url = `profile${number}.jpg`
     const _ref = ref(storage,  url); //how the image will be addressed inside the storage
 
     //convert image to array of bytes
-    const img = await fetch(result.assets[0].uri);
+    const img = await fetch(x.assets[0].uri);
     const bytes = await img.blob();
 
     await uploadBytes(_ref, bytes)
     Auth.setImage(`https://firebasestorage.googleapis.com/v0/b/the-martian-1080d.appspot.com/o/${url}?alt=media&token=a1837e8d-1ce3-4118-addb-3d4dd5b5e489`)  
     
     return `https://firebasestorage.googleapis.com/v0/b/the-martian-1080d.appspot.com/o/${url}?alt=media&token=a1837e8d-1ce3-4118-addb-3d4dd5b5e489`
-}
 
+
+ }
   
- 
 
 }
 
 const UpadateImage = async () =>{
 
   const data = await  changeImage()
-  upDateUserImg(data , user_uid)
-}
+
+  if(!(typeof data === 'undefined')) {
+
+    upDateUserImg(data , user_uid)
+  }
+
+   
+  }
+
 
 
 
@@ -98,6 +105,7 @@ const UpadateImage = async () =>{
   <View>
 
     <Avatar.Image 
+            style={{backgroundColor :'#e8500e'}}
             source={{
               uri: Auth.getData().image,
             }}

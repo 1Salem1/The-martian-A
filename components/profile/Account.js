@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, SafeAreaView, Keyboard, Alert, ImageBackground, TouchableOpacity, KeyboardAvoidingView, InputAccessoryView } from 'react-native';
+import { View, Text, SafeAreaView, Keyboard, Alert, ImageBackground, TouchableOpacity, KeyboardAvoidingView, InputAccessoryView  , StyleSheet} from 'react-native';
 import { COLORS } from '../../styles/Style'
 import Button from './Button';
 import Input from '../global/Input';
@@ -13,7 +13,7 @@ import { UpdateProfile } from '../../utils/crud';
 import { getAuth, updateEmail } from "firebase/auth";
 import PopUpQuit from '../global/PopUpQuit';
 import { useNavigation } from '@react-navigation/native';
-
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 const SignInScreen = ({ShowP , visible , handleClose , handleSignOut}) => {
   const Auth = useContext(AuthContext)
@@ -71,12 +71,13 @@ const SignInScreen = ({ShowP , visible , handleClose , handleSignOut}) => {
   return (
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>
+      <Text style={{left : 20 , marginTop: 20, color: '#000000', fontFamily: 'MuseoSans_700', fontSize: 18, fontWeight: '400', fontStyle: 'normal', textAlign: 'left', lineHeight: 36,}}>Account</Text>
 
 
-        <View style={{ paddingHorizontal: 20 }}>
+        <View style={styles.container}>
 
 
-          <View style={{ marginVertical: 20 }}>
+          <View style={{ marginVertical: 20 , flexDirection :'column' , width : '80%' }}>
             <Input
               onChangeText={text => handleOnchange(text, 'fname')}
               onFocus={() => handleError(null, 'email')}
@@ -102,10 +103,7 @@ const SignInScreen = ({ShowP , visible , handleClose , handleSignOut}) => {
             />
 
             <View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', bottom: 20 }}>
-                <Button title="Sign Out" iconName='door' color='black' onPress={ShowP} />
-                <Button title="Save Profile" color='#e8500e' onPress={validate} />
-              </View>
+        
 
             </View>
             <TouchableOpacity>
@@ -113,9 +111,54 @@ const SignInScreen = ({ShowP , visible , handleClose , handleSignOut}) => {
             </TouchableOpacity>
           </View>
         </View>
+
+
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', bottom: 20 }}>
+               {/*  <Button title="Sign Out" iconName='door' color='black' onPress={ShowP} /> */}
+               <TouchableOpacity style={{justifyContent :'center' , alignItems :'center' , flexDirection :'row' }}>
+                
+                <Icon name='sign-out-alt' color='black' size={15}/>
+                <View style={{width :'10%'}}></View>
+                <Text style={styles.signOut}>Sign Out</Text></TouchableOpacity>
+                <Button title="Save Profile" color='#e8500e' onPress={validate} />
+              </View>
+
+
       </SafeAreaView>
     </KeyboardAwareScrollView>
   );
 }
 
 export default SignInScreen
+
+
+const styles = StyleSheet.create({
+  
+  container : {
+     width: 375,
+    height: 282,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 12, height: 0 },
+    shadowOpacity:  0.4,
+    shadowRadius: 32,
+    elevation: 3,
+    backgroundColor: 'white',
+    alignItems :'center',
+    marginBottom : "5%",
+    alignSelf :'center'
+  } ,
+  signOut: {
+    width: 58,
+    height: 21,
+    color: '#666666',
+    fontSize: 14,
+    fontWeight: '400',
+    fontStyle: 'normal',
+    textAlign: 'left',
+    letterSpacing: -0.14,
+    lineHeight: 20,
+  },
+
+})

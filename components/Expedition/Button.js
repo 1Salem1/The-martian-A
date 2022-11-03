@@ -15,7 +15,7 @@ export default function Button({color , title , route}) {
 const styles = StyleSheet.create({
     button_orange : {
         width: 219,
-        height: 70,
+        height: 60,
         borderRadius: 5,
         borderColor: 'rgba(112, 112, 112, 0)',
         borderStyle: 'solid',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     button_black : {
         width: 219,
-        height: 70,
+        height: 60,
         borderRadius: 5,
         borderColor: 'rgba(112, 112, 112, 0)',
         borderStyle: 'solid',

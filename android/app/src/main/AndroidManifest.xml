@@ -17,12 +17,26 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
-
+      
+      
+      <meta-data android:name="com.facebook.sdk.ApplicationId"
+      android:value="@string/facebook_app_id"/>
+     
+     
       <meta-data
      android:name="com.google.android.geo.API_KEY"
      android:value="AIzaSyBfd2HiB8t_-If9XJISmwge-g-ePSGrP0Q"/>
      
  
+
+
+
+
+
+
+
+
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

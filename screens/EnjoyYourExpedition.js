@@ -12,7 +12,7 @@ const EnjoyYourExpedition = () => {
     <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <View style={{height : '20%'}}></View>
      <View>
-      <Text style={styles.text}>LET'S ENJOY{"\n"}YOUR EXPEDITION!</Text>
+      <Text style={styles.text}>LET'S ENJOY{"\n"}YOUR{"\n"}EXPEDITION!</Text>
      </View>
      <View style={{height : '7%'}}></View>
      <View style={{flex : 1 , alignItems:'center'  }}>
@@ -20,7 +20,6 @@ const EnjoyYourExpedition = () => {
       <View style={{height : '10%'}}></View>
       <Button2  route="signIN"   color="black" title="Sign In" />
      </View>
-     <Text style={{color : 'black' , marginBottom:'4%' , textAlign:'center' , fontSize:15 , marginHorizontal:10}}>By continuing using our application, you agree with our <Text style={{fontWeight:'bold'}}>terms and conditions</Text> and our <Text style={{fontWeight:'bold'}}>privacy policy</Text>.</Text>
     </ImageBackground>
   </View>
   )
