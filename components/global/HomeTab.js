@@ -46,7 +46,7 @@ function HomeTab() {
           options={{
             "tabBarShowLabel": false,
             header: () => null,
-            tabBarBadge: 5 ,
+            tabBarBadge: 0 ,
             animation: "slide_from_right",
             tabBarIcon: ({color , focused}) =>  
             <NotificationIcon color={focused ? '#e8500e' : 'black'}/>

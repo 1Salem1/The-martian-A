@@ -32,7 +32,7 @@ const HomeScreen = ({navigation}) => {
       const reference = ref(db, 'users/' + uid);
       onValue(reference, (snapshot) => {
         const data = snapshot.val();
-       // console.log(data)
+        console.log(data)
          AuthCtx.setEmail(data.email)
          AuthCtx.setFname(data.first_name)
          AuthCtx.setLname(data.last_name)

@@ -5,27 +5,37 @@ import style from '../styles/MapStyle';
 import Button from '../components/profile/Button';
 import * as Location from 'expo-location';
 import MarkerSvg from '../assets/IamHere';
+import { AuthContext } from '../utils/auth-context';
+import { GetLocation } from '../utils/Weather';
 
 
 
 
 const MapScreen = ({route , navigation}) => {
-  const[long , setLong] = React.useState()
-  const [lat , setLat] = React.useState()
+
+const auth = React.useContext(AuthContext)
+
+
+  const[long , setLong] = React.useState(0)
+  const [lat , setLat] = React.useState(0)
   const {data}  = route?.params ;
 
 
-
-  async function Init (){
-    setLong(data.longitude)
-    setLat(data.latitude)
-  }
  
 React.useEffect(()=>{
-Init()
 
+LocationSettings()
 
 },[])
+
+
+
+
+async function LocationSettings (){
+  const data = await GetLocation()
+    setLat(data.coords.latitude)
+    setLong(data.coords.longitude)
+}
 
     var  MapStyle = style
 
@@ -37,10 +47,10 @@ Init()
                   setLong(e.nativeEvent.coordinate.longitude)
                 }}
 initialRegion={{
-  latitude: lat,
+  latitude:  lat,
   longitude: long,
-  latitudeDelta: 0.0243,
-  longitudeDelta: 0.0234
+  latitudeDelta: 0.003,
+  longitudeDelta: 0.003
 }}
     provider="google"
     customMapStyle={MapStyle}
@@ -48,7 +58,7 @@ initialRegion={{
 
       
 					<Marker
-						coordinate={{ latitude: lat, longitude: long }}
+       coordinate={{ latitude: lat, longitude: long }}
 						pinColor="black"
             draggable={true}
             onDragEnd={(e) => {

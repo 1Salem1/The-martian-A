@@ -143,12 +143,12 @@ SplashScreen.hide()
 
 
 
- if (!user) {
+ if (!user && !firstLaunch) {
     return (
     <Navigation/>
     )
   }
-  else  if (user) {
+  else {
 
   return (
    <NavigationLogged/>

@@ -12,7 +12,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import PopUpLogin from '../components/global/PopUpError';
   const Weather = ({route ,navigation}) => {
   
-
+    const auth = useContext(AuthContext)
     const  lat = route.params?.latitude;
   
     const lon = route.params?.longitude;
@@ -22,8 +22,8 @@ import PopUpLogin from '../components/global/PopUpError';
 
     const[city , setCity] = useState('This Location is unknown')
     const[Country , setCountry] = useState()
-    const[snow , setSnow] = useState("0.00")
-    const[temp , setTemp] = useState('0.00')
+    const[snow , setSnow] = useState(0.00)
+    const[temp , setTemp] = useState(0.00)
     const [data , setData] = useState(null)
     const[visible , setVisible] = useState(false)
     const [lat_v , setLat] = useState(0)
@@ -70,6 +70,10 @@ useEffect(()=>{
 
 async function GetCurrentLocation(){
   const dataT = await GetLocation()
+  //console.log(dataT.coords)
+auth.setLocation(dataT.coords)
+
+  console.log("FROM AUTH ", auth.GetLocation())
   if(dataT == 'no'){
     setVisible(true)
     return 0
@@ -87,7 +91,12 @@ async function GetCurrentLocation(){
   setCity(weather.data.name)
   setCountry(weather.data.sys['country'])
   if (weather.data.snow){
+  if(weather.data.snow['1h']){
     setSnow(weather.data.snow['1h'])
+  }
+  else {
+    setSnow(weather.data.snow['3h']) 
+  }
   }
 
 }
@@ -103,7 +112,9 @@ async function RgetWeather(){
     const weather = await getWeather(NewLocation)
     setData(NewLocation)
     setTemp(weather.data.main.temp)
-    setCity(weather.data.name)
+if(weather.data.name){
+  setCity(weather.data.name)
+}
     setCountry(weather.data.sys['country'])
     if (weather.data.snow){
       setSnow(weather.data.snow['1h'])

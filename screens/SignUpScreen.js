@@ -55,8 +55,6 @@ const SignUpScreen = ({navigation}) => {
         
         console.log('User account created & signed in!');
         saveUserData(inputs.fname , inputs.lname , inputs.email ,IMAGE_URL_DEFAULT_PROFILE , sucess.user.uid )
-        return 1 ; 
-        
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
@@ -115,13 +113,13 @@ const SignUpScreen = ({navigation}) => {
         SIGN UP
       </Text>
 
-      <GoogleSocialButton   textStyle={{color : 'white'}}  onPress={() => {onGoogleButtonPress()}}   buttonViewStyle={{  backgroundColor: '#4285f4', marginBottom : 10, height: 55,width: '100%', }}/>
+      <GoogleSocialButton   textStyle={{color : 'white'}}  onPress={() => {onGoogleButtonPress()}}   buttonViewStyle={{  backgroundColor: '#4285f4', top : 30, height: 55,width: '100%', }}/>
 
     <Text style={{marginTop :40, marginBottom : 20, color: '#7d7d7d', fontFamily: 'MuseoSans_700', fontSize: 14, fontWeight: '400',fontStyle: 'normal',textAlign: 'center',lineHeight: 31.7,}}>Or with Email</Text>
       <Input
           onChangeText={text => handleOnchange(text, 'fname')}
           onFocus={() => handleError(null, 'email')}
-          iconName="email-outline"
+       
           label="First Name"
           placeholder="First Name *"
           
@@ -130,7 +128,7 @@ const SignUpScreen = ({navigation}) => {
               <Input
           onChangeText={text => handleOnchange(text, 'lname')}
           onFocus={() => handleError(null, 'lname')}
-          iconName="email-outline"
+    
           label="Last Name"
           placeholder="Last Name *"
           error={errors.lname}
@@ -139,7 +137,7 @@ const SignUpScreen = ({navigation}) => {
         <Input
           onChangeText={text => handleOnchange(text, 'email')}
           onFocus={() => handleError(null, 'email')}
-          iconName="email-outline"
+
           label="Email"
           placeholder="Email *"
           error={errors.email}
@@ -147,7 +145,7 @@ const SignUpScreen = ({navigation}) => {
         <Input
           onChangeText={text => handleOnchange(text, 'password')}
           onFocus={() => handleError(null, 'password')}
-          iconName="lock-outline"
+     
           label="Password"
           placeholder="Password * "
           error={errors.password}

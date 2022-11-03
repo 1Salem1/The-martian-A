@@ -201,21 +201,22 @@ useEffect(()=>{
   return (
 <SafeAreaView style={{flex : 1 }}>
   <View style={styles.container}>
-     <View style={{flexDirection :'row' , justifyContent:'center' }}>
-      <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
-    <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50}} />
-      </TouchableOpacity>
-         <View style={{width:270}}></View>
-      <TouchableOpacity onPress={()=>navigation.navigate('profile')}>
-      <Avatar.Image 
-          source={{
-            uri: Auth.getData().image,
-          }}
-          size={50}
-        />
-      </TouchableOpacity>
-      
-     </View>
+  <View style={{flexDirection :'row'  , justifyContent : 'space-between'   }}>
+        <TouchableOpacity   onPress={()=>navigation.navigate('Home')}>
+      <Icon name='chevron-left' style={{ color : 'black' , fontSize: 50 }} />
+        </TouchableOpacity>
+          
+        <TouchableOpacity  onPress={()=>navigation.navigate('profile')}>
+        <Avatar.Image 
+            source={{
+              uri: Auth.getData().image,
+            }}
+            size={50}
+          />
+        </TouchableOpacity>
+
+       </View>
+       
      <View>
             <Text style={styles.notification}>FAQ</Text>
           </View>

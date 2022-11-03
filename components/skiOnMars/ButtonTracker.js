@@ -18,6 +18,7 @@ const ListActivies = () => {
   var dataT = [];
 
   const  [data , setData] = React.useState([])
+  const [noData , setNodata] = React.useState(false)
 
   const Auth = useContext(AuthContext)
   const uid = firebase.auth().currentUser.uid
@@ -34,15 +35,24 @@ useFocusEffect(
     const db = getDatabase(app);
     const reference = ref(db, 'activities/' + uid);
     onValue(reference, (snapshot) => {
+      if (!snapshot.val()){
+     setNodata(true)
+     console.log(noData)
+      }
+
+      else {
+
+      
+     
       for (a in snapshot.val()){
-      //  console.log(a)
+        console.log(a)
       setData(data => [...data,snapshot.val()[a]] );
    //  console.log(data)
      
       }
-     
+    }
     });
-   
+  
   
 
   
@@ -55,48 +65,58 @@ useFocusEffect(
 
 
 
+if(noData){
   return (
-<View style={{flex : 1 }}>
-  <View style={styles.container}>
- 
-     <View>
-            
-          </View>
-          <View style={{flex: 1, bottom : '7%'  , alignItems : 'center'}}>
-    <ScrollView
-    keyboardShouldPersistTaps='always'
-    contentContainerStyle={{ alignItems : 'center'  }}>
-       
-  
-
- 
- {data.slice(0, 2).map((element ,i) => {
-       return (
-        <TouchableOpacity key={i} style={styles.container} >
-  
-        <SingleActivity data={element}/>
-        </TouchableOpacity>
-      ) 
-      })} 
-
-
-
-<View ></View>
-         
-
-    </ScrollView>
-    <TouchableOpacity onPress={()=> navigation.navigate('listA')} >
-                    <View style={{ top : 20 ,  width: 113,height: 40,borderRadius: 15,borderColor: '#ffd6c7',borderStyle: 'solid',justifyContent :'center',borderWidth: 1,backgroundColor: '#ffffff'}}>
-                        <Text style={{ color: '#666666',fontFamily: 'Museo',fontSize: 14,fontWeight: '400',fontStyle: 'normal',textAlign: 'center',lineHeight: 22,}}>View all</Text>
-                    </View>
-                </TouchableOpacity>
-    
-  </View>
-
+    <View style={{flex : 1 , justifyContent : 'center' , alignItems :'center'  }}>
+      <Text style={{color : 'black' , fontFamily : 'Esoris'}}>There's no data recorded </Text>
     </View>
-
-</View>
   )
+}
+else {
+  return (
+    <View style={{flex : 1 }}>
+      <View style={styles.container}>
+     
+         <View>
+                
+              </View>
+              <View style={{flex: 1, bottom : '7%'  , alignItems : 'center'}}>
+        <ScrollView
+        keyboardShouldPersistTaps='always'
+        contentContainerStyle={{ alignItems : 'center'  }}>
+           
+      
+    
+     
+     {data.slice(0, 2).map((element ,i) => {
+           return (
+            <TouchableOpacity key={i} style={styles.container} >
+      
+            <SingleActivity data={element}/>
+            </TouchableOpacity>
+          ) 
+          })} 
+    
+    
+    
+    <View ></View>
+             
+    
+        </ScrollView>
+        <TouchableOpacity onPress={()=> navigation.navigate('listA')} >
+                        <View style={{ top : 20 ,  width: 113,height: 40,borderRadius: 15,borderColor: '#ffd6c7',borderStyle: 'solid',justifyContent :'center',borderWidth: 1,backgroundColor: '#ffffff'}}>
+                            <Text style={{ color: '#666666',fontFamily: 'Museo',fontSize: 14,fontWeight: '400',fontStyle: 'normal',textAlign: 'center',lineHeight: 22,}}>View all</Text>
+                        </View>
+                    </TouchableOpacity>
+        
+      </View>
+    
+        </View>
+    
+    </View>
+      )
+}
+ 
 }
 
 export default ListActivies

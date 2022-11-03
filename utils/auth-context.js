@@ -1,5 +1,6 @@
 
 import { createContext, useState } from 'react';
+import { GetLocation } from './Weather';
 
 export const AuthContext = createContext({
   token: '',
@@ -7,10 +8,13 @@ export const AuthContext = createContext({
   last_name : '',
   image_url : '',
   email : '',
+  location : {},
   setFname: (data) => {},
   setLname: (data) => {},
   setEmail: (data) => {},
   setImage: (data) => {},
+  setLocation: (data) => {},
+  getLocation:() => Object ,
   getData: () => Object,
 });
 
@@ -24,7 +28,7 @@ function AuthContextProvider({ children }) {
 
 
 
-
+  const [location , setLocation ] = useState({"accuracy": 20, "altitude": 63.077352078652964, "altitudeAccuracy": 3, "heading": 0, "latitude": 36.8581413, "longitude": 10.3000057, "speed": 0})
   const [authToken, setAuthToken] = useState();
   const [first_name, setFname] = useState('');
   const [last_name, setLname] = useState('');
@@ -43,6 +47,9 @@ function AuthContextProvider({ children }) {
   function SetImageUrl(data) {
     setImage(data)
   }
+  function SetLocation(data) {
+    setLocation(data)
+  }
 
 
 function getData(){
@@ -50,10 +57,15 @@ function getData(){
     fname : first_name,
     lname : last_name,
     email : email,
-    image : image_url
+    image : image_url,
+  
   }
 
   return data 
+}
+
+function getLocation(){
+  return  location
 }
 
 
@@ -64,6 +76,9 @@ function getData(){
     setEmail : SetEmail,
     setImage : SetImageUrl,
     getData: getData,
+    location : getLocation,
+    setLocation : SetLocation ,
+    GetLocation : getLocation
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

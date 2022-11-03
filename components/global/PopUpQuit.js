@@ -20,7 +20,7 @@ const PopUpQuit = ({handleClose , handleSignOut ,visible = false}) => {
       <View style={[style.container, {height, width}]}>
         <View style={style.loader}>
          
-         <View style={{flex : 1 , justifyContent : 'center' , alignItems :'center'}}>
+         <View style={{flex : 1 , justifyContent : 'center' , alignItems :'center'   }}>
          <Text style={style.howOn}>How On Earth..</Text>
             <Text style={{  bottom : 10 , color: '#666666',fontFamily: 'Roboto - Regular',fontSize: 14, fontWeight: '400', fontStyle: 'normal', textAlign: 'center',}}>
           Are you sure you want to sign out ?
@@ -45,7 +45,7 @@ const style = StyleSheet.create({
   loader: {
    
     width: 335,
-    height: 218,
+    height: 188,
     backgroundColor: COLORS.white,
       alignSelf : 'center',
     borderRadius: 5,
@@ -91,7 +91,7 @@ const style = StyleSheet.create({
   
     color: '#ffffff',
     fontFamily: 'Roboto - Bold',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '700',
     fontStyle: 'normal',
     textAlign: 'left',
@@ -100,12 +100,11 @@ const style = StyleSheet.create({
   howOn: {
     color: '#000000',
     fontFamily: 'Esoris',
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: '400',
     fontStyle: 'normal',
     textAlign: 'center',
     padding : 20,
-    bottom : 15
   },
 
   sure: {
@@ -122,7 +121,13 @@ const style = StyleSheet.create({
     borderRadius: 5,
     justifyContent : 'center',
     alignItems : 'center',
-    margin : 20
+    margin : 20,
+    borderRadius: 5, 
+    borderColor: '#cccccc',
+    borderStyle: 'solid', 
+    borderWidth: 1, 
+    backgroundColor: '#ffffff',
+
   },
 });
 

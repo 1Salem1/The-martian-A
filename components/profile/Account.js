@@ -116,7 +116,7 @@ const SignInScreen = ({ShowP , visible , handleClose , handleSignOut}) => {
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', bottom: 20 }}>
                {/*  <Button title="Sign Out" iconName='door' color='black' onPress={ShowP} /> */}
-               <TouchableOpacity style={{justifyContent :'center' , alignItems :'center' , flexDirection :'row' }}>
+               <TouchableOpacity onPress={ShowP}   style={{justifyContent :'center' , alignItems :'center' , flexDirection :'row' }}>
                 
                 <Icon name='sign-out-alt' color='black' size={15}/>
                 <View style={{width :'10%'}}></View>
