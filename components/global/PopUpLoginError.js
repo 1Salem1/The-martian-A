@@ -9,7 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native';
 import Navigation from '../../navigation/Navigation';
 import { COLORS } from '../../styles/Style';
-const PopUpLogin = ({closePop  ,visible = false}) => {
+const PopUpLogin = ({handleClose  ,visible = false}) => {
   const {width, height} = useWindowDimensions();
   const [pop , setPop] = useState(visible)
 
@@ -27,7 +27,7 @@ const PopUpLogin = ({closePop  ,visible = false}) => {
 do not match.
             </Text>
      <View style={{flexDirection: 'row' , justifyContent : 'space-between'}}>
-     <TouchableOpacity onPress={closePop}  style={style.rectangle174}>
+     <TouchableOpacity onPress={handleClose}  style={style.rectangle174}>
                 <Text style={style.ok} >Retry</Text>
             </TouchableOpacity>
        

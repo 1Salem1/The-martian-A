@@ -111,7 +111,7 @@ const SignInScreen = ({navigation}) => {
             onFocus={() => handleError(null, 'email')}
             iconName="email-outline"
             label="Email"
-            placeholder="Enter your email address"
+            placeholder="Email *"
             error={errors.email}
           />
           <Input
@@ -119,7 +119,7 @@ const SignInScreen = ({navigation}) => {
             onFocus={() => handleError(null, 'password')}
             iconName="lock-outline"
             label="Password"
-            placeholder="Enter your password"
+            placeholder="Password *"
             error={errors.password}
             password
           />

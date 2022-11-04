@@ -6,7 +6,7 @@ const SingleNotification = (props) => {
   return (
    <TouchableOpacity style={styles.container}>
      <Avatar.Image style={{alignSelf :'center' , right : 30}}
-         source={{uri : props.uri}}
+         source={require('../../assets/Notification.png')}
          size={50}
          >
             

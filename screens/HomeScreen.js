@@ -28,6 +28,11 @@ const HomeScreen = ({navigation}) => {
 
 
    function getUserData(uid) {
+
+
+
+
+
     const db = getDatabase(app);
       const reference = ref(db, 'users/' + uid);
       onValue(reference, (snapshot) => {

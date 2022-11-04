@@ -2,15 +2,27 @@
 import { saveUserData } from './crud';
 import { IMAGE_URL_DEFAULT_PROFILE } from './CONSTANTS';
 import auth from '@react-native-firebase/auth';
+import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
+import app from './config';
+
+
 export async function SignUP(email , password ,  fname , lname){
   auth()
   .createUserWithEmailAndPassword(email,password  )
   .then((sucess) => {
-    
     console.log('User account created & signed in!');
-    saveUserData(fname , lname , email ,IMAGE_URL_DEFAULT_PROFILE , sucess.user.uid )
-    return 1 ; 
-    
+        const db = getDatabase();
+      const reference = ref(db, 'users/' + uid);
+      set(reference, {
+              email: email,
+              image: IMAGE_URL_DEFAULT_PROFILE,
+              uuid: sucess.user.uid,
+              first_name : fname,
+              last_name : lname ,
+  
+      }).then(()=>{
+        return 1
+      })
   })
   .catch(error => {
     if (error.code === 'auth/email-already-in-use') {

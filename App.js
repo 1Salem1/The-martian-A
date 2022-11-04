@@ -20,7 +20,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [firstLaunch, setFirstLaunch] = useState(true);
 
-  OneSignal.promptForPushNotificationsWithUserResponse();
+/*   OneSignal.promptForPushNotificationsWithUserResponse();
 
   //Method for handling notifications received while app in foreground
   OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
@@ -36,14 +36,14 @@ function App() {
   //Method for handling notifications opened
   OneSignal.setNotificationOpenedHandler(notification => {
     console.log("OneSignal: notification opened:", notification);
-  });
+  }); */
 
 
 
 
 
 
-  Sentry.init({
+/*   Sentry.init({
     dsn: "https://caec5f28f45f4797b4afe59f928c535b@o4503948478447616.ingest.sentry.io/4503948479561728",
     // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
     // We recommend adjusting this value in production.
@@ -57,7 +57,7 @@ function App() {
         // ... other options
       }),
     ],
-  });
+  }); */
 
 
   // Set an initializing state whilst Firebase connects

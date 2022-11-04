@@ -13,7 +13,11 @@ import auth from '@react-native-firebase/auth';
 import {IMAGE_URL_DEFAULT_PROFIL, IMAGE_URL_DEFAULT_PROFILE} from '../utils/CONSTANTS'
 import TopBar from '../components/global/TopBarLogin';
 import { AntDesign } from '@expo/vector-icons'; 
+import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
+import app from '../utils/config';
+
 export const image = require('../assets/background/signin.png');
+
 
 
 const SignUpScreen = ({navigation}) => {
@@ -54,7 +58,23 @@ const SignUpScreen = ({navigation}) => {
       .then((sucess) => {
         
         console.log('User account created & signed in!');
-        saveUserData(inputs.fname , inputs.lname , inputs.email ,IMAGE_URL_DEFAULT_PROFILE , sucess.user.uid )
+
+
+        const db = getDatabase();
+        const reference = ref(db, 'users/' + sucess.user.uid);
+        set(reference, {
+                email: inputs.email,
+                image: IMAGE_URL_DEFAULT_PROFILE,
+                uuid: sucess.user.uid,
+                first_name : inputs.fname,
+                last_name : inputs.lname ,
+    
+        }).then(()=> {
+          console.log('ok')
+        })
+
+
+
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {

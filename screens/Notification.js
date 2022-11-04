@@ -80,7 +80,7 @@ useFocusEffect(
  
  {data.map((element ,i) => {
   return (
-    <SingleNotification key={i} uri="https://i.picsum.photos/id/1073/200/300.jpg?hmac=j6ROutB6dK_56A4aAvjzWqBP0Q7RGmXYnHlL4T-R2a8" 
+    <SingleNotification key={i} 
     p1={element.title} 
     p2={element.body} />
   

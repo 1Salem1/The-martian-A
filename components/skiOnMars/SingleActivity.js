@@ -16,7 +16,7 @@ const SingleActivity = ({data}) => {
       <View style={{flexDirection:'row'}}>
      <Icon name='location-on' style={{marginRight:10, top : '3%',color : '#e8500e' , fontSize: 20}} />
         <Text style={styles.lesAiguilles}><Text></Text>{data.city}, <Text style={{fontWeight:'400'}}>{data.country}</Text></Text>
-        <View style={{width : 150}}></View>
+        <View style={{width : '50%'}}></View>
         <Icon2 name='info-circle' style={{ top : '4%',color : '#e8500e' , fontSize: 20}} />
      </View>
      <View style={{flexDirection:'row' , bottom : '5%'}}>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         fontFamily: 'MuseoSans_100',
         fontSize: 12,
         fontWeight: '400',
-        textAlign:'center',
+        textAlign:'left',
         marginTop:5,
   
 
