@@ -16,7 +16,7 @@ import { capitalizeFirstLetter } from '../utils/forStrings';
 import Loader from '../components/global/Loader'
 const HomeScreen = ({navigation}) => {
 
-  const [image , setImage] = React.useState()
+  const [image , setImage] = React.useState("")
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [fakeData, setFakeData] = useState();

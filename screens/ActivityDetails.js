@@ -57,16 +57,16 @@ export default function ActivityDetails({navigation , route }) {
      </View>
 
    <View style={{flexDirection:'row' , marginTop : 10 , marginLeft:8}}>
-   <Icon name='location-on' style={{ color : '#e8500e' , fontSize: 30 , }} />
+   <Icon name='location-on' style={{top : '2.1%', color : '#e8500e' , fontSize: 20}} />
 <Text style={styles.lesAiguilles}>{data_.city}, <Text style={{fontWeight :'500'}}>{data_.country}</Text></Text>
    </View>
 
-   <View style={{flexDirection :'row'  , justifyContent :'space-around'}}>
+   <View style={{marginLeft : 8 , flexDirection :'row'  }}>
    <View style={{flexDirection:'row' , marginTop : 10}}>
    <Icon name='calendar-today' style={{ color : '#666666' , fontSize: 20 , marginRight : 4  }} />
 <Text style={styles.layer17}>{data_.date}</Text>
    </View>
-
+<View style={{width : '45%'}}></View>
    <View style={{flexDirection:'row' , marginTop : 10}}>
    <Icon name='timer' style={{ color : '#666666' , fontSize: 20 , marginRight : 4  }} />
 <Text  style={styles.layer17}>{data_.time_start} - {data_.time_end}</Text>
