@@ -3,29 +3,34 @@ import React, { useContext, useEffect, useState } from 'react'
 import {Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../utils/auth-context';
-
-
+import { getDatabase, ref, onValue, set  , get , child , update} from 'firebase/database';
+import app from '../utils/config';
+import { firebase } from '@react-native-firebase/auth';
 const Weather = ({navigation}) => {
 
-  const [Name, onChangeName] = React.useState(null);
-  const [Email, onChangeEmail] = React.useState(null);
-  const [Subject, onChangesubject] = React.useState(null);
-  const [Message, onChangeMessage] = React.useState(null);
-  const [imageUrl , setImageUrl]= useState(null) 
+  const [Name, onChangeName] = React.useState("");
+  const [Email, onChangeEmail] = React.useState('');
+  const [Subject, onChangesubject] = React.useState('');
+  const [Message, onChangeMessage] = React.useState("");
 
   const Auth = useContext(AuthContext)
 
-  const  handleEmail = () => {
-    Communications.email(
-        ["salem.d@ogso.eu", "salem.dahmani345@gmail.com"],   //<---- destination emails
-        null,                      // <--- CC email
-        null,                      // <--- bcc   
-        Subject,            //<--- Subject
-        
-        `From ${Name},
-         
-        ${Message}`   //<--- Body Text
-      );
+  const  handleEmail = async () => {
+    const id = firebase.auth().currentUser.uid
+    const dbRef = ref(getDatabase(app));
+
+        const db = getDatabase();
+      const reference = ref(db, 'contact/' + id);
+      set(reference, {
+              name: Name,
+              Email: Email,
+             Subject: Subject,
+              Message : Message,
+  
+      });
+
+
+
     }
 
 

@@ -36,8 +36,7 @@ const CONTENT1 = [
     `,
 },
 {
-  title: `I JUST PURCHASED AN OGSO PRODUCT,
-     HOW CAN I BE SURE ITS GENUINE? `,
+  title: `I JUST PURCHASED AN OGSO PRODUCT,HOW CAN I BE SURE ITS GENUINE? `,
   content:
     ` Buying an OGSO product from an Authorized Retailer,means you can be sure your product is genuine.   
     `,
@@ -49,8 +48,7 @@ const CONTENT1 = [
     `,
 },
 {
-  title: `HOW DO I DEFINE THE MOUNTING POINT
-     FOR MY BINDINGS?`,
+  title: `HOW DO I DEFINE THE MOUNTING POINT FOR MY BINDINGS?`,
   content:
     `Follow the indications “Middle foot” of the technical specs and measure the ski in centimeters from the tail including the shock absorber.
      The mounting of the bindings can be adapted to your style and technical level. If you are a freestyler, mount the bindings a little more forward, 

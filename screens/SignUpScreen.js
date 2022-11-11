@@ -173,7 +173,7 @@ const SignUpScreen = ({navigation}) => {
         />
         <Button title="Sign In" onPress={validate} />
         <Text
-          onPress={() => navigation.navigate('signIN')}
+      onPress={() => navigation.navigate('p')}
           style={{
             color: COLORS.black,
             fontWeight: 'bold',

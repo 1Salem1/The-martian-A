@@ -12,6 +12,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import FirstTimeNavigation from './navigation/FirstTimeNavigation'
 import messaging from '@react-native-firebase/messaging';
 import { saveUserPushNotification } from './utils/AddPushNotification'
+import NetInfo from "@react-native-community/netinfo";
+import LostScreen from './screens/LostScreen';
 OneSignal.setAppId("a8c25a20-ca30-41b2-92d3-bd7472d3f18c");
 
 
@@ -19,6 +21,7 @@ function App() {
        
   const [loading, setLoading] = useState(true);
   const [firstLaunch, setFirstLaunch] = useState(true);
+  const [internet , setInternet] = useState(true)
 
 /*   OneSignal.promptForPushNotificationsWithUserResponse();
 
@@ -123,6 +126,16 @@ SplashScreen.hide()
     }})
 
 
+    const unsubscribe = NetInfo.addEventListener(state => {
+      console.log("Connection type", state.type);
+      console.log("Is connected?", state.isConnected);
+      setInternet(state.isConnected)    
+    });
+    
+    // Unsubscribe
+   
+
+
 },[])
 
 
@@ -133,7 +146,11 @@ SplashScreen.hide()
 
   if (initializing) return <Loader/>;
 
-
+  if(!internet){
+    return (
+      <LostScreen/>
+    )
+  }
 
   if(firstLaunch && !user){
     return (

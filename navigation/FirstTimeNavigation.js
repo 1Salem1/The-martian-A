@@ -6,6 +6,7 @@ import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen'
 import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
 import Simple from '../screens/onBordingScreen';
+import PrivacyPolicy from '../screens/PrivacyPolicy';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ const Navigation = () => {
       <Stack.Screen  name="EnjoyYourExpedition" component={EnjoyYourExpedition} />
       <Stack.Screen  name="forget" component={ForgetPasswordScreen} />
       <Stack.Screen  name="sm" component={Simple} />
+      <Stack.Screen  name="p" component={PrivacyPolicy} />
     </Stack.Navigator>
   </NavigationContainer>
   )

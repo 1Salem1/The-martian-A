@@ -105,7 +105,7 @@ async function track (){
     console.log(dataT.coords.longitude)
    
      setLat(dataT.coords.latitude)
-      setLong(dataT.coords.longitude)
+    setLong(dataT.coords.longitude)
           
     }
   React.useEffect(()=>{
@@ -158,6 +158,10 @@ function  getAltitude(latitude , longitude) {
     var  MapStyle = style
 
 
+    if(!lat){
+      return null 
+    }
+    else {
 
       return (
         <View style={styles.container}>
@@ -179,8 +183,8 @@ function  getAltitude(latitude , longitude) {
     initialRegion={{
       latitude:  lat,
       longitude: long,
-      latitudeDelta: 0.001,
-      longitudeDelta: 0.001
+      latitudeDelta: 0.0222,
+      longitudeDelta: 0.0421
     }}
       
         customMapStyle={MapStyle}
@@ -190,12 +194,7 @@ function  getAltitude(latitude , longitude) {
     
               
         </MapView>
-        <Callout style={styles.buttonCallout}>
-          <TouchableOpacity
-            style={[styles.touchable]}
-            onPress={() => console.log("press")}
-          />
-          </Callout>
+   
             
         <View style={{flexDirection:'row' , justifyContent:'space-around' ,alignContent:'center' , marginTop : 15 }}> 
          
@@ -267,7 +266,7 @@ function  getAltitude(latitude , longitude) {
 
 </ImageBackground>
 <View style={{bottom : '0%',  width : '100%' , height : 50  , alignItems :'stretch' , flexDirection:'row' , justifyContent : 'space-around'  }}>
-{  ListVisible &&<TouchableOpacity style={{top : '2%' , left : '50%'}}  onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,setResetStopwatch(true) , setListVisible(!ListVisible) ,  handleClick()  }}>
+{  ListVisible &&<TouchableOpacity style={{top : '2%' , left : '50%' }}  onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,setResetStopwatch(true) , setListVisible(!ListVisible) ,  handleClick()  }}>
   <View style={{ elevation : 30, width: 70,height: 70, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='times' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>
@@ -329,6 +328,7 @@ function  getAltitude(latitude , longitude) {
       </View>
       )
     }
+  }
 
   
 

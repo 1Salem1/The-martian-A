@@ -4,8 +4,7 @@ import WebView from 'react-native-webview'
 export default function PDF() {
   return (
     <View style={styles.container}  >
-        <WebView source={{ uri: 'https://heyzine.com/flip-book/e1409b73ca.html' }} />
-        <View style={{backgroundColor : 'white' , height  : 180 , position :'absolute' , width : '100%' , bottom : 0 }}></View>
+        <WebView source={{ uri: 'https://ogso-mountain-essentials.com/the-martian-catalog/#1' }} />
 </View>
   )
 }
