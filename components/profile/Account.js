@@ -71,8 +71,8 @@ const SignInScreen = ({ShowP , visible , handleClose , handleSignOut}) => {
   return (
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>
-      <Text style={{left : 20 , marginTop: 20, color: '#000000', fontFamily: 'MuseoSans_700', fontSize: 18, fontWeight: '400', fontStyle: 'normal', textAlign: 'left', lineHeight: 36,}}>Account</Text>
 
+      <Text style={{ left : 20 , marginTop: 20, color: '#000000', fontFamily: 'MuseoSans_700', fontSize: 18, fontWeight: '400', fontStyle: 'normal', textAlign: 'left', lineHeight: 36,}}>Account</Text>
 
         <View style={styles.container}>
 
@@ -136,14 +136,14 @@ export default SignInScreen
 const styles = StyleSheet.create({
   
   container : {
-     width: 375,
+     width: '100%',
     height: 282,
     borderRadius: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 12, height: 0 },
+/*     shadowOffset: { width: 1, height: 0 },
     shadowOpacity:  0.4,
-    shadowRadius: 32,
-    elevation: 3,
+    shadowRadius: 32,*/
+    elevation: 3, 
     backgroundColor: 'white',
     alignItems :'center',
     marginBottom : "5%",

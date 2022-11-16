@@ -17,7 +17,7 @@ export default function ActivityDetails({navigation}) {
 
    
 
-<View style={{flexDirection:'row' , justifyContent:'space-between' , marginTop : 20}}>
+<View style={{flexDirection:'row' , justifyContent:'space-around' , marginTop : 20}}>
 <View  style={styles.rectangle483}>
 <View style={{flexDirection:'row' , justifyContent:'space-between' }}>
 <Icon2 name='fire' style={{ color : 'white' , fontSize: 20 , marginRight : 8  }} />

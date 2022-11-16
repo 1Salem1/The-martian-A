@@ -44,7 +44,9 @@ const StartRecording = ({navigation}) => {
       if(Fit){
         track()
       }
-      getAltitude(lat , long)
+      const varT = await GetLocation()
+
+      getAltitude(varT.coords.latitude , varT.coords.longitude)
     }, 5000);
     setIntervalId(newIntervalId);
 
@@ -118,12 +120,13 @@ async function track (){
 
 
 
-function  getAltitude(latitude , longitude) {
+async function  getAltitude(latitude , longitude) {
+//  console.log(latitude , longitude)
      axios(config(latitude , longitude))
      .then(function (response) {
 
       
-      //console.log(response.data.results[0].elevation.toFixed(2))
+   //   console.log(response.data.results[0].elevation)
        setAltitude(response.data.results[0].elevation.toFixed(2))   
      
      })
