@@ -18,8 +18,8 @@ import PopUpLogin from '../components/global/PopUpError';
     const lon = route.params?.longitude;
   
 
- 
 
+    
     const[city , setCity] = useState('This Location is unknown')
     const[Country , setCountry] = useState()
     const[snow , setSnow] = useState(0.00)
@@ -85,6 +85,7 @@ auth.setLocation(dataT.coords)
     latitude : lat_v ,
     longitude : lon_v
   })
+  console.log(data)
   const weather = await getWeather(dataT.coords)
  // console.log(weather.data)
   setTemp(weather.data.main.temp)

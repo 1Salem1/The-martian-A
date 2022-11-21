@@ -39,6 +39,8 @@ async function LocationSettings (){
 
     var  MapStyle = style
 
+if(lat){
+
   return (
     <View style={styles.container}>
     <MapView
@@ -84,6 +86,8 @@ initialRegion={{
             </View>
   </View>
   )
+}
+
 }
 
 export default MapScreen

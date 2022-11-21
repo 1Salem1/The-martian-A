@@ -13,13 +13,17 @@ import GoogleFit, {Scopes} from 'react-native-google-fit';
 import { saveUserActivities } from '../utils/AddActivity';
 import { firebase } from '@react-native-firebase/auth';
 import Lottie from 'lottie-react-native';
-
+import { AuthContext } from '../utils/auth-context';
+import MarkerSvg from '../assets/IamHere';
 
 
 const StartRecording = ({navigation}) => {
   const uid = firebase.auth().currentUser.uid
-  const[long , setLong] = React.useState(0)
-  const [lat , setLat] = React.useState(0)
+  const auth = React.useContext(AuthContext)
+   const location_data = auth.GetLocation()
+
+  const[long , setLong] = React.useState(location_data.longitude)
+  const [lat , setLat] = React.useState(location_data.latitude)
   const [ListVisible , setListVisible] = React.useState(false)
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
@@ -170,12 +174,12 @@ async function  getAltitude(latitude , longitude) {
         <View style={styles.container}>
      
         <MapView
-          showsUserLocation={true}
-          showsMyLocationButton={true}
-          followsUserLocation={true}
+       
+     
+        //  onUserLocationChange={(event) => event.followUserLocation }
           showsCompass={true}
           scrollEnabled={true}
-          zoomEnabled={true}
+       
           pitchEnabled={true}
           rotateEnabled={true}
         mapPadding={{
@@ -183,19 +187,29 @@ async function  getAltitude(latitude , longitude) {
           right: 0,
           left: 0
          }}
-    initialRegion={{
+      initialRegion={{
       latitude:  lat,
       longitude: long,
-      latitudeDelta: 0.0222,
-      longitudeDelta: 0.0421
+      latitudeDelta: 0.015*5,
+      longitudeDelta: 0.0121*5,
     }}
-      
+        
         customMapStyle={MapStyle}
         style={styles.map} >
     
           
     
-              
+    <Marker
+       coordinate={{ latitude: lat, longitude: long }}
+						pinColor="black"
+            draggable={true}
+            onDragEnd={(e) => {
+							setLat(e.nativeEvent.coordinate.latitude)
+							setLong(e.nativeEvent.coordinate.longitude)
+						}}
+					>
+			<MarkerSvg/>
+					</Marker>   
         </MapView>
    
             
@@ -205,8 +219,16 @@ async function  getAltitude(latitude , longitude) {
         <View style={styles.rectangle486}>
           
         <View style={{flexDirection :'row' ,paddingTop : 40 , justifyContent : 'space-around' }}>
-       
+       <View style={{width : '100%' , alignItems :'center' }}>
+        
+       {isStopwatchStart ?    <Lottie style={{right : '30%'}} source={require('../assets/animations/1.json')} autoPlay={true} />
+       : <Lottie style={{right : '30%'}} source={require('../assets/animations/2.json')} autoPlay={false} />
+      }
+        
+      
        <Text style={styles.recording}>Tap to record</Text>
+       </View>
+     
               </View>
               
               <Text style={styles.layer00}><Stopwatch
