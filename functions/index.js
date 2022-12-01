@@ -10,9 +10,9 @@ admin.initializeApp();
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'yourgmailaccount@gmail.com',
-        pass: 'yourgmailaccpassword'
-    }
+        user: "sd1067800@gmail.com", // MAKE SURE THIS EMAIL IS YOUR GMAIL FOR WHICH YOU GENERATED APP PASSWORD
+        pass: "htbcgmknfvlahgks", // MAKE SURE THIS PASSWORD IS YOUR GMAIL APP PASSWORD WHICH YOU GENERATED EARLIER
+      },
 });
 
 exports.sendMail = functions.https.onRequest((req, res) => {

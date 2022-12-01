@@ -15,13 +15,16 @@ import { firebase } from '@react-native-firebase/auth';
 import Lottie from 'lottie-react-native';
 import { AuthContext } from '../utils/auth-context';
 import MarkerSvg from '../assets/IamHere';
-
+import Geolocation from 'react-native-geolocation-service';
+import { haversineDistance } from '../utils/haversine';
+import { set } from 'firebase/database';
 
 const StartRecording = ({navigation}) => {
   const uid = firebase.auth().currentUser.uid
   const auth = React.useContext(AuthContext)
    const location_data = auth.GetLocation()
 
+   const MovingHistory = []
   const[long , setLong] = React.useState(location_data.longitude)
   const [lat , setLat] = React.useState(location_data.latitude)
   const [ListVisible , setListVisible] = React.useState(false)
@@ -33,24 +36,33 @@ const StartRecording = ({navigation}) => {
   const [Fit, setGoogleFit] = useState(GoogleFit.isAuthorized);
   const  [startedDate , setstartedDate] = useState()
   const  [steps , setSteps] = useState('--')
-
+  const [distance , setDistance] = useState(0)
 
 
   const handleClick = async () => {
     if (intervalId) {
       clearInterval(intervalId);
-      setIntervalId(0);
       return;
     }
 
     const newIntervalId = setInterval(async () => {
-      console.log('go')
+    //  console.log('go')
       if(Fit){
         track()
       }
       const varT = await GetLocation()
-
       getAltitude(varT.coords.latitude , varT.coords.longitude)
+MovingHistory.push({latitude : varT.coords.latitude , longitude : varT.coords.longitude});
+
+console.log(MovingHistory , MovingHistory.length)
+
+if( MovingHistory.length >= 2){
+  console.log("FROM HAVERSINE " , haversineDistance(
+    [MovingHistory[MovingHistory.length-1].latitude, MovingHistory[MovingHistory.length-1].longitude] ,
+    [MovingHistory[MovingHistory.length-2].latitude, MovingHistory[MovingHistory.length-2].longitude] , false))
+ setDistance(distance + haversineDistance(MovingHistory[0] , MovingHistory[1] , false))
+}
+
     }, 5000);
     setIntervalId(newIntervalId);
 
@@ -190,8 +202,8 @@ async function  getAltitude(latitude , longitude) {
       initialRegion={{
       latitude:  lat,
       longitude: long,
-      latitudeDelta: 0.015*5,
-      longitudeDelta: 0.0121*5,
+      latitudeDelta: 0.015,
+      longitudeDelta: 0.0121,
     }}
         
         customMapStyle={MapStyle}
@@ -264,7 +276,9 @@ async function  getAltitude(latitude , longitude) {
 <Icon3 name='map-marker-distance' style={{ color : '#e8500e' , fontSize: 20 , marginRight : 14  }} />
 <Text style={styles.calories}>DISTANCE</Text>
 </View>
-<Text  style={styles.kcal} >{parseFloat(steps).toFixed(2) == 'NaN' ?  '--' : parseFloat(steps).toFixed(2)}km</Text>
+{/* <Text  style={styles.kcal} >{parseFloat(steps).toFixed(2) == 'NaN' ?  '--' : parseFloat(steps).toFixed(2)}km</Text> */}
+<Text  style={styles.kcal} >{ parseFloat(distance).toFixed(2) == 0.00 ? '--' : parseFloat(distance).toFixed(2)}km</Text>
+
 </View>
 
 </View>
