@@ -103,11 +103,7 @@ else {
              
     
         </ScrollView>
-        <TouchableOpacity onPress={()=> navigation.navigate('listA')} >
-                        <View style={{ top : 20 ,  width: 113,height: 40,borderRadius: 15,borderColor: '#ffd6c7',borderStyle: 'solid',justifyContent :'center',borderWidth: 1,backgroundColor: '#ffffff'}}>
-                            <Text style={{ color: '#666666',fontFamily: 'Museo',fontSize: 14,fontWeight: '400',fontStyle: 'normal',textAlign: 'center',lineHeight: 22,}}>View all</Text>
-                        </View>
-                    </TouchableOpacity>
+  
         
       </View>
     

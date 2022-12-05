@@ -54,14 +54,20 @@ const StartRecording = ({navigation}) => {
       getAltitude(varT.coords.latitude , varT.coords.longitude)
 MovingHistory.push({latitude : varT.coords.latitude , longitude : varT.coords.longitude});
 
-console.log(MovingHistory , MovingHistory.length)
+//console.log(MovingHistory , MovingHistory.length)
+
+
+
+
+
 
 if( MovingHistory.length >= 2){
-  console.log("FROM HAVERSINE " , haversineDistance(
-    [MovingHistory[MovingHistory.length-1].latitude, MovingHistory[MovingHistory.length-1].longitude] ,
-    [MovingHistory[MovingHistory.length-2].latitude, MovingHistory[MovingHistory.length-2].longitude] , false))
- setDistance(distance + haversineDistance(MovingHistory[0] , MovingHistory[1] , false))
+ setDistance( x => x + distance + haversineDistance(
+  [MovingHistory[MovingHistory.length-1].latitude, MovingHistory[MovingHistory.length-1].longitude] ,
+  [MovingHistory[MovingHistory.length-2].latitude, MovingHistory[MovingHistory.length-2].longitude] , false))
 }
+
+console.log(distance)
 
     }, 5000);
     setIntervalId(newIntervalId);
@@ -277,7 +283,7 @@ async function  getAltitude(latitude , longitude) {
 <Text style={styles.calories}>DISTANCE</Text>
 </View>
 {/* <Text  style={styles.kcal} >{parseFloat(steps).toFixed(2) == 'NaN' ?  '--' : parseFloat(steps).toFixed(2)}km</Text> */}
-<Text  style={styles.kcal} >{ parseFloat(distance).toFixed(2) == 0.00 ? '--' : parseFloat(distance).toFixed(2)}km</Text>
+<Text  style={styles.kcal} >{ distance == 0 ? '--' : distance.toFixed(2)}km</Text>
 
 </View>
 
@@ -342,7 +348,7 @@ async function  getAltitude(latitude , longitude) {
 
 
 
-{ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}} onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,setResetStopwatch(true) , setListVisible(!ListVisible) ,  handleClick()  , saveUserActivities(uid)}}>
+{ListVisible &&<TouchableOpacity style={{top : '2%' , right : '50%'}} onPress={() => {   setIsStopwatchStart(!isStopwatchStart) ,setResetStopwatch(true) , setListVisible(!ListVisible) ,  handleClick() , setDistance(0) , setAltitude(0), saveUserActivities(uid)}}>
   <View style={{ elevation : 30, width: 70,height: 70, shadowColor: 'rgba(0, 0, 0, 0.25)', shadowOffset: { width: 12, height: 0 }, shadowRadius: 32, borderRadius :45, backgroundColor: 'white',  justifyContent:'center' ,alignItems:'center'}}>
   <Icon2 name='check' style={{ color : '#e8500e' , fontSize: 25   }} />
   </View>
