@@ -46,7 +46,6 @@ const changeImage = async () =>{
 
   const x = await launchImageLibrary();
   
-  console.log(x)
 
  if(!x.didCancel){
 
@@ -128,8 +127,8 @@ const UpadateImage = async () =>{
           
         </View>
         
-        <Text style={{textAlign :"center",color: '#000000',fontFamily: 'MuseoSans_700',fontSize: 18,fontWeight: '400',fontStyle: 'normal',textAlign: 'center', lineHeight: 36,}}>Welcome Back</Text>
-        <Text style={{textAlign :"center",color: '#e8500e',fontFamily: 'MuseoSans_700',fontSize: 30,fontWeight: '400',fontStyle: 'normal',textAlign: 'center'}}>{capitalizeFirstLetter(Auth.getData().fname) +' ' + capitalizeFirstLetter(Auth.getData().lname)   }</Text>
+        <Text style={{textAlign :"center",color: '#000000',fontFamily: 'MuseoSans_700',fontSize: 18,fontWeight: 'bold',fontStyle: 'normal',textAlign: 'center', lineHeight: 36,}}>Welcome Back</Text>
+        <Text style={{textAlign :"center",color: '#e8500e',fontFamily: 'Esoris',fontSize: 30,fontWeight: '400',fontStyle: 'normal',textAlign: 'center'}}>{capitalizeFirstLetter(Auth.getData().fname) +' ' + capitalizeFirstLetter(Auth.getData().lname)   }</Text>
 
     
       </View>

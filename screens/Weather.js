@@ -1,4 +1,4 @@
-  import { View, Text , StyleSheet, TouchableOpacity } from 'react-native'
+  import { View, Text , StyleSheet, TouchableOpacity , ImageBackground } from 'react-native'
   import React, { useContext, useEffect, useState } from 'react'
   import {Avatar } from 'react-native-paper';
   import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -10,6 +10,7 @@ import { AuthContext } from '../utils/auth-context';
 import { GetLocation, getWeather } from '../utils/Weather';
 import { useFocusEffect } from '@react-navigation/native';
 import PopUpLogin from '../components/global/PopUpError';
+import Style from '../styles/Style';
   const Weather = ({route ,navigation}) => {
   
     const auth = useContext(AuthContext)
@@ -143,7 +144,7 @@ const HandleVisibleError = ()=>{
 
 
     return (
-  <View style={{flex : 1}}>
+  <View style={{flex : 1 , height : '100%'}}>
     <PopUpLogin visible={visible} HandleVisibleError={HandleVisibleError}/>
     <View style={styles.container}>
        <View style={{flexDirection :'row'  , justifyContent : 'space-between'   }}>
@@ -166,7 +167,35 @@ const HandleVisibleError = ()=>{
        <Text style={styles.notification}>SKI ON MARS TRACKER</Text>
      
        </View>
-       <View style={{paddingHorizontal : 20}}>
+
+       <View style={{flexDirection:'row' }}>
+       <Icon name='location-on' style={{ color : '#e8500e' , fontSize: 25 , marginTop : 5 , marginRight : 10}} />
+
+       <Text style={styles.aiguillesDe}>{city}{city != 'This Location is unknown' ? ' , ' : ''}{Country}</Text>
+       
+       </View>
+
+       <TouchableOpacity style={styles.bg} onPress={()=> navigation.navigate('map',{data: data} )}>
+<Icon3 name='my-location' style={{marginRight:10,  color: '#666666' , fontSize: 20 }} />
+<Text style={styles.selectAnother}>Select another place</Text>
+</TouchableOpacity>
+
+
+<View style={{height : 400}}>
+<TouchableOpacity      onPress={()=>navigation.navigate('selector')}  style={styles.bgCopy}>
+<ImageBackground source={require('../assets/background/Button-ski.png')} resizeMode="cover" >
+<Text style={styles.skiOn}>
+Start{"\n"} 
+A NEW SKI{"\n"}
+ACTIVITY
+</Text>
+</ImageBackground>
+
+</TouchableOpacity>
+
+</View>
+
+      {/*  <View style={{paddingHorizontal : 20}}>
        <Text style={styles.title}>OVERALL SKI CONDITIONS</Text>
        <View style={{flexDirection:'row' ,marginTop:10}}>
        <Icon name='location-on' style={{ color : '#666666' , fontSize: 18, width : 22 , marginTop : 5 }} />
@@ -178,11 +207,6 @@ const HandleVisibleError = ()=>{
 
 
        <View style={{flexDirection:'row' ,justifyContent:'space-around' , marginTop:20}}> 
-
-
-
-
-
 
 
        <View style={{flexDirection:'row'}}>
@@ -213,7 +237,8 @@ const HandleVisibleError = ()=>{
     <View style={{flex : 1  , backgroundColor : 'white'}}>
       
       <TabViewExample/>
-    </View>
+    </View> */}
+  </View>
   
   </View>
     )
@@ -239,10 +264,10 @@ const HandleVisibleError = ()=>{
         textAlign: 'left',
       },
       aiguillesDe: {
-        color: '#666666',
+        color: '#e8500e',
         fontFamily: 'Museo Sans 300',
-        fontSize: 14,
-        fontWeight: '400',
+        fontSize: 20,
+        fontWeight: 'bold',
         fontStyle: 'normal',
         textAlign: 'left',
         top : 5
@@ -280,21 +305,14 @@ const HandleVisibleError = ()=>{
         lineHeight: 22,
       },
       bg: {
-        width: '80%',
-        height: '18%',
-        borderRadius: 5,
-        borderColor: '#cccccc',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        backgroundColor: '#ffffff',
-        marginTop : '12%',
-        justifyContent:'center',
-        alignItems:'center',
-        flexDirection: 'row'
+        fontFamily: 'MuseoSans_500',
+        marginTop : '4%',
+        flexDirection: 'row', 
+        backgroundColor : 'white'
       },
       selectAnother: {
         color: '#666666',
-        fontFamily: 'MuseoSans_700',
+        fontFamily: 'MuseoSans_500',
         fontSize: 14,
         fontWeight: '400',
         fontStyle: 'normal',
@@ -307,5 +325,38 @@ const HandleVisibleError = ()=>{
         fontWeight: '400',
         fontStyle: 'normal',
         lineHeight: 36,
+      },
+      letS: {
+        color: '#666666',
+        fontFamily: 'MuseoSans_300',
+        fontSize: 13,
+        fontWeight: '400',
+        fontStyle: 'normal',
+        textAlign: 'left',
+        lineHeight: 26,
+        bottom : 5,
+      },
+      hiFoulen: {
+        color: '#eb5c26',
+        fontFamily: 'MuseoSans_700',
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
+      bgCopy: {
+        width: 354,
+        height: 180,
+        marginVertical : 17,
+        alignSelf  : 'center', 
+      
+      },
+      skiOn: {
+        color: '#ffffff',
+        fontFamily: 'Esoris',
+        fontSize: 28,
+        fontWeight: '400',
+        fontStyle: 'normal',
+        textAlign: 'left',
+        lineHeight: 28,
+        paddingLeft : 20,
       },
   })
