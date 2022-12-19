@@ -1,4 +1,4 @@
-import { View, Text , TouchableOpacity  , StyleSheet , ImageBackground} from 'react-native'
+import { View, Text , TouchableOpacity  , StyleSheet , ImageBackground , Dimensions} from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 const ActivitiesList = ({lat , lon}) => {
@@ -6,9 +6,11 @@ const ActivitiesList = ({lat , lon}) => {
   const navigation = useNavigation()
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'white' , alignItems:'center' , justifyContent : 'center'}}  >
+    <View style={{ alignItems:'center' , justifyContent : 'center' , width : '100%'}}  >
        <TouchableOpacity style={style.bgCopy} onPress={()=> navigation.navigate('record')}>
-<ImageBackground source={require('../../assets/background/bg_button_ski.png')} resizeMode="cover" style={styles.image}>
+<ImageBackground source={require('../../assets/background/Button-ski.png')}  
+
+imageStyle={{ borderRadius: 0 }} resizeMode="contain" style={{justifyContent : 'center' ,  height : '100%' , width : '100%'}}>
 <Text style={style.skiOn}>
 Start{"\n"} 
 MY SKI{"\n"}
@@ -49,8 +51,8 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   bgCopy: {
-    width: 334,
-    height: 200,
+    width : '100%',
+    height: 170,
     borderRadius: 15,
   },
   skiOn: {

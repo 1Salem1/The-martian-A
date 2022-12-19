@@ -11,6 +11,11 @@ import { GetLocation, getWeather } from '../utils/Weather';
 import { useFocusEffect } from '@react-navigation/native';
 import PopUpLogin from '../components/global/PopUpError';
 import Style from '../styles/Style';
+import ActivitiesList from '../components/skiOnMars/ActivitiesList';
+import ListActivies from '../components/skiOnMars/ButtonTracker';
+
+
+
   const Weather = ({route ,navigation}) => {
   
     const auth = useContext(AuthContext)
@@ -144,7 +149,7 @@ const HandleVisibleError = ()=>{
 
 
     return (
-  <View style={{flex : 1 , height : '100%'}}>
+  <View style={{flex : 1 , height : '100%' , width : '100%'}}>
     <PopUpLogin visible={visible} HandleVisibleError={HandleVisibleError}/>
     <View style={styles.container}>
        <View style={{flexDirection :'row'  , justifyContent : 'space-between'   }}>
@@ -181,17 +186,37 @@ const HandleVisibleError = ()=>{
 </TouchableOpacity>
 
 
-<View style={{height : 400}}>
-<TouchableOpacity      onPress={()=>navigation.navigate('selector')}  style={styles.bgCopy}>
-<ImageBackground source={require('../assets/background/Button-ski.png')} resizeMode="cover" >
-<Text style={styles.skiOn}>
-Start{"\n"} 
-A NEW SKI{"\n"}
-ACTIVITY
-</Text>
-</ImageBackground>
+<View style={{ width : '100%' , marginTop : '3%'}}>
 
-</TouchableOpacity>
+
+<View >
+<ActivitiesList/>
+
+</View>
+
+<View style={{paddingHorizontal : 20 , marginTop : 20}}>
+       <Text style={styles.title}>OVERALL SKI CONDITIONS</Text>
+       <View style={{flexDirection:'row' ,justifyContent:'space-around' , marginTop:15}}> 
+
+
+       <View style={{flexDirection:'row'}}>
+<Icon name='device-thermostat' style={{color : '#eb5c26' , fontSize: 40 }} />
+
+<Text style={styles.cc}>{temp}°c</Text>
+</View>
+
+<View style={{width:'15%'}}></View>
+<View style={{flexDirection:'row'}} >
+<Icon2 name='snowflake' style={{marginRight:10, color : '#eb5c26' , fontSize: 40 }} />
+<View>
+<Text style={styles.c}>{snow}cm</Text>
+<Text style={styles.c3}>24 hours Snowfall</Text>
+</View>
+</View>
+ </View>
+ </View>
+
+
 
 </View>
 
@@ -238,6 +263,12 @@ ACTIVITY
       
       <TabViewExample/>
     </View> */}
+ 
+ <View style={{flex : 1 , width : '100%' , height : '100%' , marginTop : 20}}>
+   <ListActivies/>
+   </View>
+
+
   </View>
   
   </View>
@@ -257,8 +288,8 @@ ACTIVITY
       },
       title : {
         color: '#000000',
-        fontFamily: 'MuseoSans_700',
-        fontSize: 22,
+        fontFamily: 'MuseoSans_500',
+        fontSize: 18,
         fontWeight: '700',
         fontStyle: 'normal',
         textAlign: 'left',
@@ -345,8 +376,6 @@ ACTIVITY
       bgCopy: {
         width: 354,
         height: 180,
-        marginVertical : 17,
-        alignSelf  : 'center', 
       
       },
       skiOn: {

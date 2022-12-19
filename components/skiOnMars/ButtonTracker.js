@@ -67,15 +67,22 @@ useFocusEffect(
 
 if(noData){
   return (
-    <View style={{flex : 1 , justifyContent : 'center' , alignItems :'center'  }}>
+    <View style={{flex : 1}}>
+  <Text  style={styles.title} >REcent Activities</Text>
+   <View style={{flex : 1 ,  justifyContent : 'center' , alignItems :'center'  }}>
       <Text style={{color : 'black' , fontFamily : 'Esoris'}}>There's no data recorded </Text>
     </View>
+
+    </View>
+ 
   )
 }
 else {
   return (
     <View style={{flex : 1 }}>
-      <View style={styles.container}>
+        <Text style={styles.title}>Recent Activities</Text>
+
+      <View style={{flex : 1  , marginTop : 15}}>
      
          <View>
                 
@@ -135,6 +142,16 @@ const styles = StyleSheet.create({
       lineHeight: 36,
       paddingHorizontal : 20,
       marginTop : 10,
+    },
+    title : {
+      color: '#000000',
+      fontFamily: 'MuseoSans_500',
+      fontSize: 18,
+      fontWeight: '700',
+      fontStyle: 'normal',
+      textAlign: 'left',
+      paddingHorizontal : 20,
+      textTransform : 'uppercase'
     },
 })
 
